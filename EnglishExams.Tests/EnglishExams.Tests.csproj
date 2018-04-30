@@ -73,9 +73,7 @@
     <None Include="Files\persona-data.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mocks\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\EnglishExams\EnglishExams.Application.csproj">
       <Project>{4536ED0B-F33A-4D19-8AA8-1F2AA3BAA112}</Project>

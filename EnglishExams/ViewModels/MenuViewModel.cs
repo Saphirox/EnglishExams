@@ -29,7 +29,7 @@ namespace EnglishExams.ViewModels
 
         private void ShowCreateATest()
         {
-            // TODO: Add me
+            RedirectDecorator.ToViewModel(typeof(CreateTestViewModel));
         }
 
     }

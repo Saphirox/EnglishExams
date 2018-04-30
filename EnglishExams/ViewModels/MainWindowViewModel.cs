@@ -1,4 +1,5 @@
-﻿using EnglishExams.Infrastructure;
+﻿using System;
+using EnglishExams.Infrastructure;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace EnglishExams.ViewModels
@@ -20,26 +21,11 @@ namespace EnglishExams.ViewModels
             CurrentViewModel = new LoginViewModel();
         }
 
-        private void ShowSignUp()
-        {
-            CurrentViewModel = new SignUpViewModel();  
-        }
-
-        private void ShowMenu()
-        {
-            CurrentViewModel = new MenuViewModel();
-        }
-
         private void ChangePage(ChangePage page)
         {
-            if (typeof(SignUpViewModel) == page.CurrentViewModel)
-            {
-                this.ShowSignUp();
-            }
-            else if (typeof(MenuViewModel) == page.CurrentViewModel)
-            {
-                this.ShowMenu();
-            }
+            var vm = Activator.CreateInstance(page.CurrentViewModel) as ViewModelBase;
+
+            CurrentViewModel = vm ?? throw new InvalidCastException(nameof(page.CurrentViewModel));
         }
     }
 }
