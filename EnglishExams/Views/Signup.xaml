@@ -36,19 +36,19 @@
 
     <Grid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1">
         <Border Margin="20, 0" Style="{StaticResource DarkBorderTextBox}">
-            <TextBox Style="{StaticResource DarkTextBox}"></TextBox>
+            <TextBox Text="{Binding UserName}" Style="{StaticResource DarkTextBox}"></TextBox>
         </Border>
     </Grid>
 
     <Label HorizontalAlignment="Right" FontSize="18" Grid.Column="0" Grid.Row="2" Style="{StaticResource DarkLabel}" Content="{x:Static resx:CommonResources.Password }"></Label>
 
     <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Style="{StaticResource DarkBorderTextBox}">
-        <TextBox Style="{StaticResource DarkTextBox}" Width="Auto"></TextBox>
+        <TextBox Text="{Binding Password}" Style="{StaticResource DarkTextBox}" Width="Auto"></TextBox>
     </Border>
     
     <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" 
             Style="{StaticResource DarkButton}" 
             Content="{x:Static resx:CommonResources.SignUp}"
-            Command="{Binding}"></Button>
+            Command="{Binding ShowSignInPage}"></Button>
 </Grid>
 </UserControl>

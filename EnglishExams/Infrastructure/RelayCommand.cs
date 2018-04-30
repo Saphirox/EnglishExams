@@ -5,16 +5,21 @@ namespace EnglishExams.Infrastructure
 {
     public class RelayCommand : ICommand
     {
-        private Action _action;
+        private readonly Action _action;
+        private readonly Func<bool> _canExecute;
 
-        public RelayCommand(Action action)
+        public RelayCommand(Action action, Func<bool> canExecute = null)
         {
             _action = action;
+            _canExecute = canExecute;
         }
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (_canExecute is null)
+                return true;
+
+            return _canExecute();
         }
 
         public void Execute(object parameter)
@@ -22,6 +27,10 @@ namespace EnglishExams.Infrastructure
             _action();
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
     }
 }

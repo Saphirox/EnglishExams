@@ -39,7 +39,7 @@ namespace EnglishExams.ViewModels
             else if (typeof(MenuViewModel) == page.CurrentViewModel)
             {
                 this.ShowMenu();
-            } 
+            }
         }
     }
 }

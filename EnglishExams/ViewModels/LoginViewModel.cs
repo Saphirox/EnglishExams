@@ -51,7 +51,7 @@ namespace EnglishExams.ViewModels
 
         private void ShowSignUp()
         {
-            Messenger.Default.Send<ChangePage>(new ChangePage(typeof(SignUpViewModel)));
+            Messenger.Default.Send(new ChangePage(typeof(SignUpViewModel)));
         }
         
     }
