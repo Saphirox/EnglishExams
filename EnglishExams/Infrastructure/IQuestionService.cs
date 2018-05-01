@@ -6,5 +6,7 @@ namespace EnglishExams.Infrastructure
     public interface IQuestionService
     {
         void AddToTest(UserTestModel userTestModel, ICollection<QuestionModel> questionModel);
+
+        UserTestModel GetTestByTaskDescription(TestDescription userTestModel);
     }
 }

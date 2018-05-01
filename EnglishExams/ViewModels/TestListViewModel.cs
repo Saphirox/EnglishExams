@@ -6,18 +6,18 @@ namespace EnglishExams.ViewModels
 {
     public class TestListViewModel : ViewModelBase
     {
-        public ObservableCollection<TaskListModel> Tests { get; set; }
+        public ObservableCollection<TestListModel> Tests { get; set; }
 
         public TestListViewModel()
         {
-            Tests = new ObservableCollection<TaskListModel>(
+            Tests = new ObservableCollection<TestListModel>(
                     CurrentUser.Instance.UserTestModels.ToTaskList());
         }
 
         public void StartTest(TestDescription test)
         {
             TinyCache.Set(typeof(TestDescription), test);
-            RedirectDecorator.ToViewModel(typeof(RunnedTest));
+            RedirectDecorator.ToViewModel(typeof(StartedTestViewModel));
         }
     }
 }

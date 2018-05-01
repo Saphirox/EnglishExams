@@ -89,6 +89,7 @@
     <Compile Include="Common\FileConstants.cs" />
     <Compile Include="Infrastructure\ButtonHelper.cs" />
     <Compile Include="Infrastructure\ChangePage.cs" />
+    <Compile Include="Infrastructure\CheckboxHelper.cs" />
     <Compile Include="Infrastructure\CurrentUser.cs" />
     <Compile Include="Infrastructure\FileFacade.cs" />
     <Compile Include="Infrastructure\IFileFacade.cs" />
@@ -99,10 +100,12 @@
     <Compile Include="Infrastructure\QuestionService.cs" />
     <Compile Include="Infrastructure\RedirectDecorator.cs" />
     <Compile Include="Infrastructure\RelayCommand.cs" />
-    <Compile Include="Infrastructure\TinyCache.cs" />
     <Compile Include="Models\OptionModel.cs" />
+    <Compile Include="Models\QuestionResultModel.cs" />
+    <Compile Include="Models\TestResultModel.cs" />
+    <Compile Include="Infrastructure\TinyCache.cs" />
     <Compile Include="Models\QuestionModel.cs" />
-    <Compile Include="Models\TaskListModel.cs" />
+    <Compile Include="Models\TestListModel.cs" />
     <Compile Include="Models\TestDescription.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Infrastructure\UserService.cs" />

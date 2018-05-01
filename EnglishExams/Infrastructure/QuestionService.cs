@@ -20,10 +20,18 @@ namespace EnglishExams.Infrastructure
         {
             userTestModel.QuestionModels = questionModel;
 
-
             CurrentUser.Instance.UserTestModels.Add(userTestModel);
 
             _userService.Update(CurrentUser.Instance);
+        }
+
+        public UserTestModel GetTestByTaskDescription(TestDescription userTestModel)
+        {
+            var test = CurrentUser.Instance.UserTestModels.FirstOrDefault(
+                c => c.LessonName == userTestModel.LessonName &&
+                     c.UnitName == userTestModel.UnitName);
+
+            return test;
         }
     }
 }

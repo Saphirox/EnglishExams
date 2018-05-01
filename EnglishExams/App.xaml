@@ -26,6 +26,10 @@
         <Style x:Key="DarkLabel">
             <Setter Property="Label.Foreground" Value="#9a9a9a"></Setter>
         </Style>
+
+        <Style x:Key="DarkSecondary">
+            <Setter Property="TextBlock.Foreground" Value="#9b9b9b"></Setter>
+        </Style>
         
         <Style x:Key="DarkButtonBorder">
             <Setter Property="Border.BorderBrush" Value="#000000"></Setter>

@@ -21,10 +21,10 @@ namespace EnglishExams.Models
 
     public static class UserTestModelExtension
     {
-        public static IEnumerable<TaskListModel> ToTaskList(this IEnumerable<UserTestModel> model)
+        public static IEnumerable<TestListModel> ToTaskList(this IEnumerable<UserTestModel> model)
         {
             var taskListModels = model?.GroupBy(c => c.UnitName).Select(c => 
-                new TaskListModel
+                new TestListModel
                 {
                     LessonsName = c.Select(l => l.LessonName).ToList(),
                     UnitName = c.Key

@@ -8,14 +8,14 @@ namespace EnglishExams.Infrastructure
             DependencyProperty.RegisterAttached("UnitName",
                 typeof(string), typeof(ButtonHelper), new PropertyMetadata(default(string)));
 
-        public static void SetUnitName(UIElement element, double value)
+        public static void SetUnitName(UIElement element, string value)
         {
             element.SetValue(UnitNameProperty, value);
         }
 
-        public static double GetUnitName(UIElement element)
+        public static string GetUnitName(UIElement element)
         {
-            return (double) element.GetValue(UnitNameProperty);
+            return (string) element.GetValue(UnitNameProperty);
         }
     }
 }
