@@ -1,35 +1,32 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Controls;
-using System.Windows.Input;
-using EnglishExams.Annotations;
-using EnglishExams.Infrastructure;
-using EnglishExams.Views;
+﻿using EnglishExams.Infrastructure;
+using EnglishExams.Models;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace EnglishExams.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private string _password;
-        private string _login;
+        private readonly IUserService _userService = 
+            new UserService(new FileFacade());
+
+        private UserModel _userModel = new UserModel();
 
         public string Password
         {
-            get => _password;
+            get => _userModel.Password;
             set
             {
-                _password = value;
+                _userModel.Password = value;
                 OnPropertyChanged(nameof(Password));
             }
         }
         
         public string Login
         {
-            get => _login;
+            get => _userModel.UserName;
             set
             {
-                _login = value;
+                _userModel.UserName = value;
                 OnPropertyChanged(nameof(Login));
             }
         }
@@ -45,8 +42,17 @@ namespace EnglishExams.ViewModels
 
         private void ShowMenu()
         {
-            // TODO: Add auth
-            RedirectDecorator.ToViewModel(typeof(MenuViewModel));
+            _userService.Authenticate(this._userModel);
+
+            if (CurrentUser.IsAuthenticated())
+            {
+                RedirectDecorator.ToViewModel(typeof(MenuViewModel));
+            }
+            else
+            {
+                 MessageError.InvalidIdentityForm.Show();
+                _userModel = new UserModel();
+            }
         }
 
         private void ShowSignUp()

@@ -77,5 +77,14 @@ namespace EnglishExams.Resources {
                 return ResourceManager.GetString("FieldMustBeConsistOnlyDigits", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string InvalidIdentityForm {
+            get {
+                return ResourceManager.GetString("InvalidIdentityForm", resourceCulture);
+            }
+        }
     }
 }

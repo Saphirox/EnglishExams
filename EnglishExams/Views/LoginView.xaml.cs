@@ -2,9 +2,9 @@
 
 namespace EnglishExams.Views
 {
-    public partial class Login : UserControl
+    public partial class LoginView : UserControl
     {
-        public Login()
+        public LoginView()
         {
             InitializeComponent();
         }

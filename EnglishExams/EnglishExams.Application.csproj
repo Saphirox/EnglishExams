@@ -88,12 +88,17 @@
     </ApplicationDefinition>
     <Compile Include="Common\FileConstants.cs" />
     <Compile Include="Infrastructure\ChangePage.cs" />
+    <Compile Include="Infrastructure\CurrentUser.cs" />
     <Compile Include="Infrastructure\FileFacade.cs" />
     <Compile Include="Infrastructure\IFileFacade.cs" />
+    <Compile Include="Infrastructure\IQuestionService.cs" />
     <Compile Include="Infrastructure\IUserService.cs" />
     <Compile Include="Infrastructure\MessageError.cs" />
+    <Compile Include="Infrastructure\QuestionIncrement.cs" />
+    <Compile Include="Infrastructure\QuestionService.cs" />
     <Compile Include="Infrastructure\RedirectDecorator.cs" />
     <Compile Include="Infrastructure\RelayCommand.cs" />
+    <Compile Include="Infrastructure\TinyCache.cs" />
     <Compile Include="Models\OptionModel.cs" />
     <Compile Include="Models\QuestionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -116,6 +121,9 @@
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\QuestionView.xaml.cs">
+      <DependentUpon>QuestionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Signup.xaml.cs">
       <DependentUpon>Signup.xaml</DependentUpon>
     </Compile>
@@ -123,7 +131,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Login.xaml" />
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -139,14 +149,18 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="Views\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\MenuView.xaml" />
+    <Page Include="Views\QuestionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Signup.xaml" />
   </ItemGroup>
   <ItemGroup>

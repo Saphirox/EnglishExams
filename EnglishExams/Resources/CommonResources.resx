@@ -132,6 +132,9 @@
   <data name="Duration" xml:space="preserve">
     <value />
   </data>
+  <data name="End" xml:space="preserve">
+    <value />
+  </data>
   <data name="LessonName" xml:space="preserve">
     <value />
   </data>
@@ -144,10 +147,19 @@
   <data name="NumberOfQuestions" xml:space="preserve">
     <value />
   </data>
+  <data name="Option" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OptionRequired" xml:space="preserve">
+    <value />
+  </data>
   <data name="PassATest" xml:space="preserve">
     <value />
   </data>
   <data name="Password" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Question" xml:space="preserve">
     <value />
   </data>
   <data name="ReviewGradebook" xml:space="preserve">

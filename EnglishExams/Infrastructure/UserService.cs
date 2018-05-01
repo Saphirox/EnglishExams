@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EnglishExams.Common;
 using EnglishExams.Models;
-using Newtonsoft.Json;
 
 namespace EnglishExams.Infrastructure
 {
@@ -29,7 +28,40 @@ namespace EnglishExams.Infrastructure
             models.Add(model);
 
             _fileFacade.WriteTo(FileConstants.PERSONAL_DATA, models);
-        }//
+        }
+
+        public void Update(UserModel model)
+        {
+            var models =
+                _fileFacade.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
+
+            if (models == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var index = models.FindIndex(m => m.Password == model.Password &&
+                                                  m.UserName == model.UserName);
+            models[index] = model;
+
+            _fileFacade.WriteTo(FileConstants.PERSONAL_DATA, models);
+        }
+
+        public void Authenticate(UserModel model)
+        {
+            var models =
+                _fileFacade.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
+
+            if (models == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var user = models.FirstOrDefault(m => m.Password == model.Password && 
+                                                  m.UserName == model.UserName);
+
+            CurrentUser.Instance = user;
+        }
 
     }
 }

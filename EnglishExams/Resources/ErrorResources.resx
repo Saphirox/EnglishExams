@@ -123,4 +123,7 @@
   <data name="FieldMustBeConsistOnlyDigits" xml:space="preserve">
     <value />
   </data>
+  <data name="InvalidIdentityForm" xml:space="preserve">
+    <value />
+  </data>
 </root>

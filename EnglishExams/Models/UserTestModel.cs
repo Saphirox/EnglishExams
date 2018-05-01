@@ -1,4 +1,6 @@
-﻿namespace EnglishExams.Models
+﻿using System.Collections.Generic;
+
+namespace EnglishExams.Models
 {
     public class UserTestModel
     {
@@ -11,5 +13,7 @@
         public int NumberOfQuestions { get; set; }
         
         public int NumberOfPoints { get; set; }
+
+        public ICollection<QuestionModel> QuestionModels { get; set; }
     }
 }

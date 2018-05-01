@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="EnglishExams.Views.QuestionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:EnglishExams.ViewModels"
+             xmlns:resx="clr-namespace:EnglishExams.Resources"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance vm:QuestionViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Width="600">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   Style="{StaticResource DarkHeader}"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Text="{Binding QuestionNumber, UpdateSourceTrigger=PropertyChanged}">
+        </TextBlock>
+        
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label
+                HorizontalAlignment="Right"
+                Grid.Column="0" 
+                Grid.Row="0" 
+                Content="{x:Static resx:CommonResources.Question}"
+                Style="{StaticResource DarkLabel}"></Label>
+            <Border Grid.Column="1" Grid.Row="0" Style="{StaticResource DarkBorderTextBox}">
+                <TextBox Text="{ Binding Text, UpdateSourceTrigger=PropertyChanged }" 
+                         Style="{StaticResource DarkTextBox}" 
+                         Width="Auto">
+                </TextBox>
+            </Border>
+             <!--  -->
+            <Label
+                HorizontalAlignment="Right"
+                Grid.Column="0" 
+                Grid.Row="1" 
+                Content="{x:Static resx:CommonResources.OptionRequired}"
+                Style="{StaticResource DarkLabel}"></Label>
+            <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource DarkBorderTextBox}">
+                <TextBox Text="{ Binding Option1, UpdateSourceTrigger=PropertyChanged }" 
+                         Style="{StaticResource DarkTextBox}" 
+                         Width="Auto">
+                </TextBox>
+            </Border>
+            <CheckBox  Grid.Row="1" 
+                       Grid.Column="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Command="{Binding Option1Checked, UpdateSourceTrigger=PropertyChanged}">
+            </CheckBox>
+
+            <Label
+                HorizontalAlignment="Right"
+                Grid.Column="0" 
+                Grid.Row="2" 
+                Content="{x:Static resx:CommonResources.OptionRequired}"
+                Style="{StaticResource DarkLabel}"></Label>
+            <Border Grid.Column="1" Grid.Row="2" Style="{StaticResource DarkBorderTextBox}">
+                <TextBox Text="{ Binding Option2, UpdateSourceTrigger=PropertyChanged }" 
+                         Style="{StaticResource DarkTextBox}" 
+                         Width="Auto">
+                </TextBox>
+            </Border>
+            <CheckBox  Grid.Row="2" 
+                       Grid.Column="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Command="{Binding Option2Checked, UpdateSourceTrigger=PropertyChanged}">
+            </CheckBox>
+
+            <Label
+                HorizontalAlignment="Right"
+                Grid.Column="0" 
+                Grid.Row="3" 
+                Content="{x:Static resx:CommonResources.Option}"
+                Style="{StaticResource DarkLabel}"></Label>
+            <Border Grid.Column="1" 
+                    Grid.Row="3" 
+                    Style="{StaticResource DarkBorderTextBox}">
+                <TextBox Text="{ Binding Option3, UpdateSourceTrigger=PropertyChanged }" 
+                         Style="{StaticResource DarkTextBox}" 
+                         Width="Auto">
+                </TextBox>
+            </Border>
+            <CheckBox  Grid.Row="3" 
+                       Grid.Column="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Command="{Binding Option3Checked, UpdateSourceTrigger=PropertyChanged}">
+            </CheckBox>
+
+            <Label
+                HorizontalAlignment="Right"
+                Grid.Column="0" 
+                Grid.Row="4" 
+                Content="{x:Static resx:CommonResources.Option}"
+                Style="{StaticResource DarkLabel}"></Label>
+            <Border Grid.Column="1" 
+                    Grid.Row="4" 
+                    Style="{StaticResource DarkBorderTextBox}">
+                <TextBox Text="{ Binding Option4, UpdateSourceTrigger=PropertyChanged }" 
+                         Style="{StaticResource DarkTextBox}" 
+                         Width="Auto">
+                </TextBox>
+            </Border>
+            <CheckBox  Grid.Row="4" 
+                       Grid.Column="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Command="{Binding Option4Checked, UpdateSourceTrigger=PropertyChanged}">
+            </CheckBox>
+
+            <Label
+                HorizontalAlignment="Right"
+                Grid.Column="0" 
+                Grid.Row="5" 
+                Content="{x:Static resx:CommonResources.Option}"
+                Style="{StaticResource DarkLabel}"></Label>
+            <Border Grid.Column="1" 
+                    Grid.Row="5" 
+                    Style="{StaticResource DarkBorderTextBox}">
+                <TextBox Text="{ Binding Option5, UpdateSourceTrigger=PropertyChanged }" 
+                         Style="{StaticResource DarkTextBox}" 
+                         Width="Auto">
+                </TextBox>
+            </Border>
+            <CheckBox  Grid.Row="5" 
+                       Grid.Column="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Command="{Binding Option5Checked, UpdateSourceTrigger=PropertyChanged}">
+            </CheckBox>
+
+            <Grid Grid.Row="7" Grid.Column="1" Margin="10 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Margin="2"  Style="{StaticResource DarkButtonBorder}">
+                    <Button Grid.Column="0" 
+                        Content="{x:Static resx:CommonResources.Back }" 
+                        Style="{StaticResource DarkButton}"
+                        Command="{Binding ReturnToMenu}"/>
+                </Border>
+                <Border Grid.Column="1"  Margin="2"  Style="{StaticResource DarkButtonBorder}">
+                    <Button 
+                            Content="{x:Static resx:CommonResources.Begin}" 
+                            Style="{StaticResource DarkButton}"
+                            Command="{Binding NextQuestion}">
+                    </Button>
+                </Border>
+
+                <Border Grid.Column="2"  Margin="2"  Style="{StaticResource DarkButtonBorder}">
+                    <Button 
+                        Content="{x:Static resx:CommonResources.End}" 
+                        Style="{StaticResource DarkButton}"
+                        Command="{Binding EndQuestions}">
+                    </Button>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

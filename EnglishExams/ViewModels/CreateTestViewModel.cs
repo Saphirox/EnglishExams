@@ -98,8 +98,8 @@ namespace EnglishExams.ViewModels
 
         private void ShowBegin()
         {
+            TinyCache.Set(typeof(UserTestModel), _model);
             RedirectDecorator.ToViewModel(typeof(QuestionViewModel));
-            Messenger.Default.Send(_model);
         }
     }
 }

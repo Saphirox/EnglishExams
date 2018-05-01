@@ -42,7 +42,7 @@
         </DataTemplate>
         
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-            <views:Login />
+            <views:LoginView />
         </DataTemplate>
         
         <DataTemplate DataType="{x:Type vm:MenuViewModel}">
@@ -51,6 +51,10 @@
 
         <DataTemplate DataType="{x:Type vm:CreateTestViewModel}">
             <views:CreateTestView />
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type vm:QuestionViewModel}">
+            <views:QuestionView />
         </DataTemplate>
 
     </Application.Resources>
