@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>BACK</value>
   </data>
   <data name="Begin" xml:space="preserve">
-    <value>Begin</value>
+    <value>BEGIN</value>
   </data>
   <data name="CreateANewTest" xml:space="preserve">
     <value>CREATE A NEW TEST</value>
@@ -140,6 +140,9 @@
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>NEXT</value>
   </data>
   <data name="NumberOfPoints" xml:space="preserve">
     <value>NUMBER OF POINTS</value>
@@ -170,6 +173,9 @@
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="SubmitForChecking" xml:space="preserve">
+    <value>SUBMIT FOR CHECKING</value>
   </data>
   <data name="UnitName" xml:space="preserve">
     <value>UNIT NAME</value>

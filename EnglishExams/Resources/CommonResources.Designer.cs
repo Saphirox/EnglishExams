@@ -135,6 +135,15 @@ namespace EnglishExams.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string NumberOfPoints {
             get {
                 return ResourceManager.GetString("NumberOfPoints", resourceCulture);
@@ -219,6 +228,15 @@ namespace EnglishExams.Resources {
         public static string SignUp {
             get {
                 return ResourceManager.GetString("SignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string SubmitForChecking {
+            get {
+                return ResourceManager.GetString("SubmitForChecking", resourceCulture);
             }
         }
         

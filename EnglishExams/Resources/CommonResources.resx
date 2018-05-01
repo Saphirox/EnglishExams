@@ -141,6 +141,9 @@
   <data name="Login" xml:space="preserve">
     <value />
   </data>
+  <data name="Next" xml:space="preserve">
+    <value />
+  </data>
   <data name="NumberOfPoints" xml:space="preserve">
     <value />
   </data>
@@ -169,6 +172,9 @@
     <value />
   </data>
   <data name="SignUp" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SubmitForChecking" xml:space="preserve">
     <value />
   </data>
   <data name="UnitName" xml:space="preserve">

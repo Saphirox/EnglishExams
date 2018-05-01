@@ -15,13 +15,16 @@ namespace EnglishExams.ViewModels
         private TestDescription _testDescription;
         private DispatcherTimer dispatcherTimer;
         private IQuestionService _questionService;
-        private Dictionary<string, ICollection<string>> _answers;
+        private readonly Dictionary<string, ICollection<string>> _answers;
         private readonly UserTestModel _userTestModel;
         private int _pointer = 0; 
         private int _timer = 0;
 
         public RelayCommand NextQuestion { get; set; }
         public RelayCommand TestResult { get; set; }
+
+        public RelayCommand Back { get; set; }
+
         public int Timer
         {
             get => _timer;
@@ -63,8 +66,24 @@ namespace EnglishExams.ViewModels
 
             NextQuestion = new RelayCommand(ShowNextQuestion);
             TestResult = new RelayCommand(ShowTestResult);
+            Back = new RelayCommand(ShowBack);
 
             StartTimer();
+        }
+
+        public void ShowBack()
+        {
+            if (_pointer == 0)
+            {
+                _pointer = _userTestModel.NumberOfQuestions - 1;
+            }
+            else
+            {
+                _pointer--;
+            }
+
+            OnPropertyChanged(nameof(QuestionName));
+            OnPropertyChanged(nameof(CurrentOptions));
         }
 
         public void AddAnswer(string questionText, string answer)
@@ -86,7 +105,7 @@ namespace EnglishExams.ViewModels
 
         private void ShowNextQuestion()
         {
-            if (_pointer > _userTestModel.Duration)
+            if (_pointer > _userTestModel.NumberOfQuestions - 1)
             {
                 _pointer = 0;
             }
