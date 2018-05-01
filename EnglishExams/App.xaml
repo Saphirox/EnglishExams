@@ -42,7 +42,7 @@
         </Style>   
         
         <DataTemplate DataType="{x:Type vm:SignUpViewModel}">
-            <views:Signup />
+            <views:SignUpView />
         </DataTemplate>
         
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">

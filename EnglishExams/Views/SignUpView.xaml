@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="EnglishExams.Views.SignUpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:EnglishExams.ViewModels"
+             xmlns:resx="clr-namespace:EnglishExams.Resources"
+             mc:Ignorable="d"
+             d:DesignHeight="768" d:DesignWidth="1024"
+             d:DataContext="{d:DesignInstance vm:SignUpViewModel, IsDesignTimeCreatable=True}">
+
+<Grid Width="600" Style="{StaticResource DarkBackgroundTheme}" VerticalAlignment="Center" HorizontalAlignment="Center">
+   
+     <Grid.ColumnDefinitions>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    
+    <Grid.RowDefinitions>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+         <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+    <TextBlock Grid.Column="0" 
+                Grid.ColumnSpan="4" 
+                HorizontalAlignment="Center" 
+                Margin="20" FontSize="24"
+                FontWeight="Bold"
+                Style="{StaticResource DarkHeader}"
+                Text="{x:Static resx:CommonResources.WelcomeLoginText}"></TextBlock>
+    
+    <Label Grid.Column="0" 
+           Grid.Row="1" Margin="20"
+           HorizontalAlignment="Right"
+           FontSize="18"
+           Style="{StaticResource DarkLabel}" 
+           Content="{x:Static resx:CommonResources.SignUp}"></Label>
+
+    <Border Margin="20" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="3" 
+            Grid.Row="1" 
+            Style="{StaticResource DarkBorderTextBox}">
+         <TextBox Text="{Binding UserName}"  
+                  Style="{StaticResource DarkTextBox}"></TextBox>
+    </Border>
+
+    <Label Margin="20" HorizontalAlignment="Right" 
+           FontSize="18" Grid.Column="0"
+           Grid.Row="2" 
+           Style="{StaticResource DarkLabel}"
+           Content="{x:Static resx:CommonResources.Password }"></Label>
+
+    <Border Grid.Column="1" 
+            Margin="20" 
+            Grid.ColumnSpan="3" 
+            Grid.Row="2" 
+            Style="{StaticResource DarkBorderTextBox}">
+        <TextBox Text="{Binding Password}" 
+                 Style="{StaticResource DarkTextBox}" 
+                 Width="Auto"></TextBox>
+    </Border>
+
+    <Border Grid.Row="3" 
+            Grid.Column="0"  
+            Grid.ColumnSpan="2"
+            Margin="30 2" 
+            Style="{StaticResource DarkButtonBorder}">
+    <Button 
+            FontSize="18"
+            Style="{StaticResource DarkButton}"
+            Content="{x:Static resx:CommonResources.SignUp}"
+            Command="{Binding ShowSignInPage}"></Button>
+    </Border>
+</Grid>
+</UserControl>

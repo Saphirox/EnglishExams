@@ -18,7 +18,7 @@ namespace EnglishExams.ViewModels
             {
                 NewUser.Password = value;
                 OnPropertyChanged(nameof(Password));
-                CommandManager.InvalidateRequerySuggested();
+                //CommandManager.InvalidateRequerySuggested();
             }
 
         }
@@ -30,13 +30,13 @@ namespace EnglishExams.ViewModels
             {
                 NewUser.UserName = value;
                 OnPropertyChanged(nameof(UserName));
-                CommandManager.InvalidateRequerySuggested();
+                //CommandManager.InvalidateRequerySuggested();
             }
         }
 
         public SignUpViewModel()
         {
-            ShowSignInPage = new RelayCommand(ShowSignIn, Validate);
+            ShowSignInPage = new RelayCommand(ShowSignIn);
         }
 
         public bool Validate()
@@ -55,8 +55,15 @@ namespace EnglishExams.ViewModels
 
         public void ShowSignIn()
         {
-            _userService.Add(NewUser);
-            RedirectDecorator.ToViewModel(typeof(MenuViewModel));
+            if (Validate())
+            {
+                _userService.Add(NewUser);
+                RedirectDecorator.ToViewModel(typeof(LoginViewModel));
+            }
+            else
+            {
+                MessageError.InvalidIdentityForm.Show();
+            }
         }
     }
 }
