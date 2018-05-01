@@ -18,8 +18,7 @@ namespace EnglishExams.ViewModels
 
         private void ShowPassATest()
         {
-            // TODO: Add me
-            Messenger.Default.Send(new ChangePage(null));
+            Messenger.Default.Send(new ChangePage(typeof(TestListViewModel)));
         }
 
         private void ShowGradebook()

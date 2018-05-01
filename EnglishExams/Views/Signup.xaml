@@ -10,7 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="500
              "
              d:DataContext="{d:DesignInstance vm:SignUpViewModel, IsDesignTimeCreatable=True}">
-   <Grid Style="{StaticResource DarkBackgroundTheme}" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid Style="{StaticResource DarkBackgroundTheme}" VerticalAlignment="Center" HorizontalAlignment="Center">
    
      <Grid.ColumnDefinitions>
         <ColumnDefinition></ColumnDefinition>

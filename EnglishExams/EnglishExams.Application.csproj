@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\FileConstants.cs" />
+    <Compile Include="Infrastructure\ButtonHelper.cs" />
     <Compile Include="Infrastructure\ChangePage.cs" />
     <Compile Include="Infrastructure\CurrentUser.cs" />
     <Compile Include="Infrastructure\FileFacade.cs" />
@@ -101,6 +102,8 @@
     <Compile Include="Infrastructure\TinyCache.cs" />
     <Compile Include="Models\OptionModel.cs" />
     <Compile Include="Models\QuestionModel.cs" />
+    <Compile Include="Models\TaskListModel.cs" />
+    <Compile Include="Models\TestDescription.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Infrastructure\UserService.cs" />
     <Compile Include="Models\UserTestModel.cs" />
@@ -113,7 +116,9 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\StartedTestViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\TestListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\CreateTestView.xaml.cs">
       <DependentUpon>CreateTestView.xaml</DependentUpon>
@@ -126,6 +131,12 @@
     </Compile>
     <Compile Include="Views\Signup.xaml.cs">
       <DependentUpon>Signup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StartedTestView.xaml.cs">
+      <DependentUpon>StartedTestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestListView.xaml.cs">
+      <DependentUpon>TestListView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\CreateTestView.xaml">
       <SubType>Designer</SubType>
@@ -162,6 +173,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Signup.xaml" />
+    <Page Include="Views\StartedTestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
