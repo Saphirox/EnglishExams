@@ -18,12 +18,12 @@ namespace EnglishExams.ViewModels
 
         private void ShowPassATest()
         {
-            Messenger.Default.Send(new ChangePage(typeof(TestListViewModel)));
+            RedirectDecorator.ToViewModel(typeof(TestListViewModel));
         }
 
         private void ShowGradebook()
         {
-            // TODO: Add me
+            RedirectDecorator.ToViewModel(typeof(GradebookViewModel));
         }
 
         private void ShowCreateATest()

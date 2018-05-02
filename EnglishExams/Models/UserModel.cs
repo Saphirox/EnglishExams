@@ -17,7 +17,6 @@ namespace EnglishExams.Models
         [JsonProperty("results")]
         public ICollection<TestResultModel> TestResults { get; set; }
 
-
         public override bool Equals(object obj)
         {
             if (obj == null)

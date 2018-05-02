@@ -48,11 +48,11 @@
                 <Button Margin="20" 
                         Background="Transparent" 
                         BorderBrush="Transparent"
-                        Command="{Binding}">
+                        Command="{Binding Gradebook}">
                     <StackPanel>
                         <Image Source="../Images/kursach1-12.png"></Image>
                         <TextBlock HorizontalAlignment="Center" 
-                                   Style="{StaticResource DarkSecondary}" 
+                                   Style="{StaticResource DarkSecondary}"
                                    Text="{x:Static resx:CommonResources.ReviewGradebook}"
                         ></TextBlock>
                     </StackPanel>

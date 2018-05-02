@@ -141,6 +141,9 @@
   <data name="End" xml:space="preserve">
     <value>End</value>
   </data>
+  <data name="Gradebook" xml:space="preserve">
+    <value>Grade book</value>
+  </data>
   <data name="LessonName" xml:space="preserve">
     <value>LESSON NAME</value>
   </data>

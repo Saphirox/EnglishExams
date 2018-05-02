@@ -126,6 +126,15 @@ namespace EnglishExams.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Gradebook {
+            get {
+                return ResourceManager.GetString("Gradebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string LessonName {
             get {
                 return ResourceManager.GetString("LessonName", resourceCulture);

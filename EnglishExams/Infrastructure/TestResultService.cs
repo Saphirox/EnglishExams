@@ -43,6 +43,63 @@ namespace EnglishExams.Infrastructure
             _userService.Update(CurrentUser.Instance);
         }
 
+        public IList<GradebookTestResultModel> GetGradebook()
+        {
+            var testResults = CurrentUser.Instance.TestResults;
+            var tests = CurrentUser.Instance.UserTestModels;
+
+            var list = new List<GradebookTestResultModel>();
+
+            foreach (var test in tests)
+            {
+                foreach (var testResult in testResults)
+                {
+                    if (
+                        test.UnitName == testResult.UnitName &&
+                        test.LessonName == testResult.LessonName)
+                    {
+                        
+                    
+                    var tempList = new List<LessonResultModel>();
+
+                    foreach (var questionResult in testResult.QuestionResultModels)
+                    {
+                        foreach (var question in test.QuestionModels)
+                        {
+                            if (questionResult.Text == question.Text)
+                            {
+                                var correctAnswers = question.Options.Where(c => c.IsCorrect).Select(c => c.Name);
+
+                                var firstNotSecond = correctAnswers.Except(questionResult.OptionsName).ToList();
+                                var secondNotFirst = questionResult.OptionsName.Except(correctAnswers).ToList();
+
+                                var result = !firstNotSecond.Any() && !secondNotFirst.Any();
+
+                                var points = test.NumberOfPoints / test.NumberOfQuestions;
+
+                                var pointResult = (result ? points : 0).ToString();
+
+                                tempList.Add(new LessonResultModel()
+                                {
+                                    LessonNameAndPoint = string.Format(test.LessonName, "-" , pointResult,
+                                        test.NumberOfQuestions),
+                                }); 
+                            }
+                        }
+                    }
+
+                    list.Add(new GradebookTestResultModel()
+                    {
+                        UnitName = test.UnitName,
+                        Lessons = tempList
+                    });
+                    }   
+                }
+            }
+
+            return list;
+        } 
+
         public IList<TestResultDescriptionModel> GetResults(TestDescription key)
         {
             var testResult = CurrentUser.Instance.TestResults.FirstOrDefault(
@@ -71,7 +128,7 @@ namespace EnglishExams.Infrastructure
 
                         ++index;
 
-                        var points = test.NumberOfPoints / test.NumberOfQuestions * correctAnswers.Count();
+                        var points = test.NumberOfPoints / test.NumberOfQuestions;
 
                         var pointResult = (result ? points : 0).ToString();
 
