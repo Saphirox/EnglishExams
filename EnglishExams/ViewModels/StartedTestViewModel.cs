@@ -55,7 +55,7 @@ namespace EnglishExams.ViewModels
 
         public string QuestionName => GetQuestionByIndex().Text;
 
-        public IEnumerable<OptionModel> CurrentOptions
+        public IList<OptionModel> CurrentOptions
                     => new ObservableCollection<OptionModel>(GetQuestionByIndex().Options.Where(c => c.Name != null));
 
         public StartedTestViewModel()
@@ -87,6 +87,23 @@ namespace EnglishExams.ViewModels
                 _pointer--;
             }
 
+            foreach (var answer in _answers)
+            {
+                if (GetQuestionByIndex().Text == answer.Key)
+                {
+                    foreach (var val in answer.Value)
+                    {
+                        foreach (var v in CurrentOptions)
+                        {
+                            if (val == v.Name)
+                            {
+                                v.IsCorrect = true;
+                            }
+                        }
+                    }                   
+                }
+            }
+
             OnPropertyChanged(nameof(QuestionName));
             OnPropertyChanged(nameof(CurrentOptions));
         }
@@ -110,13 +127,32 @@ namespace EnglishExams.ViewModels
 
         private void ShowNextQuestion()
         {
-            if (_pointer > _userTestModel.NumberOfQuestions - 1)
+            if (_pointer >= _userTestModel.NumberOfQuestions - 1)
             {
                 _pointer = 0;
             }
             else
             {
                 _pointer++;
+            }
+
+            foreach (var answer in _answers)
+            {
+                var s = GetQuestionByIndex().Text;
+
+                if (s == answer.Key)
+                {
+                    foreach (var val in answer.Value)
+                    {
+                        foreach (var v in CurrentOptions)
+                        {
+                            if (val == v.Name)
+                            {
+                                v.IsCorrect = true;
+                            }
+                        }
+                    }
+                }
             }
 
             OnPropertyChanged(nameof(QuestionName));

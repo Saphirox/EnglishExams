@@ -20,6 +20,8 @@ namespace EnglishExams.Infrastructure
         {
             if (cache.TryGetValue(key, out var value))
             {
+                cache.Remove(key);
+
                 return value as TV;
             }
 

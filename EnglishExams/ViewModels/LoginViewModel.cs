@@ -1,4 +1,5 @@
-﻿using EnglishExams.Infrastructure;
+﻿using System;
+using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using GalaSoft.MvvmLight.Messaging;
 
@@ -42,7 +43,9 @@ namespace EnglishExams.ViewModels
 
         private void ShowMenu()
         {
+           
             _userService.Authenticate(this._userModel);
+       
 
             if (CurrentUser.IsAuthenticated())
             {

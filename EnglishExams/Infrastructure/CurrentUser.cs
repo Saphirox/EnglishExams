@@ -12,6 +12,11 @@ namespace EnglishExams.Infrastructure
             get => _instance;
             set
             {
+                if (value is null)
+                {
+                    return;
+                }
+
                 _instance = value;
 
                 if (_instance.UserTestModels is null)

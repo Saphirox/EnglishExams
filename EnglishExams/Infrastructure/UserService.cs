@@ -52,12 +52,8 @@ namespace EnglishExams.Infrastructure
             var models =
                 _fileFacade.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
 
-            if (models == null)
-            {
-                throw new InvalidOperationException();
-            }
 
-            var user = models.FirstOrDefault(m => m.Password == model.Password && 
+            var user = models?.FirstOrDefault(m => m.Password == model.Password && 
                                                   m.UserName == model.UserName);
 
             CurrentUser.Instance = user;

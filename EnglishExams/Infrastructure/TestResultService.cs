@@ -16,7 +16,6 @@ namespace EnglishExams.Infrastructure
             _userService = new UserService(_fileFacade);
         }
 
-        // TODO: Check me
         public void AddResultToUser(TestDescription key, Dictionary<string, ICollection<string>> answers)
         {
             var testResult = new TestResultModel
@@ -29,6 +28,15 @@ namespace EnglishExams.Infrastructure
                     OptionsName = c.Value
                 }).ToList()
             };
+
+            var existed = CurrentUser.Instance.TestResults.FirstOrDefault(
+                c => c.LessonName == key.LessonName &&
+                     c.UnitName == key.UnitName);
+
+            if (existed != null)
+            {
+                CurrentUser.Instance.TestResults.Remove(existed);
+            }
 
             CurrentUser.Instance.TestResults.Add(testResult);
 
@@ -47,6 +55,7 @@ namespace EnglishExams.Infrastructure
             
             var list = new List<TestResultDescriptionModel>();
             var index = 0;
+
             foreach (var m in test.QuestionModels)
             {
                 foreach (var q in testResult.QuestionResultModels)

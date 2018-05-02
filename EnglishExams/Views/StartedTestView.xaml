@@ -52,7 +52,9 @@
                 <DataTemplate>
                     <ListBoxItem>
                         <StackPanel>
-                            <CheckBox Content="{Binding Name}" Checked="OptionChecked" Unchecked="OptionUnchecked"></CheckBox>
+                            <CheckBox Content="{Binding Name}" 
+                                      Checked="OptionChecked" 
+                                      Unchecked="OptionUnchecked"></CheckBox>
                         </StackPanel>
                     </ListBoxItem>
                 </DataTemplate>
