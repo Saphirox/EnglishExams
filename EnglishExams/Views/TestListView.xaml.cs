@@ -20,7 +20,7 @@ namespace EnglishExams.Views
         {
             var button = sender as Button;
 
-            var st = ButtonHelper.GetUnitName(button);
+            var st = ButtonAttachedProperty.GetUnitName(button);
 
             var dc = DataContext as TestListViewModel;
 

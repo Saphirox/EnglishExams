@@ -8,17 +8,17 @@ namespace EnglishExams.Infrastructure
 {
     public class UserService : IUserService
     {
-        private readonly IFileFacade _fileFacade;
+        private readonly IFileWrapper _fileWrapper;
 
-        public UserService(IFileFacade fileFacade)
+        public UserService(IFileWrapper fileWrapper)
         {
-            _fileFacade = fileFacade;
+            _fileWrapper = fileWrapper;
         }
 
         public void Add(UserModel model)
         {
             var models = 
-                _fileFacade.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
+                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
 
             if (models is null)
             {
@@ -27,13 +27,13 @@ namespace EnglishExams.Infrastructure
 
             models.Add(model);
 
-            _fileFacade.WriteTo(FileConstants.PERSONAL_DATA, models);
+            _fileWrapper.WriteTo(FileConstants.PERSONAL_DATA, models);
         }
 
         public void Update(UserModel model)
         {
             var models =
-                _fileFacade.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
+                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
 
             if (models == null)
             {
@@ -44,13 +44,13 @@ namespace EnglishExams.Infrastructure
                                                   m.UserName == model.UserName);
             models[index] = model;
 
-            _fileFacade.WriteTo(FileConstants.PERSONAL_DATA, models);
+            _fileWrapper.WriteTo(FileConstants.PERSONAL_DATA, models);
         }
 
         public void Authenticate(UserModel model)
         {
             var models =
-                _fileFacade.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
+                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
 
 
             var user = models?.FirstOrDefault(m => m.Password == model.Password && 

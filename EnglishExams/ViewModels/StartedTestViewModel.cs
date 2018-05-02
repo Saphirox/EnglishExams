@@ -15,7 +15,7 @@ namespace EnglishExams.ViewModels
         private TestDescription _testDescription;
         private DispatcherTimer dispatcherTimer;
         private IQuestionService _questionService;
-        private IFileFacade _fileFacade;
+        private IFileWrapper _fileWrapper;
         private readonly ITestResultService _testResultService;
         private readonly Dictionary<string, ICollection<string>> _answers;
         private readonly UserTestModel _userTestModel;
@@ -60,13 +60,13 @@ namespace EnglishExams.ViewModels
 
         public StartedTestViewModel()
         {
-            _fileFacade = new FileFacade();
+            _fileWrapper = new FileWrapper();
 
             _answers = new Dictionary<string, ICollection<string>>();
 
             _testDescription = TinyCache.Get<Type, TestDescription>(typeof(TestDescription));
-            _questionService = new QuestionService(_fileFacade);
-            _testResultService = new TestResultService(_fileFacade);
+            _questionService = new QuestionService(_fileWrapper);
+            _testResultService = new TestResultService(_fileWrapper);
             _userTestModel = _questionService.GetTestByTaskDescription(_testDescription);
 
             _timer = _userTestModel.Duration;

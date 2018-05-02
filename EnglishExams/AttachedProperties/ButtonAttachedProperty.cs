@@ -2,11 +2,14 @@
 
 namespace EnglishExams.Infrastructure
 {
-    public class ButtonHelper
+    /// <summary>
+    /// Attached property which used to pass params to code behind
+    /// </summary>
+    public class ButtonAttachedProperty
     {
         public static readonly DependencyProperty UnitNameProperty =
             DependencyProperty.RegisterAttached("UnitName",
-                typeof(string), typeof(ButtonHelper), new PropertyMetadata(default(string)));
+                typeof(string), typeof(ButtonAttachedProperty), new PropertyMetadata(default(string)));
 
         public static void SetUnitName(UIElement element, string value)
         {

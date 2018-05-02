@@ -146,7 +146,7 @@ namespace EnglishExams.ViewModels
 
         public QuestionViewModel()
         {
-            _questionService = new QuestionService(new FileFacade());
+            _questionService = new QuestionService(new FileWrapper());
             _userTestModel = TinyCache.Get<Type, UserTestModel>(typeof(UserTestModel));
 
             NextQuestion = new RelayCommand(ShowNextQuestion);

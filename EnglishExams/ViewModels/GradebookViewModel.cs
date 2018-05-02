@@ -12,19 +12,19 @@ namespace EnglishExams.ViewModels
         public IList<GradebookTestResultModel> GradebookModels { get; set; }
         private ITestResultService _resultService;
         private readonly IQuestionService _questionService;
-        private IFileFacade _fileFacade;
+        private IFileWrapper _fileWrapper;
         public RelayCommand ConcreteLesson { get; set; }
 
         public GradebookViewModel()
         {
-            _fileFacade = new FileFacade();
+            _fileWrapper = new FileWrapper();
 
-            _resultService =  new TestResultService(_fileFacade);
+            _resultService =  new TestResultService(_fileWrapper);
 
             Tests = new ObservableCollection<GradebookTestResultModel>(
                 _resultService.GetGradebook());
 
-            _questionService = new QuestionService(_fileFacade);
+            _questionService = new QuestionService(_fileWrapper);
         }
 
         public void ShowConcreteLesson(TestDescription description)

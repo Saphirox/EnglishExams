@@ -6,7 +6,7 @@ namespace EnglishExams.ViewModels
 {
     public class SignUpViewModel : ViewModelBase
     {
-        private IUserService _userService => new UserService(new FileFacade());
+        private IUserService _userService => new UserService(new FileWrapper());
         public RelayCommand ShowSignInPage { get; set; }
 
         public UserModel NewUser { get; set; } = new UserModel();

@@ -87,21 +87,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\FileConstants.cs" />
-    <Compile Include="Infrastructure\ButtonHelper.cs" />
+    <Compile Include="AttachedProperties\ButtonAttachedProperty.cs" />
     <Compile Include="Infrastructure\ChangePage.cs" />
-    <Compile Include="Infrastructure\CheckboxHelper.cs" />
+    <Compile Include="AttachedProperties\CheckboxAttachedProperty.cs" />
     <Compile Include="Infrastructure\CurrentUser.cs" />
-    <Compile Include="Infrastructure\FileFacade.cs" />
-    <Compile Include="Infrastructure\IFileFacade.cs" />
-    <Compile Include="Infrastructure\IQuestionService.cs" />
-    <Compile Include="Infrastructure\ITestResultService.cs" />
-    <Compile Include="Infrastructure\IUserService.cs" />
+    <Compile Include="Infrastructure\FileWrapper.cs" />
+    <Compile Include="Infrastructure\IFileWrapper.cs" />
+    <Compile Include="Services\IQuestionService.cs" />
+    <Compile Include="Services\ITestResultService.cs" />
+    <Compile Include="Services\IUserService.cs" />
     <Compile Include="Infrastructure\MessageError.cs" />
-    <Compile Include="Infrastructure\QuestionIncrement.cs" />
-    <Compile Include="Infrastructure\QuestionService.cs" />
+    <Compile Include="Services\Implementation\QuestionService.cs" />
     <Compile Include="Infrastructure\RedirectDecorator.cs" />
     <Compile Include="Infrastructure\RelayCommand.cs" />
-    <Compile Include="Infrastructure\TestResultService.cs" />
+    <Compile Include="Services\Implementation\TestResultService.cs" />
     <Compile Include="Models\GradebookTestResultModel.cs" />
     <Compile Include="Models\OptionModel.cs" />
     <Compile Include="Models\QuestionResultModel.cs" />
@@ -112,7 +111,7 @@
     <Compile Include="Models\TestListModel.cs" />
     <Compile Include="Models\TestDescription.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Infrastructure\UserService.cs" />
+    <Compile Include="Services\Implementation\UserService.cs" />
     <Compile Include="Models\UserTestModel.cs" />
     <Compile Include="Resources\ErrorResources.Designer.cs">
       <AutoGen>True</AutoGen>

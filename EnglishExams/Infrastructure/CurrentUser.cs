@@ -3,6 +3,9 @@ using EnglishExams.Models;
 
 namespace EnglishExams.Infrastructure
 {
+    /// <summary>
+    /// User identity (Entity per application session)
+    /// </summary>
     public static class CurrentUser
     {
         private static UserModel _instance;

@@ -12,7 +12,7 @@ namespace EnglishExams.Infrastructure
                 MessageBox.Show(ErrorResources.FieldMustBeConsistOnlyDigits, ErrorResources.Error);
             }
         }
-
+        
         public static class InvalidIdentityForm
         {
             public static void Show()

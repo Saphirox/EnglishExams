@@ -3,7 +3,11 @@ using Newtonsoft.Json;
 
 namespace EnglishExams.Infrastructure
 {
-    public class FileFacade : IFileFacade
+
+    /// <summary>
+    /// Wrapper for file system to simplify using system storage
+    /// </summary>
+    public class FileWrapper : IFileWrapper
     {
         public string CurrentDirectory = Directory.GetCurrentDirectory().Replace("bin\\Debug", string.Empty);
 

@@ -7,13 +7,13 @@ namespace EnglishExams.Infrastructure
 {
     public class QuestionService : IQuestionService
     {
-        private readonly IFileFacade _fileFacade;
+        private readonly IFileWrapper _fileWrapper;
         private readonly IUserService _userService;
 
-        public QuestionService(IFileFacade fileFacade)
+        public QuestionService(IFileWrapper fileWrapper)
         {
-            _fileFacade = fileFacade;
-            _userService = new UserService(_fileFacade);
+            _fileWrapper = fileWrapper;
+            _userService = new UserService(_fileWrapper);
         }
 
         public void AddToTest(UserTestModel userTestModel, ICollection<QuestionModel> questionModel)

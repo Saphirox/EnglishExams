@@ -8,7 +8,7 @@ namespace EnglishExams.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private readonly IUserService _userService = 
-            new UserService(new FileFacade());
+            new UserService(new FileWrapper());
 
         private UserModel _userModel = new UserModel();
 

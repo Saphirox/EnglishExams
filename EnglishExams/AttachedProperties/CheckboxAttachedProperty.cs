@@ -2,11 +2,14 @@
 
 namespace EnglishExams.Infrastructure
 {
-    public class CheckboxHelper
+    /// <summary>
+    /// Attached property which used to pass params to code behind
+    /// </summary>
+    public class CheckboxAttachedProperty
     {
         public static readonly DependencyProperty ValueNameProperty =
             DependencyProperty.RegisterAttached("ValueName",
-                typeof(string), typeof(CheckboxHelper), new PropertyMetadata(default(string)));
+                typeof(string), typeof(CheckboxAttachedProperty), new PropertyMetadata(default(string)));
 
         public static void SetValueName(UIElement element, string value)
         {
@@ -20,7 +23,7 @@ namespace EnglishExams.Infrastructure
 
         public static readonly DependencyProperty KeyNameProperty =
            DependencyProperty.RegisterAttached("KeyName",
-               typeof(string), typeof(CheckboxHelper), new PropertyMetadata(default(string)));
+               typeof(string), typeof(CheckboxAttachedProperty), new PropertyMetadata(default(string)));
 
         public static void SetKeyName(UIElement element, string value)
         {

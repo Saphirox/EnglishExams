@@ -7,13 +7,13 @@ namespace EnglishExams.Infrastructure
 {
     public class TestResultService : ITestResultService
     {
-        private readonly IFileFacade _fileFacade;
+        private readonly IFileWrapper _fileWrapper;
         private readonly IUserService _userService;
 
-        public TestResultService(IFileFacade fileFacade)
+        public TestResultService(IFileWrapper fileWrapper)
         {
-            _fileFacade = fileFacade;
-            _userService = new UserService(_fileFacade);
+            _fileWrapper = fileWrapper;
+            _userService = new UserService(_fileWrapper);
         }
 
         public void AddResultToUser(TestDescription key, Dictionary<string, ICollection<string>> answers)

@@ -23,7 +23,7 @@ namespace EnglishExams.ViewModels
 
         public TestResultViewModel()
         {
-            _testResultService = new TestResultService(new FileFacade());
+            _testResultService = new TestResultService(new FileWrapper());
 
             _userTestModel = TinyCache.Get<Type, UserTestModel>(typeof(UserTestModel));
 

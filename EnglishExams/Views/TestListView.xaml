@@ -51,7 +51,7 @@
                                                   BorderBrush="Transparent"
                                                   Foreground="#FFFFFF" 
                                                   FontSize="16"
-                                                  inf:ButtonHelper.UnitName="{Binding RelativeSource=
+                                                  inf:ButtonAttachedProperty.UnitName="{Binding RelativeSource=
                                                   {RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, Path=DataContext.UnitName}" Click="ListBoxHander" Content="{Binding}" />
                                           </ListBoxItem>
                                       </DataTemplate>
