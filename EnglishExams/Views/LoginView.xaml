@@ -7,8 +7,8 @@
              xmlns:vm="clr-namespace:EnglishExams.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:LoginViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="300" d:DesignWidth="500">
- <Grid Style="{StaticResource DarkBackgroundTheme}">
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Grid Width="600" Style="{StaticResource DarkBackgroundTheme}" VerticalAlignment="Center" HorizontalAlignment="Center">
      <Grid.ColumnDefinitions>
         <ColumnDefinition></ColumnDefinition>
         <ColumnDefinition></ColumnDefinition>
@@ -17,21 +17,23 @@
     </Grid.ColumnDefinitions>
     
     <Grid.RowDefinitions>
+        <RowDefinition Height="2*"></RowDefinition>
         <RowDefinition></RowDefinition>
         <RowDefinition></RowDefinition>
-        <RowDefinition></RowDefinition>
-        <RowDefinition></RowDefinition>
+        <RowDefinition Height="3*"></RowDefinition>
     </Grid.RowDefinitions>
 
-    <Grid Grid.Column="0" Grid.ColumnSpan="4">
-        <TextBlock HorizontalAlignment="Center"  
-                   FontSize="24" 
-                   Foreground="#FFF"
-                   Text="{x:Static resx:CommonResources.WelcomeLoginText}">
+        <TextBlock 
+            Grid.Column="0" Grid.ColumnSpan="4"
+            Margin="20"
+            HorizontalAlignment="Center"  
+                FontSize="24" 
+                Foreground="#FFF"
+                FontWeight="Bold"
+                Text="{x:Static resx:CommonResources.WelcomeLoginText}">
         </TextBlock>
-    </Grid>
-    
-    <Grid Grid.Column="0" Margin="0 5" Grid.Row="1">
+
+     <Grid Grid.Column="0" Margin="0 5" Grid.Row="1">
         <Label HorizontalAlignment="Right" 
                FontSize="18" 
                Margin="20, 0" 
@@ -55,13 +57,24 @@
                 , UpdateSourceTrigger=PropertyChanged}"></TextBox>
     </Border>
 
-        <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource DarkButton}">
+    <Border Grid.Row="3" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2"
+            Margin="80 20 20 20"
+            Style="{StaticResource DarkButton}">
         <Button Style="{StaticResource DarkButton}"
+                Padding="5"
                 Content="{x:Static resx:CommonResources.SignIn}"
                 Command="{Binding ShowMenuPage}"></Button>
     </Border>
     
-    <Button Command="{Binding ShowSignUpPage}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DarkButton}" Content="{x:Static resx:CommonResources.SignUp}"></Button>
+    <Button Command="{Binding ShowSignUpPage}" 
+            Grid.Row="3" 
+            Grid.Column="2" 
+            Margin="20"
+            Grid.ColumnSpan="2" 
+            Style="{StaticResource DarkButton}" 
+            Content="{x:Static resx:CommonResources.SignUp}"></Button>
 </Grid>
     
 </UserControl>

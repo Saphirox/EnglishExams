@@ -7,29 +7,72 @@
              xmlns:vm="clr-namespace:EnglishExams.ViewModels"
              xmlns:resx="clr-namespace:EnglishExams.Resources"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="768" d:DesignWidth="1024"
              d:DataContext="{d:DesignInstance vm:MenuViewModel}">
-    <Grid Style="{StaticResource DarkBackgroundTheme}">
-        <Grid VerticalAlignment="Center">
-            
+    <Grid Width="600" Style="{StaticResource DarkBackgroundTheme}" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Style="{StaticResource DarkHeader}"
+                   Padding="20"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Text="{x:Static resx:CommonResources.WhatDoYouWantToDo}"
+                   FontSize="24"
+                   FontWeight="Bold">
+        </TextBlock>
+
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
-            <Border Grid.Column="0">
-                <Button Content="{x:Static resx:CommonResources.PassATest}"
-                        Command="{Binding PassATest}"></Button>
+
+            <Border Margin="20 0" Grid.Column="0" Style="{StaticResource DarkButtonBorder}">
+                <Button Margin="20" Background="Transparent" BorderBrush="Transparent"
+                        Command="{Binding PassATest}">
+                    <StackPanel>
+                        <Image Source="../Images/kursach1-11.png"></Image>
+                        <TextBlock HorizontalAlignment="Center" Style="{StaticResource DarkSecondary}" Text="{x:Static resx:CommonResources.PassATest}"
+                        ></TextBlock>
+                    </StackPanel>
+                </Button>
             </Border>
-            
-            <Border Grid.Column="1">
-                <Button Content="{x:Static resx:CommonResources.ReviewGradebook}"></Button>
+
+            <Border Margin="20 0" Grid.Column="1" Style="{StaticResource DarkButtonBorder}">
+
+                <Button Margin="20" 
+                        Background="Transparent" 
+                        BorderBrush="Transparent"
+                        Command="{Binding}">
+                    <StackPanel>
+                        <Image Source="../Images/kursach1-12.png"></Image>
+                        <TextBlock HorizontalAlignment="Center" 
+                                   Style="{StaticResource DarkSecondary}" 
+                                   Text="{x:Static resx:CommonResources.ReviewGradebook}"
+                        ></TextBlock>
+                    </StackPanel>
+                </Button>
             </Border>
-            
-            <Border Grid.Column="2">
-                <Button Content="{x:Static resx:CommonResources.CreateANewTest}"
-                        Command="{Binding CreateATest}"></Button>
+
+            <Border Margin="20 0" Grid.Column="2" Style="{StaticResource DarkButtonBorder}">
+
+                <Button Margin="20" 
+                        Background="Transparent" 
+                        BorderBrush="Transparent"
+                        Command="{Binding CreateATest}">
+                    <StackPanel>
+                        <Image Source="../Images/kursach1-13.png"></Image>
+                        <TextBlock HorizontalAlignment="Center" 
+                                   Style="{StaticResource DarkSecondary}" 
+                                   Text="{x:Static resx:CommonResources.CreateANewTest}"
+                        ></TextBlock>
+                    </StackPanel>
+                </Button>
             </Border>
         </Grid>
     </Grid>

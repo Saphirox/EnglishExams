@@ -186,6 +186,9 @@
   <data name="WelcomeLoginText" xml:space="preserve">
     <value />
   </data>
+  <data name="WhatDoYouWantToDo" xml:space="preserve">
+    <value />
+  </data>
   <data name="YouGotPattern" xml:space="preserve">
     <value />
   </data>

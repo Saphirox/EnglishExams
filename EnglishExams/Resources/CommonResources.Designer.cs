@@ -270,6 +270,15 @@ namespace EnglishExams.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string WhatDoYouWantToDo {
+            get {
+                return ResourceManager.GetString("WhatDoYouWantToDo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string YouGotPattern {
             get {
                 return ResourceManager.GetString("YouGotPattern", resourceCulture);

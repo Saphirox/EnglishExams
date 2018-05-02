@@ -42,24 +42,28 @@
 
             <Label
                 HorizontalAlignment="Right"
+                VerticalAlignment="Center"
                 Grid.Column="0" 
                 Grid.Row="0" 
                 Content="{x:Static resx:CommonResources.UnitName}"
                 Style="{StaticResource DarkLabel}"></Label>
             <Border Grid.Column="1" Grid.Row="0" Style="{StaticResource DarkBorderTextBox}">
-                <TextBox Text="{ Binding UnitName, UpdateSourceTrigger=PropertyChanged }" 
+                <TextBox Text="{ Binding UnitName, UpdateSourceTrigger=PropertyChanged }"
+                         Margin="10"
                          Style="{StaticResource DarkTextBox}" 
                          Width="Auto"></TextBox>
             </Border>
 
             <Label Grid.Column="0" 
                    Grid.Row="1" 
+                   VerticalAlignment="Center"
                    HorizontalAlignment="Right"
                    Content="{x:Static resx:CommonResources.LessonName}"
                    Style="{StaticResource DarkLabel }"
                    ></Label>
             <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource DarkBorderTextBox}">
                 <TextBox Style="{StaticResource DarkTextBox}"
+                         Margin="10"
                          Text="{ Binding LessonName, UpdateSourceTrigger=PropertyChanged }"
                          Width="Auto">
                 </TextBox>
@@ -70,18 +74,24 @@
                 Grid.Row="2" 
                 Content="{x:Static resx:CommonResources.Duration}"
                 Style="{StaticResource DarkLabel}"
+                VerticalAlignment="Center"
                 HorizontalAlignment="Right">
             </Label>
-            <Border Grid.Column="1" Grid.Row="2" Style="{StaticResource DarkBorderTextBox}">
+
+            <Border Grid.Column="1" 
+                    Grid.Row="2" 
+                    Style="{StaticResource DarkBorderTextBox}">
                 <TextBox Style="{StaticResource DarkTextBox}"
                          Width="Auto"
+                         Margin="10"
                          Text="{ Binding Duration, UpdateSourceTrigger=PropertyChanged }"></TextBox>
             </Border>
 
             <Label 
                    HorizontalAlignment="Right"
                    Grid.Column="0" 
-                   Grid.Row="3" 
+                   Grid.Row="3"
+                   VerticalAlignment="Center"
                    Content="{x:Static resx:CommonResources.NumberOfQuestions}"
                    Style="{StaticResource DarkLabel}">
             </Label>
@@ -89,14 +99,22 @@
             <Border Grid.Column="1" Grid.Row="3" Style="{StaticResource DarkBorderTextBox}">
                 <TextBox Style="{StaticResource DarkTextBox}"
                          Width="Auto"
+                         Margin="10"
                          Text="{ Binding NumberOfQuestions, UpdateSourceTrigger=PropertyChanged }"></TextBox>
             </Border>
 
-            <Label Grid.Column="0" Grid.Row="4" Content="{x:Static resx:CommonResources.NumberOfPoints}"
-                   Style="{StaticResource DarkLabel}" HorizontalAlignment="Right"></Label>
-            <Border Grid.Column="1" Grid.Row="4" Style="{StaticResource DarkBorderTextBox}">
+            <Label Grid.Column="0" 
+                   Grid.Row="4" 
+                   Content="{x:Static resx:CommonResources.NumberOfPoints}"
+                   Style="{StaticResource DarkLabel}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"></Label>
+            <Border Grid.Column="1" 
+                    Grid.Row="4"
+                    Style="{StaticResource DarkBorderTextBox}">
                 <TextBox Style="{StaticResource DarkTextBox}" 
-                         Width="Auto" 
+                         Width="Auto"
+                         Margin="10"
                          Text="{ Binding NumberOfPoints, UpdateSourceTrigger=PropertyChanged }">
                 </TextBox>
             </Border>
@@ -107,14 +125,14 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Margin="5 5">
+                <Border Grid.Column="0" Margin="30 10">
                     <Button Style="{StaticResource DarkButton}"
                             Content="{x:Static resx:CommonResources.Begin}"
                             Command="{Binding BeginPage}">
                     </Button>
                 </Border>
 
-                <Border Grid.Column="1" Margin="5 5">
+                <Border Grid.Column="1" Margin="30 10">
                     <Button Style="{StaticResource DarkButton}"
                             Content="{x:Static resx:CommonResources.Back}"
                             Command="{Binding BackPage}">
