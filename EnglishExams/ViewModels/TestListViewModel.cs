@@ -16,7 +16,7 @@ namespace EnglishExams.ViewModels
 
         public void StartTest(TestDescription test)
         {
-            TinyCache.Set(typeof(TestDescription), test);
+            TinyTempCache.Set(typeof(TestDescription), test);
             RedirectDecorator.ToViewModel(typeof(StartedTestViewModel));
         }
     }

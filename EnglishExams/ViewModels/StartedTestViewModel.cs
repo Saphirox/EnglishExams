@@ -7,6 +7,8 @@ using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using System.Windows.Threading;
 using EnglishExams.Resources;
+using EnglishExams.Services;
+using EnglishExams.Services.Implementation;
 
 namespace EnglishExams.ViewModels
 {
@@ -64,7 +66,7 @@ namespace EnglishExams.ViewModels
 
             _answers = new Dictionary<string, ICollection<string>>();
 
-            _testDescription = TinyCache.Get<Type, TestDescription>(typeof(TestDescription));
+            _testDescription = TinyTempCache.Get<Type, TestDescription>(typeof(TestDescription));
             _questionService = new QuestionService(_fileWrapper);
             _testResultService = new TestResultService(_fileWrapper);
             _userTestModel = _questionService.GetTestByTaskDescription(_testDescription);
@@ -174,7 +176,7 @@ namespace EnglishExams.ViewModels
 
         private void Redirect()
         {
-            TinyCache.Set(typeof(UserTestModel), _userTestModel);
+            TinyTempCache.Set(typeof(UserTestModel), _userTestModel);
             RedirectDecorator.ToViewModel(typeof(TestResultViewModel));
         }
 

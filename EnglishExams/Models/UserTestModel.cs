@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace EnglishExams.Models
 {
+    /// <summary>
+    /// Custom created test by current user
+    /// </summary>
     public class UserTestModel
     {
         public string UnitName { get; set; }

@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using EnglishExams.Resources;
+using EnglishExams.Services;
+using EnglishExams.Services.Implementation;
 
 namespace EnglishExams.ViewModels
 {
@@ -25,7 +27,7 @@ namespace EnglishExams.ViewModels
         {
             _testResultService = new TestResultService(new FileWrapper());
 
-            _userTestModel = TinyCache.Get<Type, UserTestModel>(typeof(UserTestModel));
+            _userTestModel = TinyTempCache.Get<Type, UserTestModel>(typeof(UserTestModel));
 
             _testResults = _testResultService.GetResults(new TestDescription
             {

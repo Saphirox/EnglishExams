@@ -1,6 +1,5 @@
 ﻿using EnglishExams.Infrastructure;
 using EnglishExams.Models;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace EnglishExams.ViewModels
 {
@@ -98,7 +97,7 @@ namespace EnglishExams.ViewModels
 
         private void ShowBegin()
         {
-            TinyCache.Set(typeof(UserTestModel), _model);
+            TinyTempCache.Set(typeof(UserTestModel), _model);
             RedirectDecorator.ToViewModel(typeof(QuestionViewModel));
         }
     }

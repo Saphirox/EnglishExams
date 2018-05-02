@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using EnglishExams.Resources;
+using EnglishExams.Services;
+using EnglishExams.Services.Implementation;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace EnglishExams.ViewModels
@@ -147,7 +149,7 @@ namespace EnglishExams.ViewModels
         public QuestionViewModel()
         {
             _questionService = new QuestionService(new FileWrapper());
-            _userTestModel = TinyCache.Get<Type, UserTestModel>(typeof(UserTestModel));
+            _userTestModel = TinyTempCache.Get<Type, UserTestModel>(typeof(UserTestModel));
 
             NextQuestion = new RelayCommand(ShowNextQuestion);
             ReturnToMenu = new RelayCommand(ShowMenu);

@@ -1,6 +1,6 @@
 ﻿using EnglishExams.Models;
 
-namespace EnglishExams.Infrastructure
+namespace EnglishExams.Services
 {
     public interface IUserService
     {

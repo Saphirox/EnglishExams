@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using EnglishExams.Models;
 
-namespace EnglishExams.Infrastructure
+namespace EnglishExams.Services
 {
     public interface ITestResultService
     {

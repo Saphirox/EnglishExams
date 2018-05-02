@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
+using EnglishExams.Services;
+using EnglishExams.Services.Implementation;
 
 namespace EnglishExams.ViewModels
 {
@@ -31,7 +33,7 @@ namespace EnglishExams.ViewModels
         {
             var test = _questionService.GetTestByTaskDescription(description);
 
-            TinyCache.Set(typeof(UserTestModel), test);
+            TinyTempCache.Set(typeof(UserTestModel), test);
             RedirectDecorator.ToViewModel(typeof(TestResultViewModel));
         } 
     }

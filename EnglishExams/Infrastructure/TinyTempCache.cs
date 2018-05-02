@@ -2,7 +2,11 @@
 
 namespace EnglishExams.Infrastructure
 {
-    public static class TinyCache
+    /// <summary>
+    /// Custom realiazion of temporary store for element
+    /// When you retrived element, element remove from cache
+    /// </summary>
+    public static class TinyTempCache
     {
         private static readonly Dictionary<object, object> cache =  
             new Dictionary<object, object>();

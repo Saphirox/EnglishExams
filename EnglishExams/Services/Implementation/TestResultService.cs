@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using EnglishExams.Resources;
 
-namespace EnglishExams.Infrastructure
+namespace EnglishExams.Services.Implementation
 {
+    /// <summary>
+    /// Perform action on TestResult
+    /// </summary>
     public class TestResultService : ITestResultService
     {
         private readonly IFileWrapper _fileWrapper;

@@ -2,6 +2,9 @@
 
 namespace EnglishExams.Models
 {
+    /// <summary>
+    /// Dto for TestListViewModel to view in ListBox
+    /// </summary>
     public class TestListModel
     {
         public string UnitName { get; set; }

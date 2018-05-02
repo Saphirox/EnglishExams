@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace EnglishExams.Models
 {
+    /// <summary>
+    /// User identity
+    /// </summary>
     public class UserModel
     {
         [JsonProperty("userName")]

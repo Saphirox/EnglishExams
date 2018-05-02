@@ -3,6 +3,10 @@ using EnglishExams.Resources;
 
 namespace EnglishExams.Infrastructure
 {
+
+    /// <summary>
+    /// Facade on errors for code reusing
+    /// </summary>
     public class MessageError
     {
         public static class FieldConsistOnlyDigits

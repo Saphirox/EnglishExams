@@ -106,7 +106,7 @@
     <Compile Include="Models\QuestionResultModel.cs" />
     <Compile Include="Models\TestResultDescriptionModel.cs" />
     <Compile Include="Models\TestResultModel.cs" />
-    <Compile Include="Infrastructure\TinyCache.cs" />
+    <Compile Include="Infrastructure\TinyTempCache.cs" />
     <Compile Include="Models\QuestionModel.cs" />
     <Compile Include="Models\TestListModel.cs" />
     <Compile Include="Models\TestDescription.cs" />

@@ -3,6 +3,10 @@ using System.Windows.Input;
 
 namespace EnglishExams.Infrastructure
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// Custom realization of ICommand contract -&gt; help to execute element events
+    /// </summary>
     public class RelayCommand : ICommand
     {
         private readonly Action _action;

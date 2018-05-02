@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using EnglishExams.Common;
+using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 
-namespace EnglishExams.Infrastructure
+namespace EnglishExams.Services.Implementation
 {
+    /// <summary>
+    /// Perform action on User
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly IFileWrapper _fileWrapper;

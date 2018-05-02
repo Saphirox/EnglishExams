@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace EnglishExams.Models
+﻿namespace EnglishExams.Models
 {
+    /// <summary>
+    /// Dto to view on TestResultViewModel
+    /// </summary>
     public class TestResultDescriptionModel
     {
         public string QuestionName { get; set; }
