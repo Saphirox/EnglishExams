@@ -71,7 +71,7 @@
                        Grid.Column="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Command="{Binding Option1Checked, UpdateSourceTrigger=PropertyChanged}">
+                       IsChecked="{Binding Option1Checked, UpdateSourceTrigger=PropertyChanged}">
             </CheckBox>
 
             <Label
@@ -90,7 +90,7 @@
                        Grid.Column="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Command="{Binding Option2Checked, UpdateSourceTrigger=PropertyChanged}">
+                       IsChecked="{Binding Option2Checked, UpdateSourceTrigger=PropertyChanged}">
             </CheckBox>
 
             <Label
@@ -111,7 +111,7 @@
                        Grid.Column="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Command="{Binding Option3Checked, UpdateSourceTrigger=PropertyChanged}">
+                       IsChecked="{Binding Option3Checked, UpdateSourceTrigger=PropertyChanged}">
             </CheckBox>
 
             <Label
@@ -132,7 +132,7 @@
                        Grid.Column="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Command="{Binding Option4Checked, UpdateSourceTrigger=PropertyChanged}">
+                       IsChecked="{Binding Option4Checked, UpdateSourceTrigger=PropertyChanged}">
             </CheckBox>
 
             <Label
@@ -153,7 +153,7 @@
                        Grid.Column="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Command="{Binding Option5Checked, UpdateSourceTrigger=PropertyChanged}">
+                       IsChecked="{Binding Option5Checked, UpdateSourceTrigger=PropertyChanged}">
             </CheckBox>
 
             <Grid Grid.Row="7" Grid.Column="1" Margin="10 5">

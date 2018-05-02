@@ -15,6 +15,8 @@ namespace EnglishExams.ViewModels
         private TestDescription _testDescription;
         private DispatcherTimer dispatcherTimer;
         private IQuestionService _questionService;
+        private IFileFacade _fileFacade;
+        private readonly ITestResultService _testResultService;
         private readonly Dictionary<string, ICollection<string>> _answers;
         private readonly UserTestModel _userTestModel;
         private int _pointer = 0; 
@@ -58,10 +60,13 @@ namespace EnglishExams.ViewModels
 
         public StartedTestViewModel()
         {
-            _answers = new Dictionary<string, ICollection<string>>();
-            _testDescription = TinyCache.Get<Type, TestDescription>(typeof(TestDescription));
-            _questionService = new QuestionService(new FileFacade());
+            _fileFacade = new FileFacade();
 
+            _answers = new Dictionary<string, ICollection<string>>();
+
+            _testDescription = TinyCache.Get<Type, TestDescription>(typeof(TestDescription));
+            _questionService = new QuestionService(_fileFacade);
+            _testResultService = new TestResultService(_fileFacade);
             _userTestModel = _questionService.GetTestByTaskDescription(_testDescription);
 
             NextQuestion = new RelayCommand(ShowNextQuestion);
@@ -120,7 +125,15 @@ namespace EnglishExams.ViewModels
 
         private void ShowTestResult()
         {
-            // TODO: Add result page
+            _testResultService.AddResultToUser(new TestDescription()
+            {
+                UnitName  = _userTestModel.UnitName,
+                LessonName = _userTestModel.LessonName
+            }, _answers);
+
+
+            TinyCache.Set(typeof(UserTestModel), _userTestModel);
+            RedirectDecorator.ToViewModel(typeof(TestResultViewModel));
         }
 
         private void StartTimer()

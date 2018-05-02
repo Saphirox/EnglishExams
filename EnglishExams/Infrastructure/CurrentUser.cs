@@ -5,17 +5,20 @@ namespace EnglishExams.Infrastructure
 {
     public static class CurrentUser
     {
-        private static UserModel instance;
+        private static UserModel _instance;
 
         public static UserModel Instance
         {
-            get => instance;
+            get => _instance;
             set
             {
-                instance = value;
+                _instance = value;
 
-                if (instance.UserTestModels is null)
-                    instance.UserTestModels = new List<UserTestModel>();
+                if (_instance.UserTestModels is null)
+                    _instance.UserTestModels = new List<UserTestModel>();
+
+                if (_instance.TestResults is null)
+                    _instance.TestResults = new List<TestResultModel>();
             }
         }
 

@@ -68,5 +68,10 @@
         <DataTemplate DataType="{x:Type vm:StartedTestViewModel}">
             <views:StartedTestView />
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:TestResultViewModel}">
+            <views:TestResultView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

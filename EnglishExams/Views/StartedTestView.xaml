@@ -72,7 +72,6 @@
                         Style="{StaticResource DarkButton}"
                         Command="{Binding NextQuestion}"
                         Content="{x:Static resx:CommonResources.Next}"></Button>
-
             </Border>
 
             <Border Grid.Column="1" Style="{StaticResource DarkButtonBorder}">
