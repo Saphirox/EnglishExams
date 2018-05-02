@@ -252,6 +252,24 @@ namespace EnglishExams.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string TestTimeExpired {
+            get {
+                return ResourceManager.GetString("TestTimeExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TimeRunOut {
+            get {
+                return ResourceManager.GetString("TimeRunOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string UnitName {
             get {
                 return ResourceManager.GetString("UnitName", resourceCulture);
@@ -273,6 +291,15 @@ namespace EnglishExams.Resources {
         public static string WhatDoYouWantToDo {
             get {
                 return ResourceManager.GetString("WhatDoYouWantToDo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string WhatTestYouWantToPass {
+            get {
+                return ResourceManager.GetString("WhatTestYouWantToPass", resourceCulture);
             }
         }
         

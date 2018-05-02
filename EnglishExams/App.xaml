@@ -41,6 +41,15 @@
             <Setter Property="Button.Background" Value="#363636"></Setter>
         </Style>   
         
+        <Style x:Key="DarkCheckbox">
+            <Setter Property="CheckBox.Background" Value="#363636"></Setter>
+        </Style>
+        
+        <Style x:Key="DarkListbox">
+            <Setter Property="ListBox.Background" Value="Transparent"></Setter>
+            <Setter Property="ListBox.BorderBrush" Value="Transparent"></Setter>
+        </Style>
+        
         <DataTemplate DataType="{x:Type vm:SignUpViewModel}">
             <views:SignUpView />
         </DataTemplate>

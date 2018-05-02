@@ -7,18 +7,19 @@
              xmlns:resx="clr-namespace:EnglishExams.Resources"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance vm:QuestionViewModel}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Width="600">
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Grid Width="600" Height="500" HorizontalAlignment="Center" VerticalAlignment="Center">
+        
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
         
         <TextBlock Grid.Row="0" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center"
                    Style="{StaticResource DarkHeader}"
-                   FontSize="18"
+                   FontSize="24"
                    FontWeight="Bold"
                    Text="{Binding QuestionNumber, UpdateSourceTrigger=PropertyChanged}">
         </TextBlock>
@@ -39,35 +40,44 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
             <Label
-                HorizontalAlignment="Right"
                 Grid.Column="0" 
-                Grid.Row="0" 
+                Grid.Row="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
                 Content="{x:Static resx:CommonResources.Question}"
                 Style="{StaticResource DarkLabel}"></Label>
-            <Border Grid.Column="1" Grid.Row="0" Style="{StaticResource DarkBorderTextBox}">
+            <Border Grid.Column="1" 
+                    Grid.Row="0" 
+                    Margin="10"
+                    Style="{StaticResource DarkBorderTextBox}">
                 <TextBox Text="{ Binding Text, UpdateSourceTrigger=PropertyChanged }" 
                          Style="{StaticResource DarkTextBox}" 
-                         Width="Auto">
+                         Width="Auto"
+                        >
                 </TextBox>
             </Border>
-             <!--  -->
+
             <Label
                 HorizontalAlignment="Right"
+                VerticalAlignment="Center"
                 Grid.Column="0" 
                 Grid.Row="1" 
                 Content="{x:Static resx:CommonResources.OptionRequired}"
                 Style="{StaticResource DarkLabel}"></Label>
-            <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource DarkBorderTextBox}">
+            <Border Grid.Column="1" 
+                    Grid.Row="1"
+                    Margin="10"
+                    Style="{StaticResource DarkBorderTextBox}">
                 <TextBox Text="{ Binding Option1, UpdateSourceTrigger=PropertyChanged }" 
                          Style="{StaticResource DarkTextBox}" 
                          Width="Auto">
                 </TextBox>
             </Border>
             <CheckBox  Grid.Row="1" 
+                       Style="{StaticResource DarkCheckbox}"
                        Grid.Column="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
@@ -76,11 +86,16 @@
 
             <Label
                 HorizontalAlignment="Right"
+                VerticalAlignment="Center"
                 Grid.Column="0" 
                 Grid.Row="2" 
                 Content="{x:Static resx:CommonResources.OptionRequired}"
-                Style="{StaticResource DarkLabel}"></Label>
-            <Border Grid.Column="1" Grid.Row="2" Style="{StaticResource DarkBorderTextBox}">
+                Style="{StaticResource DarkLabel}">
+            </Label>
+            <Border Grid.Column="1" 
+                    Grid.Row="2"
+                    Margin="10" 
+                    Style="{StaticResource DarkBorderTextBox}">
                 <TextBox Text="{ Binding Option2, UpdateSourceTrigger=PropertyChanged }" 
                          Style="{StaticResource DarkTextBox}" 
                          Width="Auto">
@@ -88,6 +103,7 @@
             </Border>
             <CheckBox  Grid.Row="2" 
                        Grid.Column="2"
+                       Style="{StaticResource DarkCheckbox}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        IsChecked="{Binding Option2Checked, UpdateSourceTrigger=PropertyChanged}">
@@ -95,19 +111,23 @@
 
             <Label
                 HorizontalAlignment="Right"
+                VerticalAlignment="Center"
                 Grid.Column="0" 
                 Grid.Row="3" 
                 Content="{x:Static resx:CommonResources.Option}"
                 Style="{StaticResource DarkLabel}"></Label>
             <Border Grid.Column="1" 
                     Grid.Row="3" 
+                    Margin="10"
                     Style="{StaticResource DarkBorderTextBox}">
                 <TextBox Text="{ Binding Option3, UpdateSourceTrigger=PropertyChanged }" 
                          Style="{StaticResource DarkTextBox}" 
-                         Width="Auto">
+                         Width="Auto"
+                        >
                 </TextBox>
             </Border>
             <CheckBox  Grid.Row="3" 
+                       Style="{StaticResource DarkCheckbox}"
                        Grid.Column="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
@@ -116,13 +136,15 @@
 
             <Label
                 HorizontalAlignment="Right"
+                VerticalAlignment="Center"
                 Grid.Column="0" 
                 Grid.Row="4" 
                 Content="{x:Static resx:CommonResources.Option}"
                 Style="{StaticResource DarkLabel}"></Label>
             <Border Grid.Column="1" 
                     Grid.Row="4" 
-                    Style="{StaticResource DarkBorderTextBox}">
+                    Style="{StaticResource DarkBorderTextBox}"
+                    Margin="10">
                 <TextBox Text="{ Binding Option4, UpdateSourceTrigger=PropertyChanged }" 
                          Style="{StaticResource DarkTextBox}" 
                          Width="Auto">
@@ -132,18 +154,21 @@
                        Grid.Column="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
+                       Style="{StaticResource DarkCheckbox}"
                        IsChecked="{Binding Option4Checked, UpdateSourceTrigger=PropertyChanged}">
             </CheckBox>
 
             <Label
                 HorizontalAlignment="Right"
+                VerticalAlignment="Center"
                 Grid.Column="0" 
                 Grid.Row="5" 
                 Content="{x:Static resx:CommonResources.Option}"
                 Style="{StaticResource DarkLabel}"></Label>
             <Border Grid.Column="1" 
                     Grid.Row="5" 
-                    Style="{StaticResource DarkBorderTextBox}">
+                    Style="{StaticResource DarkBorderTextBox}"
+                    Margin="10">
                 <TextBox Text="{ Binding Option5, UpdateSourceTrigger=PropertyChanged }" 
                          Style="{StaticResource DarkTextBox}" 
                          Width="Auto">
@@ -153,31 +178,32 @@
                        Grid.Column="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
+                       Style="{StaticResource DarkCheckbox}"
                        IsChecked="{Binding Option5Checked, UpdateSourceTrigger=PropertyChanged}">
             </CheckBox>
 
-            <Grid Grid.Row="7" Grid.Column="1" Margin="10 5">
+            <Grid Grid.Row="6" Grid.Column="1" Margin="10 5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Margin="2"  Style="{StaticResource DarkButtonBorder}">
+                <Border Grid.Column="0" Margin="10"  Style="{StaticResource DarkButtonBorder}">
                     <Button Grid.Column="0" 
                         Content="{x:Static resx:CommonResources.Back }" 
                         Style="{StaticResource DarkButton}"
                         Command="{Binding ReturnToMenu}"/>
                 </Border>
-                <Border Grid.Column="1"  Margin="2"  Style="{StaticResource DarkButtonBorder}">
+                <Border Grid.Column="1"  Margin="10"  Style="{StaticResource DarkButtonBorder}">
                     <Button 
-                            Content="{x:Static resx:CommonResources.Begin}" 
+                            Content="{x:Static resx:CommonResources.Next}" 
                             Style="{StaticResource DarkButton}"
                             Command="{Binding NextQuestion}">
                     </Button>
                 </Border>
 
-                <Border Grid.Column="2"  Margin="2"  Style="{StaticResource DarkButtonBorder}">
+                <Border Grid.Column="2"  Margin="10"  Style="{StaticResource DarkButtonBorder}">
                     <Button 
                         Content="{x:Static resx:CommonResources.End}" 
                         Style="{StaticResource DarkButton}"

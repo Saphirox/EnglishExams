@@ -12,12 +12,6 @@ namespace EnglishExams.Tests
 
         public void GetResultTest()
         {
-            var testDescription = new TestDescription ()
-            {
-                UnitName = "UnitТфьу"
-            }
-
-            _testResultService.GetResults()
         }
     }
 }

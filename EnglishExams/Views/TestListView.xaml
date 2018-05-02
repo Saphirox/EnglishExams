@@ -5,23 +5,53 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:EnglishExams.ViewModels"
              xmlns:inf="clr-namespace:EnglishExams.Infrastructure"
+             xmlns:resx="clr-namespace:EnglishExams.Resources"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance vm:TestListViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Width="600">
-        <WrapPanel Orientation="Horizontal">
-            <ListBox ItemsSource="{Binding Tests}">
-               <ListBox.ItemTemplate>
+    <Grid Width="600" Height="500" VerticalAlignment="Center" HorizontalAlignment="Center">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Grid.Row="0"
+            Style="{StaticResource DarkHeader}"
+            FontSize="24"
+            FontWeight="Bold"
+            Text="{x:Static resx:CommonResources.WhatTestYouWantToPass}"></TextBlock>
+
+        <WrapPanel Grid.Row="1" Orientation="Horizontal">
+            <ListBox ItemsSource="{Binding Tests}" Style="{StaticResource DarkListbox}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
                    <DataTemplate>
                        <ListBoxItem>
                           <StackPanel>
-                              <TextBlock Text="{Binding UnitName}"></TextBlock>
-                              <ListBox ItemsSource="{Binding LessonsName}">
+                              <TextBlock Foreground="#FFFFFF" 
+                                         FontSize="16" 
+                                         Text="{Binding UnitName}"></TextBlock>
+                              <ListBox ItemsSource="{Binding LessonsName}"
+                                       Background="Transparent" 
+                                       BorderBrush="Transparent">
                                   <ListBox.ItemTemplate>
                                       <DataTemplate>
                                           <ListBoxItem>
-                                              <Button inf:ButtonHelper.UnitName="{Binding RelativeSource=
+                                              <Button
+                                                  Background="Transparent" 
+                                                  BorderBrush="Transparent"
+                                                  Foreground="#FFFFFF" 
+                                                  FontSize="16"
+                                                  inf:ButtonHelper.UnitName="{Binding RelativeSource=
                                                   {RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, Path=DataContext.UnitName}" Click="ListBoxHander" Content="{Binding}" />
                                           </ListBoxItem>
                                       </DataTemplate>

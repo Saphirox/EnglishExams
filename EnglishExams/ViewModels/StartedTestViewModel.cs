@@ -19,7 +19,7 @@ namespace EnglishExams.ViewModels
         private readonly ITestResultService _testResultService;
         private readonly Dictionary<string, ICollection<string>> _answers;
         private readonly UserTestModel _userTestModel;
-        private int _pointer = 0; 
+        private int _pointer = 0;
         private int _timer = 0;
 
         public RelayCommand NextQuestion { get; set; }
@@ -68,6 +68,8 @@ namespace EnglishExams.ViewModels
             _questionService = new QuestionService(_fileFacade);
             _testResultService = new TestResultService(_fileFacade);
             _userTestModel = _questionService.GetTestByTaskDescription(_testDescription);
+
+            _timer = _userTestModel.Duration;
 
             NextQuestion = new RelayCommand(ShowNextQuestion);
             TestResult = new RelayCommand(ShowTestResult);
@@ -167,15 +169,30 @@ namespace EnglishExams.ViewModels
                 LessonName = _userTestModel.LessonName
             }, _answers);
 
+            Redirect();
+        }
 
+        private void Redirect()
+        {
             TinyCache.Set(typeof(UserTestModel), _userTestModel);
             RedirectDecorator.ToViewModel(typeof(TestResultViewModel));
         }
 
         private void StartTimer()
         {
-            DispatcherTimer dispatcherTimer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
-            dispatcherTimer.Tick += (obj, e) => Timer++;
+            var dispatcherTimer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
+
+            dispatcherTimer.Tick += (obj, e) =>
+            {
+                Timer--;
+
+                if (Timer == 0)
+                {
+                    MessageError.TimeOfTestExpired.Show();
+                    Redirect();
+                }
+            };
+
             dispatcherTimer.Start();
         }
     }

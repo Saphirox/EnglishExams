@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:EnglishExams.ViewModels"
-             xmlns:resx="clr-namespace:EnglishExams.Resources"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:TestResultViewModel}"
              d:DesignHeight="768" d:DesignWidth="1024">
@@ -20,10 +19,16 @@
         <TextBlock Style="{StaticResource DarkHeader}" 
                    Grid.Column="0" 
                    Grid.Row="0"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
                    Text="{Binding Header}">
         </TextBlock>
 
-        <ListBox Grid.Row="3" ItemsSource="{Binding TestResult}">
+        <ListBox Grid.Row="1" 
+                 ItemsSource="{Binding TestResult}"
+                 Style="{StaticResource DarkListbox}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                      <Grid>
@@ -34,20 +39,36 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0"  
+                        <TextBlock Grid.Row="0"
+                                   FontSize="18"
+                                   TextWrapping="Wrap"
                                    Text="{Binding QuestionNumber}" 
                                    Style="{StaticResource DarkSecondary}">
                         </TextBlock>
 
                         <TextBlock Grid.Row="1" 
-                                   Text="{Binding QuestionName}"></TextBlock>
+                                   FontSize="18"
+                                   Margin="10"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding QuestionName}"
+                                   Style="{StaticResource DarkHeader}"></TextBlock>
 
                         <TextBlock Grid.Row="2"
-                                   Text="{Binding CorrectResult}">
-                        </TextBlock>
+                                   FontSize="18"
+                                   Margin="20"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Left"
+                                   Text="{Binding CorrectResult}"
+                                   Style="{StaticResource DarkHeader}"></TextBlock>
 
                         <TextBlock Grid.Row="3"
-                                    Text="{Binding QuestionPoints}">
+                                   FontSize="18"
+                                   Margin="10"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Left"
+                                   Text="{Binding QuestionPoints}"
+                                   FontWeight="Bold"
+                                   Style="{StaticResource DarkSecondary}">
                          </TextBlock>
                     </Grid>
                 </DataTemplate>

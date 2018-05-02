@@ -20,5 +20,13 @@ namespace EnglishExams.Infrastructure
                 MessageBox.Show(ErrorResources.InvalidIdentityForm, ErrorResources.Error);
             }
         }
+
+        public static class TimeOfTestExpired
+        {
+            public static void Show()
+            {
+                MessageBox.Show(CommonResources.TestTimeExpired, CommonResources.TimeRunOut);
+            }
+        }
     }
 }

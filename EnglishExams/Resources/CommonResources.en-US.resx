@@ -183,6 +183,12 @@
   <data name="SubmitForChecking" xml:space="preserve">
     <value>SUBMIT FOR CHECKING</value>
   </data>
+  <data name="TestTimeExpired" xml:space="preserve">
+    <value>Test time has expired</value>
+  </data>
+  <data name="TimeRunOut" xml:space="preserve">
+    <value>Time has run out</value>
+  </data>
   <data name="UnitName" xml:space="preserve">
     <value>UNIT NAME</value>
   </data>
@@ -191,6 +197,9 @@
   </data>
   <data name="WhatDoYouWantToDo" xml:space="preserve">
     <value>What do you want to do?</value>
+  </data>
+  <data name="WhatTestYouWantToPass" xml:space="preserve">
+    <value>What test you want to pass?</value>
   </data>
   <data name="YouGotPattern" xml:space="preserve">
     <value>You got {0}/{1}</value>
