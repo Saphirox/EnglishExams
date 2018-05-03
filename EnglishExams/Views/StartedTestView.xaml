@@ -60,7 +60,7 @@
                     <ListBoxItem>
                         <StackPanel>
                             <CheckBox
-                                   IsChecked="{Binding IsCorrect, UpdateSourceTrigger=PropertyChanged}">
+                                   IsChecked="{Binding IsCorrect, Mode=TwoWay}">
                                 <TextBlock Text="{Binding Name}"
                                            Foreground="#FFFFFF"
                                            TextWrapping="Wrap"></TextBlock>

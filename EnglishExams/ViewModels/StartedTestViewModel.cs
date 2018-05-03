@@ -56,22 +56,27 @@ namespace EnglishExams.ViewModels
 
         public string QuestionName => GetQuestionByIndex().Text;
 
-        private IList<OptionModel> GetCurrentOptions()
+        private IList<OptionModel> _currentOptions;
+
+        //private IList<OptionModel> asd()
+        //{
+        //    new ObservableCollection<OptionModel>(GetQuestionByIndex().Options.Select(c =>
+        //    new OptionModel()
+        //    {
+        //        Name = c.Name,
+        //        IsCorrect = false
+        //    }))
+        //};
+
+        public IList<OptionModel> CurrentOptions
         {
-            return new ObservableCollection<OptionModel>(GetQuestionByIndex().Options.Select(c => new OptionModel()
-            {
-                Name = c.Name,
-                IsCorrect = false
-            }));
+            get => _currentOptions;
+            set => _currentOptions = value;
         }
-
-        public IList<OptionModel> _currentOptions = null;
-
-        public IList<OptionModel> CurrentOptions => _currentOptions ?? (_currentOptions = GetCurrentOptions());
 
         public StartedTestViewModel()
         {
-            _fileWrapper = new FileWrapper();
+           _fileWrapper = new FileWrapper();
 
             _answers = new Dictionary<string, ICollection<string>>();
 
@@ -86,6 +91,7 @@ namespace EnglishExams.ViewModels
             TestResult = new RelayCommand(ShowTestResult);
             Back = new RelayCommand(ShowBack);
 
+            Reset();
             StartTimer();
         }
 
@@ -184,22 +190,33 @@ namespace EnglishExams.ViewModels
 
         private void RestoreCheckedCheckboxes()
         {
-            foreach (var answer in _answers)
+           Reset();
+           Set();
+        }
+
+        private void Set()
+        {
+            foreach (var option in _currentOptions)
             {
-                if (GetQuestionByIndex().Text == answer.Key)
+                foreach (var answer in _answers)
                 {
-                    foreach (var val in answer.Value)
+                    if (answer.Key == QuestionName && 
+                        answer.Value.Contains(option.Name))
                     {
-                        foreach (var v in CurrentOptions)
-                        {
-                            if (val == v.Name)
-                            {
-                                v.IsCorrect = true;
-                            }
-                        }
+                        option.IsCorrect = true;
                     }
                 }
             }
+        }
+
+        private void Reset()
+        {
+            _currentOptions = new ObservableCollection<OptionModel>(GetQuestionByIndex().Options.Select(c =>
+                new OptionModel
+                {
+                    Name = c.Name,
+                    IsCorrect = false
+                }));
         }
     }
 }

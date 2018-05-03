@@ -85,8 +85,7 @@ namespace EnglishExams.Services.Implementation
 
                                 tempList.Add(new LessonResultModel()
                                 {
-                                    LessonNameAndPoint = string.Format(test.LessonName, "-" , pointResult,
-                                        test.NumberOfQuestions),
+                                    LessonNameAndPoint = string.Concat(test.LessonName, " - " , pointResult),
                                 }); 
                             }
                         }
