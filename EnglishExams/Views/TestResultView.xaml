@@ -9,11 +9,8 @@
              d:DesignHeight="768" d:DesignWidth="1024">
     <Grid Width="600">
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock Style="{StaticResource DarkHeader}" 
@@ -31,7 +28,7 @@
                  Style="{StaticResource DarkListbox}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                     <Grid>
+                     <Grid Height="200">
                          <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -42,28 +39,26 @@
                         <TextBlock Grid.Row="0"
                                    FontSize="18"
                                    TextWrapping="Wrap"
-                                   Text="{Binding QuestionNumber}" 
+                                   Text="{Binding QuestionNumber}"
+                                   VerticalAlignment="Bottom"
                                    Style="{StaticResource DarkSecondary}">
                         </TextBlock>
 
                         <TextBlock Grid.Row="1" 
                                    FontSize="18"
-                                   Margin="10"
                                    TextWrapping="Wrap"
+                                   HorizontalAlignment="Left"
                                    Text="{Binding QuestionName}"
                                    Style="{StaticResource DarkHeader}"></TextBlock>
 
                         <TextBlock Grid.Row="2"
                                    FontSize="18"
-                                   Margin="20"
                                    TextWrapping="Wrap"
-                                   HorizontalAlignment="Left"
                                    Text="{Binding CorrectResult}"
                                    Style="{StaticResource DarkHeader}"></TextBlock>
 
                         <TextBlock Grid.Row="3"
                                    FontSize="18"
-                                   Margin="10"
                                    TextWrapping="Wrap"
                                    HorizontalAlignment="Left"
                                    Text="{Binding QuestionPoints}"

@@ -32,5 +32,31 @@ namespace EnglishExams.Infrastructure
                 MessageBox.Show(CommonResources.TestTimeExpired, CommonResources.TimeRunOut);
             }
         }
+
+        public static class FirstAndSecondOptionIsRequired
+        {
+            public static void Show()
+            {
+                MessageBox.Show(ErrorResources.FirstAndSecondOptionIsRequired, ErrorResources.Error);
+            }
+        }
+
+        public static class AllFieldsIsRequired
+        {
+            public static void Show()
+            {
+                MessageBox.Show(ErrorResources.AllFieldsIsRequired, ErrorResources.Error);
+            }
+        }
+
+        public static void Show(string message)
+        {
+            MessageBox.Show(message, ErrorResources.Error);
+        }
+
+        public static void Show(string message, params object[] messageParams)
+        { 
+            MessageBox.Show(string.Format(message, messageParams), ErrorResources.Error);
+        }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Windows;
 using EnglishExams.Infrastructure;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace EnglishExams.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
         private ViewModelBase _currentViewModel;
+        public RelayCommand Logout { get; set; }
 
         public ViewModelBase CurrentViewModel
         {
@@ -14,16 +15,28 @@ namespace EnglishExams.ViewModels
             set => Set(ref _currentViewModel, value, nameof(CurrentViewModel));
         }
 
+        public Visibility LogoutVisibility => CurrentUser.IsAuthenticated() ? Visibility.Visible: Visibility.Hidden;
+
         public MainWindowViewModel()
         {
             RedirectDecorator.Register(this, ChangePage);
+            OnPropertyChanged(nameof(LogoutVisibility));
+            CurrentViewModel = new LoginViewModel();
+            Logout = new RelayCommand(ShowSignIn);
+        }
 
+        public void ShowSignIn()
+        {
+            CurrentUser.Instance = null;
+            OnPropertyChanged(nameof(LogoutVisibility));
             CurrentViewModel = new LoginViewModel();
         }
 
         private void ChangePage(ChangePage page)
         {
             var vm = Activator.CreateInstance(page.CurrentViewModel) as ViewModelBase;
+
+            OnPropertyChanged(nameof(LogoutVisibility));
 
             CurrentViewModel = vm ?? throw new InvalidCastException(nameof(page.CurrentViewModel));
         }

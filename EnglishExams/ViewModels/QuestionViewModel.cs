@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using EnglishExams.Resources;
@@ -9,10 +10,9 @@ using GalaSoft.MvvmLight.Messaging;
 
 namespace EnglishExams.ViewModels
 {
-    public class QuestionViewModel : ViewModelBase
+    public class QuestionViewModel : ViewModelBase, IViewModelValidation
     {
-        private int _count = 1;
-        private const int MAX_QUESTIONS = 12;
+        private int _countOfQuestion = 1;
 
         private readonly IQuestionService _questionService;
 
@@ -34,7 +34,7 @@ namespace EnglishExams.ViewModels
         private OptionModel option5 = new OptionModel();
         
         public string QuestionNumber 
-            => string.Concat(CommonResources.Question, " ", _count.ToString());
+            => string.Concat(CommonResources.Question, " ", _countOfQuestion.ToString());
 
         public string Text
         {
@@ -151,32 +151,61 @@ namespace EnglishExams.ViewModels
             _questionService = new QuestionService(new FileWrapper());
             _userTestModel = TinyTempCache.Get<Type, UserTestModel>(typeof(UserTestModel));
 
-            NextQuestion = new RelayCommand(ShowNextQuestion);
+            NextQuestion = new RelayCommand(AddClearModel);
             ReturnToMenu = new RelayCommand(ShowMenu);
             EndQuestions = new RelayCommand(AddTestToUser);
         }
 
         private void AddTestToUser()
         {
+            AddClearModel();
+
             _questionService.AddToTest(_userTestModel, _questionModels);
 
             RedirectDecorator.ToViewModel(typeof(MenuViewModel));
         }
 
-        private void ShowNextQuestion()
+        private void AddClearModel()
         {
+            if (!Validate())
+            {
+                return;
+            }
+
             _model.Options.Add(option1);
             _model.Options.Add(option2);
             _model.Options.Add(option3);
             _model.Options.Add(option4);
             _model.Options.Add(option5);
 
+            _model.Options = _model.Options.Where(value => 
+                !string.IsNullOrWhiteSpace(value.Name)).ToList();
+
             _questionModels.Add(_model);
 
             ClearModel();
 
-            _count++;
+            _countOfQuestion++;
             OnPropertyChanged(nameof(QuestionNumber));
+        }
+
+        public bool Validate()
+        {
+            var state = true;
+
+            // Option 1 and 2 is required
+            if (string.IsNullOrWhiteSpace(Option1) || string.IsNullOrWhiteSpace(Option2))
+            {
+                state = false;
+                MessageError.FirstAndSecondOptionIsRequired.Show();
+            }
+            else if (_userTestModel.NumberOfQuestions == _countOfQuestion)
+            {
+                state = false;
+                MessageError.Show(ErrorResources.QuestionCountLimitedPattern, _userTestModel.NumberOfQuestions);
+            }
+
+            return state;
         }
 
         private void ShowMenu()
@@ -196,12 +225,12 @@ namespace EnglishExams.ViewModels
             option5 = new OptionModel();
             option5 = new OptionModel();
 
-            Text = "";
-            Option1 = "";
-            Option2 = "";
-            Option3 = "";
-            Option4 = "";
-            Option5 = "";
+            Text = null;
+            Option1 = null;
+            Option2 = null;
+            Option3 = null;
+            Option4 = null;
+            Option5 = null;
 
             Option1Checked = false;
             Option2Checked = false;

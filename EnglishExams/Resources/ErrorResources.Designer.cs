@@ -63,6 +63,15 @@ namespace EnglishExams.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string AllFieldsIsRequired {
+            get {
+                return ResourceManager.GetString("AllFieldsIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
@@ -81,9 +90,27 @@ namespace EnglishExams.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string FirstAndSecondOptionIsRequired {
+            get {
+                return ResourceManager.GetString("FirstAndSecondOptionIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string InvalidIdentityForm {
             get {
                 return ResourceManager.GetString("InvalidIdentityForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string QuestionCountLimitedPattern {
+            get {
+                return ResourceManager.GetString("QuestionCountLimitedPattern", resourceCulture);
             }
         }
     }

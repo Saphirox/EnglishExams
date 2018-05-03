@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Documents;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using System.Windows.Threading;
@@ -18,6 +17,7 @@ namespace EnglishExams.ViewModels
         private DispatcherTimer dispatcherTimer;
         private IQuestionService _questionService;
         private IFileWrapper _fileWrapper;
+        private DispatcherTimer _dispatcherTimer;
         private readonly ITestResultService _testResultService;
         private readonly Dictionary<string, ICollection<string>> _answers;
         private readonly UserTestModel _userTestModel;
@@ -177,12 +177,14 @@ namespace EnglishExams.ViewModels
         private void Redirect()
         {
             TinyTempCache.Set(typeof(UserTestModel), _userTestModel);
+            _dispatcherTimer.Stop();
+
             RedirectDecorator.ToViewModel(typeof(TestResultViewModel));
         }
 
         private void StartTimer()
         {
-            var dispatcherTimer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
+            _dispatcherTimer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
 
             dispatcherTimer.Tick += (obj, e) =>
             {

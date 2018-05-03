@@ -120,6 +120,9 @@
   <data name="Analysis" xml:space="preserve">
     <value>Analysis</value>
   </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>English tests</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>BACK</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Log out</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>NEXT</value>

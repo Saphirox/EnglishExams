@@ -7,13 +7,23 @@
         xmlns:local="clr-namespace:EnglishExams.Views"
         xmlns:vm="clr-namespace:EnglishExams.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024">
+        Icon="../Images/kursach1-12.png"
+        Title="{x:Static resx:CommonResources.ApplicationName}" Height="768" Width="1024">
 
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
     
     <Grid Style="{StaticResource DarkBackgroundTheme}">
-        <ContentControl Content="{Binding CurrentViewModel, UpdateSourceTrigger=PropertyChanged}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Visibility="{Binding LogoutVisibility}" HorizontalAlignment="Left"  Width="100" Style="{StaticResource DarkButtonBorder}">
+            <Button Style="{StaticResource DarkButton}"
+                    Command="{Binding Logout}"
+                    Content="{x:Static resx:CommonResources.Logout}"></Button>
+        </Border>
+        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel, UpdateSourceTrigger=PropertyChanged}" />
    </Grid>
 </Window>

@@ -18,7 +18,7 @@ namespace EnglishExams.ViewModels
         
         public string Header =>
             string.Concat(_userTestModel.UnitName, DASH, 
-                          _userTestModel.LessonName, CommonResources.Analysis);
+                          _userTestModel.LessonName, DASH, CommonResources.Analysis);
 
         public ICollection<TestResultDescriptionModel> TestResult
             => new ObservableCollection<TestResultDescriptionModel>(_testResults);

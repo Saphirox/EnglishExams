@@ -3,7 +3,7 @@ using EnglishExams.Models;
 
 namespace EnglishExams.ViewModels
 {
-    public class CreateTestViewModel : ViewModelBase
+    public class CreateTestViewModel : ViewModelBase, IViewModelValidation
     {
         public RelayCommand BackPage { get; set; }
         public RelayCommand BeginPage { get; set; }
@@ -35,14 +35,7 @@ namespace EnglishExams.ViewModels
             get => _model.Duration.ToString();
             set
             {
-                if (int.TryParse(value, out var result))
-                {
-                    _model.Duration = result;
-                }
-                else
-                {
-                    MessageError.FieldConsistOnlyDigits.Show();
-                }
+                _model.Duration = value.ValidateNumber();
 
                 OnPropertyChanged(nameof(Duration));
             }
@@ -53,14 +46,7 @@ namespace EnglishExams.ViewModels
             get => _model.NumberOfQuestions.ToString();
             set
             {
-                if (int.TryParse(value, out var result))
-                {
-                    _model.NumberOfQuestions = result;
-                }
-                else
-                {
-                    MessageError.FieldConsistOnlyDigits.Show();
-                }
+                _model.NumberOfQuestions = value.ValidateNumber();
 
                 OnPropertyChanged(nameof(NumberOfQuestions));
             }
@@ -71,14 +57,7 @@ namespace EnglishExams.ViewModels
             get => _model.NumberOfPoints.ToString();
             set
             {
-                if (int.TryParse(value, out var result))
-                {
-                    _model.NumberOfPoints = result;
-                }
-                else
-                {
-                    MessageError.FieldConsistOnlyDigits.Show();
-                }
+                _model.NumberOfPoints = value.ValidateNumber();
 
                 OnPropertyChanged(nameof(NumberOfPoints));
             }
@@ -97,8 +76,30 @@ namespace EnglishExams.ViewModels
 
         private void ShowBegin()
         {
+            if (!Validate())
+            {
+                return;
+            }
+
             TinyTempCache.Set(typeof(UserTestModel), _model);
             RedirectDecorator.ToViewModel(typeof(QuestionViewModel));
+        }
+
+        public bool Validate()
+        {
+            var result = true;
+
+            if (string.IsNullOrWhiteSpace(UnitName) || 
+                string.IsNullOrWhiteSpace(LessonName) ||
+                int.Parse(Duration) == default ||
+                int.Parse(NumberOfQuestions) == default || 
+                int.Parse(NumberOfPoints) == default)
+            {
+                result = false;
+                MessageError.AllFieldsIsRequired.Show();
+            }
+
+            return result;
         }
     }
 }
