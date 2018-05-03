@@ -53,15 +53,14 @@
                    Text="{Binding QuestionName}">
         </TextBlock>
         
-        <ListBox Grid.Row="3" ItemsSource="{Binding CurrentOptions}" 
+        <ListBox Grid.Row="3" ItemsSource="{Binding CurrentOptions, UpdateSourceTrigger=PropertyChanged}" 
                  Style="{StaticResource DarkListbox}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <ListBoxItem>
                         <StackPanel>
                             <CheckBox
-                                   Checked="OptionChecked"
-                                   Unchecked="OptionUnchecked">
+                                   IsChecked="{Binding IsCorrect, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBlock Text="{Binding Name}"
                                            Foreground="#FFFFFF"
                                            TextWrapping="Wrap"></TextBlock>

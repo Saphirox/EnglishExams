@@ -16,21 +16,21 @@ namespace EnglishExams.Views
 
         private void OptionChecked(object sender, RoutedEventArgs e)
         {
-            var checkbox = sender as CheckBox;
-            var dc = DataContext as StartedTestViewModel;
+            //var checkbox = sender as CheckBox;
+            //var dc = DataContext as StartedTestViewModel;
 
-            var textBlock = (TextBlock) checkbox.Content;
+            //var textBlock = (TextBlock) checkbox.Content;
 
-            dc.AddAnswer(dc.QuestionName, textBlock.Text);
+            //dc.AddAnswer(dc.QuestionName, textBlock.Text);
         }
 
         private void OptionUnchecked(object sender, RoutedEventArgs e)
         {
-            var checkbox = sender as CheckBox;
-            var dc = DataContext as StartedTestViewModel;
-            var textBlock = (TextBlock)checkbox.Content;
+            //var checkbox = sender as CheckBox;
+            //var dc = DataContext as StartedTestViewModel;
+            //var textBlock = (TextBlock)checkbox.Content;
 
-            dc.RemoveAnswer(dc.QuestionName, textBlock.Text);
+            //dc.RemoveAnswer(dc.QuestionName, textBlock.Text);
         }
     }
 }

@@ -14,7 +14,6 @@ namespace EnglishExams.ViewModels
     public class StartedTestViewModel : ViewModelBase
     {
         private TestDescription _testDescription;
-        private DispatcherTimer dispatcherTimer;
         private IQuestionService _questionService;
         private IFileWrapper _fileWrapper;
         private DispatcherTimer _dispatcherTimer;
@@ -57,8 +56,18 @@ namespace EnglishExams.ViewModels
 
         public string QuestionName => GetQuestionByIndex().Text;
 
-        public IList<OptionModel> CurrentOptions
-                    => new ObservableCollection<OptionModel>(GetQuestionByIndex().Options.Where(c => c.Name != null));
+        private IList<OptionModel> GetCurrentOptions()
+        {
+            return new ObservableCollection<OptionModel>(GetQuestionByIndex().Options.Select(c => new OptionModel()
+            {
+                Name = c.Name,
+                IsCorrect = false
+            }));
+        }
+
+        public IList<OptionModel> _currentOptions = null;
+
+        public IList<OptionModel> CurrentOptions => _currentOptions ?? (_currentOptions = GetCurrentOptions());
 
         public StartedTestViewModel()
         {
@@ -82,6 +91,8 @@ namespace EnglishExams.ViewModels
 
         public void ShowBack()
         {
+            AddAnswer();
+
             if (_pointer == 0)
             {
                 _pointer = _userTestModel.NumberOfQuestions - 1;
@@ -91,46 +102,34 @@ namespace EnglishExams.ViewModels
                 _pointer--;
             }
 
-            foreach (var answer in _answers)
-            {
-                if (GetQuestionByIndex().Text == answer.Key)
-                {
-                    foreach (var val in answer.Value)
-                    {
-                        foreach (var v in CurrentOptions)
-                        {
-                            if (val == v.Name)
-                            {
-                                v.IsCorrect = true;
-                            }
-                        }
-                    }                   
-                }
-            }
-
+            RestoreCheckedCheckboxes();
             OnPropertyChanged(nameof(QuestionName));
             OnPropertyChanged(nameof(CurrentOptions));
         }
-
-        public void AddAnswer(string questionText, string answer)
+       
+        public void AddAnswer()
         {
-            if (_answers.ContainsKey(questionText))
+            var correctAnswers = CurrentOptions.Where(c => c.IsCorrect);
+
+            if (_answers.ContainsKey(QuestionName))
             {
-                _answers[questionText].Add(answer);
+                _answers[QuestionName].Clear();
+
+                foreach (var result in correctAnswers)
+                {
+                    _answers[QuestionName].Add(result.Name);
+                }
             }
             else
             {
-                _answers.Add(questionText, new List<string> { answer });
+                _answers.Add(QuestionName, correctAnswers.Select(c => c.Name).ToList());
             }
-        }
-
-        public void RemoveAnswer(string questionText, string answer)
-        {
-            _answers[questionText].Remove(answer);
         }
 
         private void ShowNextQuestion()
         {
+            AddAnswer();
+
             if (_pointer >= _userTestModel.NumberOfQuestions - 1)
             {
                 _pointer = 0;
@@ -140,24 +139,7 @@ namespace EnglishExams.ViewModels
                 _pointer++;
             }
 
-            foreach (var answer in _answers)
-            {
-                var s = GetQuestionByIndex().Text;
-
-                if (s == answer.Key)
-                {
-                    foreach (var val in answer.Value)
-                    {
-                        foreach (var v in CurrentOptions)
-                        {
-                            if (val == v.Name)
-                            {
-                                v.IsCorrect = true;
-                            }
-                        }
-                    }
-                }
-            }
+            RestoreCheckedCheckboxes();
 
             OnPropertyChanged(nameof(QuestionName));
             OnPropertyChanged(nameof(CurrentOptions));
@@ -186,7 +168,7 @@ namespace EnglishExams.ViewModels
         {
             _dispatcherTimer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
 
-            dispatcherTimer.Tick += (obj, e) =>
+            _dispatcherTimer.Tick += (obj, e) =>
             {
                 Timer--;
 
@@ -197,7 +179,27 @@ namespace EnglishExams.ViewModels
                 }
             };
 
-            dispatcherTimer.Start();
+            _dispatcherTimer.Start();
+        }
+
+        private void RestoreCheckedCheckboxes()
+        {
+            foreach (var answer in _answers)
+            {
+                if (GetQuestionByIndex().Text == answer.Key)
+                {
+                    foreach (var val in answer.Value)
+                    {
+                        foreach (var v in CurrentOptions)
+                        {
+                            if (val == v.Name)
+                            {
+                                v.IsCorrect = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

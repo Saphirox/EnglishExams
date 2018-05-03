@@ -158,8 +158,6 @@ namespace EnglishExams.ViewModels
 
         private void AddTestToUser()
         {
-            AddClearModel();
-
             _questionService.AddToTest(_userTestModel, _questionModels);
 
             RedirectDecorator.ToViewModel(typeof(MenuViewModel));
@@ -171,7 +169,7 @@ namespace EnglishExams.ViewModels
             {
                 return;
             }
-
+         
             _model.Options.Add(option1);
             _model.Options.Add(option2);
             _model.Options.Add(option3);
@@ -199,7 +197,7 @@ namespace EnglishExams.ViewModels
                 state = false;
                 MessageError.FirstAndSecondOptionIsRequired.Show();
             }
-            else if (_userTestModel.NumberOfQuestions == _countOfQuestion)
+            else if (_userTestModel.NumberOfQuestions+1 == _countOfQuestion)
             {
                 state = false;
                 MessageError.Show(ErrorResources.QuestionCountLimitedPattern, _userTestModel.NumberOfQuestions);
