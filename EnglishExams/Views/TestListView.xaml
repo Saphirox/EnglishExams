@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:EnglishExams.ViewModels"
              xmlns:inf="clr-namespace:EnglishExams.Infrastructure"
              xmlns:resx="clr-namespace:EnglishExams.Resources"
+             xmlns:views="clr-namespace:EnglishExams.Views"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance vm:TestListViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -15,6 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
         <TextBlock
@@ -63,6 +65,10 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </WrapPanel>
+
+        <ContentControl Grid.Row="2">
+            <views:BackButton  />
+        </ContentControl>
     </Grid>
     
 </UserControl>

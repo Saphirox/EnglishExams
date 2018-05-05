@@ -8,7 +8,7 @@ namespace EnglishExams.Services
         // TODO: Refactor me
         void AddResultToUser(TestDescription key, Dictionary<string, ICollection<string>> answers);
 
-        IList<GradebookTestResultModel> GetGradebook();
+        IEnumerable<GradebookTestResultModel> GetGradebook();
 
         // TODO: Refactor me
         IList<TestResultDescriptionModel> GetResults(TestDescription key);

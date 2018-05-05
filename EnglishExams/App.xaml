@@ -86,5 +86,9 @@
             <views:Gradebook />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vm:BackButtonViewModel}">
+            <views:BackButton />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

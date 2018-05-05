@@ -47,7 +47,7 @@ namespace EnglishExams.Services.Implementation
             _userService.Update(CurrentUser.Instance);
         }
 
-        public IList<GradebookTestResultModel> GetGradebook()
+        public IEnumerable<GradebookTestResultModel> GetGradebook()
         {
             var testResults = CurrentUser.Instance.TestResults;
             var tests = CurrentUser.Instance.UserTestModels;
@@ -62,9 +62,10 @@ namespace EnglishExams.Services.Implementation
                         test.UnitName == testResult.UnitName &&
                         test.LessonName == testResult.LessonName)
                     {
-                        
                     
-                    var tempList = new List<LessonResultModel>();
+                    var tempList = new List<GradebookTestResultModel>();
+
+                    int resultPoint = 0;
 
                     foreach (var questionResult in testResult.QuestionResultModels)
                     {
@@ -81,23 +82,19 @@ namespace EnglishExams.Services.Implementation
 
                                 var points = test.NumberOfPoints / test.NumberOfQuestions;
 
-                                var pointResult = (result ? points : 0).ToString();
-
-                                tempList.Add(new LessonResultModel()
-                                {
-                                    LessonNameAndPoint = string.Concat(test.LessonName, " - " , pointResult),
-                                }); 
+                                resultPoint += result ? points : 0;
                             }
                         }
                     }
 
-                    list.Add(new GradebookTestResultModel()
+                    list.Add(new GradebookTestResultModel
                     {
                         UnitName = test.UnitName,
-                        Lessons = tempList
+                        LessonName = test.LessonName,
+                        Points = resultPoint
                     });
-                    }   
-                }
+                 }   
+              }
             }
 
             return list;
@@ -133,7 +130,7 @@ namespace EnglishExams.Services.Implementation
 
                         var points = test.NumberOfPoints / test.NumberOfQuestions;
 
-                        var pointResult = (result ? points : 0).ToString();
+                        var pointResult = (result ? points : default).ToString();
 
                         list.Add(new TestResultDescriptionModel
                         {
@@ -143,7 +140,7 @@ namespace EnglishExams.Services.Implementation
                             QuestionName = m.Text,
                             CorrectResult = string.Join(", ", correctAnswers),
                             QuestionPoints = string.Format(CommonResources.YouGotPattern, pointResult, 
-                                test.NumberOfQuestions),
+                                test.NumberOfPoints / test.NumberOfQuestions),
                             UserResult = string.Join(", ", q.OptionsName)
                         });
                     }

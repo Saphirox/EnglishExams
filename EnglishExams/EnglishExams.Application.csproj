@@ -96,6 +96,7 @@
     <Compile Include="Infrastructure\IFileWrapper.cs" />
     <Compile Include="Infrastructure\IViewModelValidation.cs" />
     <Compile Include="Infrastructure\ValidationExtensions.cs" />
+    <Compile Include="ViewModels\BackButtonViewModel.cs" />
     <Compile Include="Services\IQuestionService.cs" />
     <Compile Include="Services\ITestResultService.cs" />
     <Compile Include="Services\IUserService.cs" />
@@ -131,6 +132,9 @@
     <Compile Include="ViewModels\TestListViewModel.cs" />
     <Compile Include="ViewModels\TestResultViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\BackButton.xaml.cs">
+      <DependentUpon>BackButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateTestView.xaml.cs">
       <DependentUpon>CreateTestView.xaml</DependentUpon>
     </Compile>
@@ -155,6 +159,10 @@
     <Compile Include="Views\TestResultView.xaml.cs">
       <DependentUpon>TestResultView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\BackButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreateTestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

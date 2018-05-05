@@ -8,15 +8,7 @@ namespace EnglishExams.Models
     public class GradebookTestResultModel
     {
         public string UnitName { get; set; }
-
-        public ICollection<LessonResultModel> Lessons { get; set; }
-    }
-
-    /// <summary>
-    /// Helper for GradebookTestResultModel
-    /// </summary>
-    public class LessonResultModel
-    {
-        public string LessonNameAndPoint { get; set; }
+        public string LessonName { get; set; }
+        public double Points { get; set; }
     }
 }

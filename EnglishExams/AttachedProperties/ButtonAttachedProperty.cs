@@ -20,5 +20,19 @@ namespace EnglishExams.Infrastructure
         {
             return (string) element.GetValue(UnitNameProperty);
         }
+
+        public static readonly DependencyProperty LessonNameProperty =
+            DependencyProperty.RegisterAttached("LessonName",
+                typeof(string), typeof(ButtonAttachedProperty), new PropertyMetadata(default(string)));
+
+        public static void SetLessonName(UIElement element, string value)
+        {
+            element.SetValue(LessonNameProperty, value);
+        }
+
+        public static string GetLessonName(UIElement element)
+        {
+            return (string)element.GetValue(LessonNameProperty);
+        }
     }
 }

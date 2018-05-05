@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:EnglishExams.ViewModels"
+             xmlns:views="clr-namespace:EnglishExams.Views"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:TestResultViewModel}"
              d:DesignHeight="768" d:DesignWidth="1024">
@@ -11,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
         <TextBlock Style="{StaticResource DarkHeader}" 
@@ -69,5 +71,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <views:BackButton Grid.Row="2"/>
     </Grid>
 </UserControl>

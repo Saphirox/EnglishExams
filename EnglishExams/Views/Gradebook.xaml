@@ -6,6 +6,7 @@
              xmlns:infrastructure="clr-namespace:EnglishExams.Infrastructure"
              xmlns:resx="clr-namespace:EnglishExams.Resources"
              xmlns:vm="clr-namespace:EnglishExams.ViewModels"
+             xmlns:views="clr-namespace:EnglishExams.Views"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1024"
              d:DataContext="{d:DesignInstance vm:GradebookViewModel}">
@@ -14,8 +15,9 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
+     
         <TextBlock
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
@@ -38,8 +40,8 @@
                             <StackPanel>
                                 <TextBlock Foreground="#FFFFFF" 
                                          FontSize="16" 
-                                         Text="{Binding UnitName}"></TextBlock>
-                                <ListBox ItemsSource="{Binding Lessons}"
+                                         Text="{Binding Key}"></TextBlock>
+                                <ListBox ItemsSource="{Binding Value}"
                                        Background="Transparent" 
                                        BorderBrush="Transparent">
                                     <ListBox.ItemTemplate>
@@ -51,7 +53,19 @@
                                                   Foreground="#FFFFFF" 
                                                   FontSize="16"
                                                   infrastructure:ButtonAttachedProperty.UnitName="{Binding RelativeSource=
-                                                  {RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, Path=DataContext.UnitName}" Click="ListBoxHander" Content="{Binding LessonNameAndPoint}" />
+                                                  {RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, 
+                                                    Path=DataContext.Key}" 
+                                                  infrastructure:ButtonAttachedProperty.LessonName="{Binding LessonName}" 
+                                                  Click="ListBoxHander">
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}{0} - {1}">
+                                                                <Binding Path="LessonName"></Binding>
+                                                                <Binding Path="Points"></Binding>
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </Button>
                                             </ListBoxItem>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
@@ -62,5 +76,9 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </WrapPanel>
+
+        <ContentControl Grid.Row="2">
+            <views:BackButton  />
+        </ContentControl>
     </Grid>
 </UserControl>

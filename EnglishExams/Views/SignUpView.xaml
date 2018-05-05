@@ -32,14 +32,14 @@
                 Margin="20" FontSize="24"
                 FontWeight="Bold"
                 Style="{StaticResource DarkHeader}"
-                Text="{x:Static resx:CommonResources.WelcomeLoginText}"></TextBlock>
+                Text="{x:Static resx:CommonResources.SignUp}"></TextBlock>
     
     <Label Grid.Column="0" 
            Grid.Row="1" Margin="20"
            HorizontalAlignment="Right"
            FontSize="18"
            Style="{StaticResource DarkLabel}" 
-           Content="{x:Static resx:CommonResources.SignUp}"></Label>
+           Content="{x:Static resx:CommonResources.Login}"></Label>
 
     <Border Margin="20" 
             Grid.Column="1" 

@@ -26,8 +26,8 @@ namespace EnglishExams.Views
 
             dc.ShowConcreteLesson(new TestDescription
             {
-                UnitName = st,
-                LessonName = (string)button.Content
+                UnitName = ButtonAttachedProperty.GetUnitName(button),
+                LessonName = ButtonAttachedProperty.GetLessonName(button)
             });
         }
     }
