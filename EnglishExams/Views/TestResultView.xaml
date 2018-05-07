@@ -36,6 +36,7 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0"
@@ -59,7 +60,13 @@
                                    Text="{Binding CorrectResult}"
                                    Style="{StaticResource DarkHeader}"></TextBlock>
 
-                        <TextBlock Grid.Row="3"
+                         <TextBlock Grid.Row="3"
+                                    FontSize="18"
+                                    TextWrapping="Wrap"
+                                    Text="{Binding UserResult}"
+                                    Style="{StaticResource DarkHeader}"></TextBlock>
+
+                        <TextBlock Grid.Row="4"
                                    FontSize="18"
                                    TextWrapping="Wrap"
                                    HorizontalAlignment="Left"

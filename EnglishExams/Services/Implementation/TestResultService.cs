@@ -113,6 +113,7 @@ namespace EnglishExams.Services.Implementation
             var list = new List<TestResultDescriptionModel>();
             var index = 0;
 
+
             foreach (var m in test.QuestionModels)
             {
                 foreach (var q in testResult.QuestionResultModels)
@@ -138,10 +139,10 @@ namespace EnglishExams.Services.Implementation
                                 "/", test.NumberOfQuestions.ToString()),
                             IsCorrect = result,
                             QuestionName = m.Text,
-                            CorrectResult = string.Join(", ", correctAnswers),
+                            CorrectResult = string.Concat(CommonResources.CorrectAnswer, ": ", string.Join(", ", correctAnswers)),
                             QuestionPoints = string.Format(CommonResources.YouGotPattern, pointResult, 
                                 test.NumberOfPoints / test.NumberOfQuestions),
-                            UserResult = string.Join(", ", q.OptionsName)
+                            UserResult = string.Concat(CommonResources.YourAnswer, ": ", string.Join(", ", q.OptionsName))
                         });
                     }
                 }

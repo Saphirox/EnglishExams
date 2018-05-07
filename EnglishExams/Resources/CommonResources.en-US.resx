@@ -214,6 +214,6 @@
     <value>You got {0}/{1}</value>
   </data>
   <data name="YourAnswer" xml:space="preserve">
-    <value>Your answer</value>
+    <value>Your answers</value>
   </data>
 </root>

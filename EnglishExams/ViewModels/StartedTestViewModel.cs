@@ -25,7 +25,6 @@ namespace EnglishExams.ViewModels
 
         public RelayCommand NextQuestion { get; set; }
         public RelayCommand TestResult { get; set; }
-
         public RelayCommand Back { get; set; }
 
         public int Timer
@@ -57,16 +56,6 @@ namespace EnglishExams.ViewModels
         public string QuestionName => GetQuestionByIndex().Text;
 
         private IList<OptionModel> _currentOptions;
-
-        //private IList<OptionModel> asd()
-        //{
-        //    new ObservableCollection<OptionModel>(GetQuestionByIndex().Options.Select(c =>
-        //    new OptionModel()
-        //    {
-        //        Name = c.Name,
-        //        IsCorrect = false
-        //    }))
-        //};
 
         public IList<OptionModel> CurrentOptions
         {
@@ -153,17 +142,22 @@ namespace EnglishExams.ViewModels
 
         private void ShowTestResult()
         {
-            _testResultService.AddResultToUser(new TestDescription()
-            {
-                UnitName  = _userTestModel.UnitName,
-                LessonName = _userTestModel.LessonName
-            }, _answers);
-
             Redirect();
         }
 
         private void Redirect()
         {
+            foreach (var emptyQuestion in _userTestModel.QuestionModels.Where(c => !_answers.Keys.Contains(c.Text)))
+            {
+                 _answers.Add(emptyQuestion.Text, emptyQuestion.Options.Select(c => c.Name).ToList());
+            }
+
+            _testResultService.AddResultToUser(new TestDescription()
+            {
+                UnitName = _userTestModel.UnitName,
+                LessonName = _userTestModel.LessonName
+            }, _answers);
+
             TinyTempCache.Set(typeof(UserTestModel), _userTestModel);
             _dispatcherTimer.Stop();
 
