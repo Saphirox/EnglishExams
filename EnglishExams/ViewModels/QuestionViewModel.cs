@@ -52,6 +52,12 @@ namespace EnglishExams.ViewModels
             set
             {
                 option1.Name = value;
+
+                if (string.IsNullOrWhiteSpace(option1.Name))
+                {
+                    Option1Checked = false;
+                }
+
                 OnPropertyChanged(nameof(Option1));
             }
         }
@@ -62,6 +68,11 @@ namespace EnglishExams.ViewModels
             set
             {
                 option2.Name = value;
+
+                if (string.IsNullOrWhiteSpace(option2.Name))
+                {
+                    Option2Checked = false;
+                }
                 OnPropertyChanged(nameof(Option2));
             }
         }
@@ -72,6 +83,12 @@ namespace EnglishExams.ViewModels
             set
             {
                 option3.Name = value;
+
+                if (string.IsNullOrWhiteSpace(option3.Name))
+                {
+                    Option3Checked = false;
+                }
+
                 OnPropertyChanged(nameof(Option3));
             }
         }
@@ -82,6 +99,12 @@ namespace EnglishExams.ViewModels
             set
             {
                 option4.Name = value;
+
+                if (string.IsNullOrWhiteSpace(option4.Name))
+                {
+                    Option4Checked = false;
+                }
+
                 OnPropertyChanged(nameof(Option4));
             }
         }
@@ -92,6 +115,12 @@ namespace EnglishExams.ViewModels
             set
             {
                 option5.Name = value;
+
+                if (string.IsNullOrWhiteSpace(option5.Name))
+                {
+                    Option5Checked = false;
+                }
+
                 OnPropertyChanged(nameof(Option5));
             }
         }
@@ -153,7 +182,6 @@ namespace EnglishExams.ViewModels
 
             NextQuestion = new RelayCommand(AddClearModel);
             ReturnToMenu = new RelayCommand(ShowMenu);
-            EndQuestions = new RelayCommand(AddTestToUser);
         }
 
         private void AddTestToUser()
@@ -183,7 +211,14 @@ namespace EnglishExams.ViewModels
 
             ClearModel();
 
+            if (_userTestModel.NumberOfQuestions == _countOfQuestion)
+            {
+                AddTestToUser();
+                return;
+            }
+
             _countOfQuestion++;
+
             OnPropertyChanged(nameof(QuestionNumber));
         }
 
@@ -197,10 +232,10 @@ namespace EnglishExams.ViewModels
                 state = false;
                 MessageError.FirstAndSecondOptionIsRequired.Show();
             }
-            else if (_userTestModel.NumberOfQuestions+1 == _countOfQuestion)
+            else if (string.IsNullOrWhiteSpace(_model.Text))
             {
                 state = false;
-                MessageError.Show(ErrorResources.QuestionCountLimitedPattern, _userTestModel.NumberOfQuestions);
+                MessageError.AllFieldsIsRequired.Show();
             }
 
             return state;

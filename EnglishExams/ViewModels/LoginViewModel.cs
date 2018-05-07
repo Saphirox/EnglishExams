@@ -45,10 +45,8 @@ namespace EnglishExams.ViewModels
 
         private void ShowMenu()
         {
-           
             _userService.Authenticate(this._userModel);
        
-
             if (CurrentUser.IsAuthenticated())
             {
                 RedirectDecorator.ToViewModel(typeof(MenuViewModel));

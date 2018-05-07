@@ -202,14 +202,6 @@
                             Command="{Binding NextQuestion}">
                     </Button>
                 </Border>
-
-                <Border Grid.Column="2"  Margin="10"  Style="{StaticResource DarkButtonBorder}">
-                    <Button 
-                        Content="{x:Static resx:CommonResources.End}" 
-                        Style="{StaticResource DarkButton}"
-                        Command="{Binding EndQuestions}">
-                    </Button>
-                </Border>
             </Grid>
         </Grid>
     </Grid>
