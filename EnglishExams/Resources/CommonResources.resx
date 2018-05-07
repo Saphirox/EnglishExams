@@ -118,99 +118,102 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Analysis" xml:space="preserve">
-    <value />
+    <value>Analysis</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
-    <value />
+    <value>English tests</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value />
+    <value>BACK</value>
   </data>
   <data name="Begin" xml:space="preserve">
-    <value />
+    <value>BEGIN</value>
+  </data>
+  <data name="CorrectAnswer" xml:space="preserve">
+    <value>Correct answer</value>
   </data>
   <data name="CreateANewTest" xml:space="preserve">
-    <value />
+    <value>CREATE A NEW TEST</value>
   </data>
   <data name="CreatingANewTest" xml:space="preserve">
-    <value />
+    <value>Creating a new Test</value>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value />
+    <value>DURATION</value>
   </data>
   <data name="End" xml:space="preserve">
-    <value />
+    <value>End</value>
   </data>
   <data name="Gradebook" xml:space="preserve">
-    <value />
+    <value>Grade book</value>
   </data>
   <data name="LessonName" xml:space="preserve">
-    <value />
+    <value>LESSON NAME</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value />
+    <value>Login</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value />
+    <value>Log out</value>
   </data>
   <data name="Next" xml:space="preserve">
-    <value />
+    <value>NEXT</value>
   </data>
   <data name="NumberOfPoints" xml:space="preserve">
-    <value />
+    <value>NUMBER OF POINTS</value>
   </data>
   <data name="NumberOfQuestions" xml:space="preserve">
-    <value />
+    <value>NUMBER OF QUESTIONS</value>
   </data>
   <data name="Option" xml:space="preserve">
-    <value />
+    <value>OPTION</value>
   </data>
   <data name="OptionRequired" xml:space="preserve">
-    <value />
+    <value>OPTION*</value>
   </data>
   <data name="PassATest" xml:space="preserve">
-    <value />
+    <value>PASS A TEST</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value />
+    <value>Password</value>
   </data>
   <data name="Question" xml:space="preserve">
-    <value />
+    <value>QUESTION</value>
   </data>
   <data name="ReviewGradebook" xml:space="preserve">
-    <value />
+    <value>REVIEW GRADEBOOK</value>
   </data>
   <data name="SignIn" xml:space="preserve">
-    <value />
+    <value>Sign In</value>
   </data>
   <data name="SignUp" xml:space="preserve">
-    <value />
+    <value>Sign Up</value>
   </data>
   <data name="SubmitForChecking" xml:space="preserve">
-    <value />
+    <value>SUBMIT FOR CHECKING</value>
   </data>
   <data name="TestTimeExpired" xml:space="preserve">
-    <value />
+    <value>Test time has expired</value>
   </data>
   <data name="TimeRunOut" xml:space="preserve">
-    <value />
+    <value>Time has run out</value>
   </data>
   <data name="UnitName" xml:space="preserve">
-    <value />
+    <value>UNIT NAME</value>
   </data>
   <data name="WelcomeLoginText" xml:space="preserve">
-    <value />
+    <value>Welcome to Test Your English</value>
   </data>
   <data name="WhatDoYouWantToDo" xml:space="preserve">
-    <value />
+    <value>What do you want to do?</value>
   </data>
   <data name="WhatTestYouWantToPass" xml:space="preserve">
-    <value />
+    <value>What test you want to pass?</value>
   </data>
   <data name="YouGotPattern" xml:space="preserve">
-    <value />
+    <value>You got {0}/{1}</value>
   </data>
   <data name="YourAnswer" xml:space="preserve">
-    <value />
+    <value>Your answer</value>
   </data>
 </root>

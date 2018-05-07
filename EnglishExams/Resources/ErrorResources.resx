@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllFieldsIsRequired" xml:space="preserve">
-    <value />
+    <value>All fields is required</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value />
+    <value>Error</value>
   </data>
   <data name="FieldMustBeConsistOnlyDigits" xml:space="preserve">
-    <value />
+    <value>Field must be consist only digits</value>
   </data>
   <data name="FirstAndSecondOptionIsRequired" xml:space="preserve">
-    <value />
+    <value>First and second option is required</value>
   </data>
   <data name="InvalidIdentityForm" xml:space="preserve">
-    <value />
+    <value>Login failed</value>
   </data>
   <data name="QuestionCountLimitedPattern" xml:space="preserve">
-    <value />
+    <value>Question count limit to {0}</value>
   </data>
 </root>

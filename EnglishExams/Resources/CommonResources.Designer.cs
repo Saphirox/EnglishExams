@@ -61,7 +61,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Analysis.
         /// </summary>
         public static string Analysis {
             get {
@@ -70,7 +70,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to English tests.
         /// </summary>
         public static string ApplicationName {
             get {
@@ -79,7 +79,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to BACK.
         /// </summary>
         public static string Back {
             get {
@@ -88,7 +88,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to BEGIN.
         /// </summary>
         public static string Begin {
             get {
@@ -97,7 +97,16 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Correct answer.
+        /// </summary>
+        public static string CorrectAnswer {
+            get {
+                return ResourceManager.GetString("CorrectAnswer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE A NEW TEST.
         /// </summary>
         public static string CreateANewTest {
             get {
@@ -106,7 +115,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Creating a new Test.
         /// </summary>
         public static string CreatingANewTest {
             get {
@@ -115,7 +124,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to DURATION.
         /// </summary>
         public static string Duration {
             get {
@@ -124,7 +133,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to End.
         /// </summary>
         public static string End {
             get {
@@ -133,7 +142,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Grade book.
         /// </summary>
         public static string Gradebook {
             get {
@@ -142,7 +151,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to LESSON NAME.
         /// </summary>
         public static string LessonName {
             get {
@@ -151,7 +160,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {
             get {
@@ -160,7 +169,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Log out.
         /// </summary>
         public static string Logout {
             get {
@@ -169,7 +178,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to NEXT.
         /// </summary>
         public static string Next {
             get {
@@ -178,7 +187,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to NUMBER OF POINTS.
         /// </summary>
         public static string NumberOfPoints {
             get {
@@ -187,7 +196,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to NUMBER OF QUESTIONS.
         /// </summary>
         public static string NumberOfQuestions {
             get {
@@ -196,7 +205,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to OPTION.
         /// </summary>
         public static string Option {
             get {
@@ -205,7 +214,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to OPTION*.
         /// </summary>
         public static string OptionRequired {
             get {
@@ -214,7 +223,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to PASS A TEST.
         /// </summary>
         public static string PassATest {
             get {
@@ -223,7 +232,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
             get {
@@ -232,7 +241,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to QUESTION.
         /// </summary>
         public static string Question {
             get {
@@ -241,7 +250,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to REVIEW GRADEBOOK.
         /// </summary>
         public static string ReviewGradebook {
             get {
@@ -250,7 +259,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Sign In.
         /// </summary>
         public static string SignIn {
             get {
@@ -259,7 +268,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Sign Up.
         /// </summary>
         public static string SignUp {
             get {
@@ -268,7 +277,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to SUBMIT FOR CHECKING.
         /// </summary>
         public static string SubmitForChecking {
             get {
@@ -277,7 +286,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Test time has expired.
         /// </summary>
         public static string TestTimeExpired {
             get {
@@ -286,7 +295,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Time has run out.
         /// </summary>
         public static string TimeRunOut {
             get {
@@ -295,7 +304,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to UNIT NAME.
         /// </summary>
         public static string UnitName {
             get {
@@ -304,7 +313,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Welcome to Test Your English.
         /// </summary>
         public static string WelcomeLoginText {
             get {
@@ -313,7 +322,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to What do you want to do?.
         /// </summary>
         public static string WhatDoYouWantToDo {
             get {
@@ -322,7 +331,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to What test you want to pass?.
         /// </summary>
         public static string WhatTestYouWantToPass {
             get {
@@ -331,7 +340,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to You got {0}/{1}.
         /// </summary>
         public static string YouGotPattern {
             get {
@@ -340,7 +349,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Your answer.
         /// </summary>
         public static string YourAnswer {
             get {

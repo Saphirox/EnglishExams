@@ -61,7 +61,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to All fields is required.
         /// </summary>
         internal static string AllFieldsIsRequired {
             get {
@@ -70,7 +70,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string Error {
             get {
@@ -79,7 +79,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Field must be consist only digits.
         /// </summary>
         internal static string FieldMustBeConsistOnlyDigits {
             get {
@@ -88,7 +88,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to First and second option is required.
         /// </summary>
         internal static string FirstAndSecondOptionIsRequired {
             get {
@@ -97,7 +97,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Login failed.
         /// </summary>
         internal static string InvalidIdentityForm {
             get {
@@ -106,7 +106,7 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Question count limit to {0}.
         /// </summary>
         internal static string QuestionCountLimitedPattern {
             get {
