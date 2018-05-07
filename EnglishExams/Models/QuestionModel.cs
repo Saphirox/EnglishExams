@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace EnglishExams.Models
 {
+    /// <summary>
+    /// Test question
+    /// </summary>
     public class QuestionModel
     {
         [JsonProperty("text")]

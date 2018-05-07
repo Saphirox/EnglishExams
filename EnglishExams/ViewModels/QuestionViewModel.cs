@@ -6,11 +6,10 @@ using EnglishExams.Models;
 using EnglishExams.Resources;
 using EnglishExams.Services;
 using EnglishExams.Services.Implementation;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace EnglishExams.ViewModels
 {
-    public class QuestionViewModel : ViewModelBase, IViewModelValidation
+    public class QuestionViewModel : ViewModelBase
     {
         private int _countOfQuestion = 1;
 

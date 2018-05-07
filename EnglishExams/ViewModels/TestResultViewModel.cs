@@ -17,8 +17,8 @@ namespace EnglishExams.ViewModels
         private const string DASH = " - ";
         
         public string Header =>
-            string.Concat(_userTestModel.UnitName, DASH, 
-                          _userTestModel.LessonName, DASH, CommonResources.Analysis);
+            string.Concat(_userTestModel.Key.UnitName, DASH, 
+                          _userTestModel.Key.LessonName, DASH, CommonResources.Analysis);
 
         public ICollection<TestResultDescriptionModel> TestResult
             => new ObservableCollection<TestResultDescriptionModel>(_testResults);
@@ -29,10 +29,10 @@ namespace EnglishExams.ViewModels
 
             _userTestModel = TinyTempCache.Get<Type, UserTestModel>(typeof(UserTestModel));
 
-            _testResults = _testResultService.GetResults(new TestDescription
+            _testResults = _testResultService.GetResults(new TestKey
             {
-                UnitName = _userTestModel.UnitName,
-                LessonName = _userTestModel.LessonName
+                UnitName = _userTestModel.Key.UnitName,
+                LessonName = _userTestModel.Key.LessonName
             });
         }
     }

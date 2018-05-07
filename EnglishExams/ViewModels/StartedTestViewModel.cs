@@ -13,7 +13,7 @@ namespace EnglishExams.ViewModels
 {
     public class StartedTestViewModel : ViewModelBase
     {
-        private TestDescription _testDescription;
+        private TestKey _testKey;
         private IQuestionService _questionService;
         private IFileWrapper _fileWrapper;
         private DispatcherTimer _dispatcherTimer;
@@ -44,7 +44,7 @@ namespace EnglishExams.ViewModels
         }
 
         public string Header => 
-            string.Concat(_userTestModel.UnitName, " - ", _userTestModel.LessonName);
+            string.Concat(_userTestModel.Key.UnitName, " - ", _userTestModel.Key.LessonName);
 
         public string TestDuration
             => string.Concat(CommonResources.Duration, " ", new TimeSpan(0, 0, Timer).ToString("g"));
@@ -69,10 +69,10 @@ namespace EnglishExams.ViewModels
 
             _answers = new Dictionary<string, ICollection<string>>();
 
-            _testDescription = TinyTempCache.Get<Type, TestDescription>(typeof(TestDescription));
+            _testKey = TinyTempCache.Get<Type, TestKey>(typeof(TestKey));
             _questionService = new QuestionService(_fileWrapper);
             _testResultService = new TestResultService(_fileWrapper);
-            _userTestModel = _questionService.GetTestByTaskDescription(_testDescription);
+            _userTestModel = _questionService.GetTestByTaskDescription(_testKey);
 
             _timer = _userTestModel.Duration;
 
@@ -152,10 +152,10 @@ namespace EnglishExams.ViewModels
                  _answers.Add(emptyQuestion.Text, emptyQuestion.Options.Select(c => c.Name).ToList());
             }
 
-            _testResultService.AddResultToUser(new TestDescription()
+            _testResultService.AddResultToUser(new TestKey()
             {
-                UnitName = _userTestModel.UnitName,
-                LessonName = _userTestModel.LessonName
+                UnitName = _userTestModel.Key.UnitName,
+                LessonName = _userTestModel.Key.LessonName
             }, _answers);
 
             TinyTempCache.Set(typeof(UserTestModel), _userTestModel);

@@ -3,7 +3,7 @@ using EnglishExams.Models;
 
 namespace EnglishExams.ViewModels
 {
-    public class CreateTestViewModel : ViewModelBase, IViewModelValidation
+    public class CreateTestViewModel : ViewModelBase
     {
         public RelayCommand BackPage { get; set; }
         public RelayCommand BeginPage { get; set; }
@@ -12,20 +12,20 @@ namespace EnglishExams.ViewModels
 
         public string UnitName
         {
-            get => _model.UnitName;
+            get => _model.Key.UnitName;
             set
             {
-                _model.UnitName = value;
+                _model.Key.UnitName = value;
                 OnPropertyChanged(nameof(UnitName));
             }
         }
 
         public string LessonName
         {
-            get => _model.LessonName;
+            get => _model.Key.LessonName;
             set
             {
-                _model.LessonName = value;
+                _model.Key.LessonName = value;
                 OnPropertyChanged(nameof(LessonName));
             }
         }

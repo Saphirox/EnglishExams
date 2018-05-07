@@ -55,12 +55,12 @@
                                                   infrastructure:ButtonAttachedProperty.UnitName="{Binding RelativeSource=
                                                   {RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, 
                                                     Path=DataContext.Key}" 
-                                                  infrastructure:ButtonAttachedProperty.LessonName="{Binding LessonName}" 
+                                                  infrastructure:ButtonAttachedProperty.LessonName="{Binding Key.LessonName}" 
                                                   Click="ListBoxHander">
                                                         <TextBlock>
                                                             <TextBlock.Text>
                                                                 <MultiBinding StringFormat="{}{0} - {1}">
-                                                                <Binding Path="LessonName"></Binding>
+                                                                <Binding Path="Key.LessonName"></Binding>
                                                                 <Binding Path="Points"></Binding>
                                                             </MultiBinding>
                                                         </TextBlock.Text>

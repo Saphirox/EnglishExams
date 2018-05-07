@@ -20,12 +20,11 @@ namespace EnglishExams.Services.Implementation
             _userService = new UserService(_fileWrapper);
         }
 
-        public void AddResultToUser(TestDescription key, Dictionary<string, ICollection<string>> answers)
+        public void AddResultToUser(TestKey key, Dictionary<string, ICollection<string>> answers)
         {
             var testResult = new TestResultModel
             {
-                UnitName = key.UnitName,
-                LessonName = key.LessonName,
+                Key = key,
                 QuestionResultModels = answers.Select(c => new QuestionResultModel
                 {
                     Text = c.Key,
@@ -33,9 +32,7 @@ namespace EnglishExams.Services.Implementation
                 }).ToList()
             };
 
-            var existed = CurrentUser.Instance.TestResults.FirstOrDefault(
-                c => c.LessonName == key.LessonName &&
-                     c.UnitName == key.UnitName);
+            var existed = CurrentUser.Instance.TestResults.FirstOrDefault(c => c.Key == key);
 
             if (existed != null)
             {
@@ -58,9 +55,7 @@ namespace EnglishExams.Services.Implementation
             {
                 foreach (var testResult in testResults)
                 {
-                    if (
-                        test.UnitName == testResult.UnitName &&
-                        test.LessonName == testResult.LessonName)
+                    if (testResult.Key == test.Key)
                     {
                     
                     var tempList = new List<GradebookTestResultModel>();
@@ -89,8 +84,7 @@ namespace EnglishExams.Services.Implementation
 
                     list.Add(new GradebookTestResultModel
                     {
-                        UnitName = test.UnitName,
-                        LessonName = test.LessonName,
+                        Key = test.Key,
                         Points = resultPoint
                     });
                  }   
@@ -100,30 +94,25 @@ namespace EnglishExams.Services.Implementation
             return list;
         } 
 
-        public IList<TestResultDescriptionModel> GetResults(TestDescription key)
+        public IList<TestResultDescriptionModel> GetResults(TestKey key)
         {
-            var testResult = CurrentUser.Instance.TestResults.FirstOrDefault(
-                c => c.UnitName == key.UnitName &&
-                c.LessonName == key.LessonName);
+            var testResult = CurrentUser.Instance.TestResults.FirstOrDefault(c => c.Key == key);
 
-            var test = CurrentUser.Instance.UserTestModels.FirstOrDefault(
-                c => c.UnitName == key.UnitName &&
-                     c.LessonName == key.LessonName);
+            var test = CurrentUser.Instance.UserTestModels.FirstOrDefault(c => c.Key == key);
             
             var list = new List<TestResultDescriptionModel>();
             var index = 0;
 
-
-            foreach (var m in test.QuestionModels)
+            foreach (var testQuestion in test.QuestionModels)
             {
-                foreach (var q in testResult.QuestionResultModels)
+                foreach (var testResultQuestion in testResult.QuestionResultModels)
                 {
-                    if (q.Text == m.Text)
+                    if (testResultQuestion.Text == testQuestion.Text)
                     {
-                        var correctAnswers = m.Options.Where(c => c.IsCorrect).Select(c => c.Name);
+                        var correctAnswers = testQuestion.Options.Where(c => c.IsCorrect).Select(c => c.Name);
 
-                        var firstNotSecond = correctAnswers.Except(q.OptionsName).ToList();
-                        var secondNotFirst = q.OptionsName.Except(correctAnswers).ToList();
+                        var firstNotSecond = correctAnswers.Except(testResultQuestion.OptionsName).ToList();
+                        var secondNotFirst = testResultQuestion.OptionsName.Except(correctAnswers).ToList();
                         
                         var result = !firstNotSecond.Any() && !secondNotFirst.Any();
 
@@ -138,11 +127,11 @@ namespace EnglishExams.Services.Implementation
                             QuestionNumber = string.Concat(CommonResources.Question, " ", index.ToString(),
                                 "/", test.NumberOfQuestions.ToString()),
                             IsCorrect = result,
-                            QuestionName = m.Text,
+                            QuestionName = testQuestion.Text,
                             CorrectResult = string.Concat(CommonResources.CorrectAnswer, ": ", string.Join(", ", correctAnswers)),
                             QuestionPoints = string.Format(CommonResources.YouGotPattern, pointResult, 
                                 test.NumberOfPoints / test.NumberOfQuestions),
-                            UserResult = string.Concat(CommonResources.YourAnswer, ": ", string.Join(", ", q.OptionsName))
+                            UserResult = string.Concat(CommonResources.YourAnswer, ": ", string.Join(", ", testResultQuestion.OptionsName))
                         });
                     }
                 }

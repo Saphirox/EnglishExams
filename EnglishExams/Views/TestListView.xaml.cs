@@ -24,7 +24,7 @@ namespace EnglishExams.Views
 
             var dc = DataContext as TestListViewModel;
 
-            dc.StartTest(new TestDescription
+            dc.StartTest(new TestKey
             {
                 UnitName = st,
                 LessonName = (string)button.Content

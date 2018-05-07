@@ -6,11 +6,11 @@ namespace EnglishExams.Services
     public interface ITestResultService
     {
         // TODO: Refactor me
-        void AddResultToUser(TestDescription key, Dictionary<string, ICollection<string>> answers);
+        void AddResultToUser(TestKey key, Dictionary<string, ICollection<string>> answers);
 
         IEnumerable<GradebookTestResultModel> GetGradebook();
 
         // TODO: Refactor me
-        IList<TestResultDescriptionModel> GetResults(TestDescription key);
+        IList<TestResultDescriptionModel> GetResults(TestKey key);
     }
 }

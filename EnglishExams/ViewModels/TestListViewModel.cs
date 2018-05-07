@@ -14,9 +14,9 @@ namespace EnglishExams.ViewModels
                     CurrentUser.Instance.UserTestModels.ToTaskList());
         }
 
-        public void StartTest(TestDescription test)
+        public void StartTest(TestKey test)
         {
-            TinyTempCache.Set(typeof(TestDescription), test);
+            TinyTempCache.Set(typeof(TestKey), test);
             RedirectDecorator.ToViewModel(typeof(StartedTestViewModel));
         }
     }

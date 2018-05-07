@@ -24,7 +24,7 @@ namespace EnglishExams.Views
 
             var dc = DataContext as GradebookViewModel;
 
-            dc.ShowConcreteLesson(new TestDescription
+            dc.ShowConcreteLesson(new TestKey
             {
                 UnitName = ButtonAttachedProperty.GetUnitName(button),
                 LessonName = ButtonAttachedProperty.GetLessonName(button)

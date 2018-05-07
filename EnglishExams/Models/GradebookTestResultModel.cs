@@ -7,8 +7,7 @@ namespace EnglishExams.Models
     /// </summary>
     public class GradebookTestResultModel
     {
-        public string UnitName { get; set; }
-        public string LessonName { get; set; }
+        public TestKey Key { get; set; }
         public double Points { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace EnglishExams.Services
     {
         void AddToTest(UserTestModel userTestModel, ICollection<QuestionModel> questionModel);
 
-        UserTestModel GetTestByTaskDescription(TestDescription userTestModel);
+        UserTestModel GetTestByTaskDescription(TestKey key);
     }
 }

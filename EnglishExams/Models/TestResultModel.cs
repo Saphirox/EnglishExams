@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace EnglishExams.Models
 {
@@ -7,9 +8,9 @@ namespace EnglishExams.Models
     /// </summary>
     public class TestResultModel
     {
-        public string UnitName { get; set; }
-        public string LessonName { get; set; }
+        public TestKey Key { get; set; }
         
+        [JsonProperty("questionResult")]
         public ICollection<QuestionResultModel> QuestionResultModels { get; set; }
     }
 }

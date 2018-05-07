@@ -2,6 +2,9 @@
 
 namespace EnglishExams.Models
 {
+    /// <summary>
+    /// Question option for test
+    /// </summary>
     public class OptionModel
     {
         [JsonProperty("name")]

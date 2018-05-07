@@ -10,13 +10,11 @@ namespace EnglishExams.Services.Implementation
     /// </summary>
     public class QuestionService : IQuestionService
     {
-        private readonly IFileWrapper _fileWrapper;
         private readonly IUserService _userService;
 
         public QuestionService(IFileWrapper fileWrapper)
         {
-            _fileWrapper = fileWrapper;
-            _userService = new UserService(_fileWrapper);
+            _userService = new UserService(fileWrapper);
         }
 
         public void AddToTest(UserTestModel userTestModel, ICollection<QuestionModel> questionModel)
@@ -28,11 +26,9 @@ namespace EnglishExams.Services.Implementation
             _userService.Update(CurrentUser.Instance);
         }
 
-        public UserTestModel GetTestByTaskDescription(TestDescription userTestModel)
+        public UserTestModel GetTestByTaskDescription(TestKey key)
         {
-            var test = CurrentUser.Instance.UserTestModels.FirstOrDefault(
-                c => c.LessonName == userTestModel.LessonName &&
-                     c.UnitName == userTestModel.UnitName);
+            var test = CurrentUser.Instance.UserTestModels.FirstOrDefault(c => c.Key == key);
 
             return test;
         }

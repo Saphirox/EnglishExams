@@ -30,16 +30,16 @@ namespace EnglishExams.ViewModels
 
             var result = _resultService.GetGradebook();
 
-            var dict = result.GroupBy(c => c.UnitName, (s, models) => new KeyValue(s, models));
+            var dict = result.GroupBy(c => c.Key.UnitName, (s, models) => new KeyValue(s, models));
 
             Tests = new ObservableCollection<KeyValue>(dict);
 
             _questionService = new QuestionService(_fileWrapper);
         }
 
-        public void ShowConcreteLesson(TestDescription description)
+        public void ShowConcreteLesson(TestKey key)
         {
-            var test = _questionService.GetTestByTaskDescription(description);
+            var test = _questionService.GetTestByTaskDescription(key);
 
             TinyTempCache.Set(typeof(UserTestModel), test);
             RedirectDecorator.ToViewModel(typeof(TestResultViewModel));

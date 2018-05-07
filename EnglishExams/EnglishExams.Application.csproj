@@ -94,7 +94,6 @@
     <Compile Include="Infrastructure\CurrentUser.cs" />
     <Compile Include="Infrastructure\FileWrapper.cs" />
     <Compile Include="Infrastructure\IFileWrapper.cs" />
-    <Compile Include="Infrastructure\IViewModelValidation.cs" />
     <Compile Include="Infrastructure\ValidationExtensions.cs" />
     <Compile Include="ViewModels\BackButtonViewModel.cs" />
     <Compile Include="Services\IQuestionService.cs" />
@@ -113,7 +112,7 @@
     <Compile Include="Infrastructure\TinyTempCache.cs" />
     <Compile Include="Models\QuestionModel.cs" />
     <Compile Include="Models\TestListModel.cs" />
-    <Compile Include="Models\TestDescription.cs" />
+    <Compile Include="Models\TestKey.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Services\Implementation\UserService.cs" />
     <Compile Include="Models\UserTestModel.cs" />

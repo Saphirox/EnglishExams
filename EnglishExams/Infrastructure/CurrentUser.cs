@@ -30,6 +30,10 @@ namespace EnglishExams.Infrastructure
             }
         }
 
+        /// <summary>
+        /// Return true if user instance exist
+        /// </summary>
+        /// <returns></returns>
         public static bool IsAuthenticated()
         {
             return Instance != null;
