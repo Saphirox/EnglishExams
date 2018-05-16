@@ -36,6 +36,16 @@ namespace EnglishExams.ViewModels
             }
         }
 
+        public bool IsMaster
+        {
+            get => NewUser.Role != default;
+            set
+            {
+                NewUser.Role = value ? Roles.Master : Roles.Student;
+                OnPropertyChanged(nameof(IsMaster));
+            }
+        }
+
         public SignUpViewModel()
         {
             ShowSignInPage = new RelayCommand(ShowSignIn);

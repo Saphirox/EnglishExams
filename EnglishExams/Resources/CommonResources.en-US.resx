@@ -147,6 +147,9 @@
   <data name="Gradebook" xml:space="preserve">
     <value>Grade book</value>
   </data>
+  <data name="IsMaster" xml:space="preserve">
+    <value>Is master ?</value>
+  </data>
   <data name="LessonName" xml:space="preserve">
     <value>LESSON NAME</value>
   </data>

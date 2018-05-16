@@ -151,6 +151,15 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is master?.
+        /// </summary>
+        public static string IsMaster {
+            get {
+                return ResourceManager.GetString("IsMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LESSON NAME.
         /// </summary>
         public static string LessonName {

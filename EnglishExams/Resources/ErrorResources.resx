@@ -132,7 +132,16 @@
   <data name="InvalidIdentityForm" xml:space="preserve">
     <value>Login failed</value>
   </data>
+  <data name="OnlyMasterCanCreateTests" xml:space="preserve">
+    <value>Only master can create tests</value>
+  </data>
   <data name="QuestionCountLimitedPattern" xml:space="preserve">
     <value>Question count limit to {0}</value>
+  </data>
+  <data name="TeacherCannotPassATest" xml:space="preserve">
+    <value>Teacher cannot pass a test</value>
+  </data>
+  <data name="TeacherNotFound" xml:space="preserve">
+    <value>Teacher hasn't found</value>
   </data>
 </root>

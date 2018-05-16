@@ -106,11 +106,38 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only master can create tests.
+        /// </summary>
+        internal static string OnlyMasterCanCreateTests {
+            get {
+                return ResourceManager.GetString("OnlyMasterCanCreateTests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Question count limit to {0}.
         /// </summary>
         internal static string QuestionCountLimitedPattern {
             get {
                 return ResourceManager.GetString("QuestionCountLimitedPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teacher cannot pass a test.
+        /// </summary>
+        internal static string TeacherCannotPassATest {
+            get {
+                return ResourceManager.GetString("TeacherCannotPassATest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teacher hasn&apos;t found.
+        /// </summary>
+        internal static string TeacherNotFound {
+            get {
+                return ResourceManager.GetString("TeacherNotFound", resourceCulture);
             }
         }
     }

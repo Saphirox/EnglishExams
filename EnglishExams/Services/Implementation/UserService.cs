@@ -22,12 +22,8 @@ namespace EnglishExams.Services.Implementation
         public void Add(UserModel model)
         {
             var models = 
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
-
-            if (models is null)
-            {
-                models = new List<UserModel>();
-            }
+                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)
+                    ?.ToList() ?? new List<UserModel>();
 
             models.Add(model);
 
@@ -63,5 +59,14 @@ namespace EnglishExams.Services.Implementation
             CurrentUser.Instance = user;
         }
 
+        public UserModel FindTeacher()
+        {
+            var models =
+                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA).ToList();
+
+            var teacher = models.FirstOrDefault(c => c.Role == Roles.Master);
+
+            return teacher;
+        }
     }
 }

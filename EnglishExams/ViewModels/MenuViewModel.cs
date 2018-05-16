@@ -1,4 +1,6 @@
-﻿using EnglishExams.Infrastructure;
+﻿using System.Windows;
+using EnglishExams.Infrastructure;
+using EnglishExams.Resources;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace EnglishExams.ViewModels
@@ -18,17 +20,39 @@ namespace EnglishExams.ViewModels
 
         private void ShowPassATest()
         {
-            RedirectDecorator.ToViewModel(typeof(TestListViewModel));
+            switch (CurrentUser.Instance.Role)
+            {
+                case Roles.Student:
+                    RedirectDecorator.ToViewModel(typeof(TestListViewModel));
+                    break;
+                case Roles.Master:
+                    MessageBox.Show(ErrorResources.TeacherCannotPassATest);
+                    break;
+            }
         }
 
         private void ShowGradebook()
         {
-            RedirectDecorator.ToViewModel(typeof(GradebookViewModel));
+            if (CurrentUser.Instance.Role == Roles.Student)
+            {
+                RedirectDecorator.ToViewModel(typeof(GradebookViewModel));
+            }
+            else
+            {
+                // TODO: Add logic to master gradebook
+            }
         }
 
         private void ShowCreateATest()
         {
-            RedirectDecorator.ToViewModel(typeof(CreateTestViewModel));
+            if (CurrentUser.Instance.Role == Roles.Master)
+            {
+                RedirectDecorator.ToViewModel(typeof(CreateTestViewModel));
+            }
+            else
+            {
+                MessageError.Show(ErrorResources.OnlyMasterCanCreateTests);
+            }
         }
 
     }

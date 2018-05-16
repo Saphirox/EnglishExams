@@ -49,6 +49,14 @@ namespace EnglishExams.Infrastructure
             }
         }
 
+        public static class TeacherNotFound
+        {
+            public static void Show()
+            {
+                MessageBox.Show(ErrorResources.TeacherNotFound, ErrorResources.Error);
+            }
+        }
+
         public static void Show(string message)
         {
             MessageBox.Show(message, ErrorResources.Error);

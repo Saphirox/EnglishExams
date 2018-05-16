@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EnglishExams.Infrastructure;
 using Newtonsoft.Json;
 
 namespace EnglishExams.Models
@@ -19,6 +20,8 @@ namespace EnglishExams.Models
 
         [JsonProperty("results")]
         public ICollection<TestResultModel> TestResults { get; set; }
+
+        public Roles Role { get; set; }
 
         public override bool Equals(object obj)
         {

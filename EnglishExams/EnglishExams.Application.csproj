@@ -94,7 +94,10 @@
     <Compile Include="Infrastructure\CurrentUser.cs" />
     <Compile Include="Infrastructure\FileWrapper.cs" />
     <Compile Include="Infrastructure\IFileWrapper.cs" />
+    <Compile Include="Infrastructure\Roles.cs" />
     <Compile Include="Infrastructure\ValidationExtensions.cs" />
+    <Compile Include="Services\Implementation\TestListService.cs" />
+    <Compile Include="Services\ITestListService.cs" />
     <Compile Include="ViewModels\BackButtonViewModel.cs" />
     <Compile Include="Services\IQuestionService.cs" />
     <Compile Include="Services\ITestResultService.cs" />
@@ -124,6 +127,7 @@
     <Compile Include="ViewModels\CreateTestViewModel.cs" />
     <Compile Include="ViewModels\GradebookViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MasterGradebookViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\StartedTestViewModel.cs" />
@@ -139,6 +143,9 @@
     </Compile>
     <Compile Include="Views\Gradebook.xaml.cs">
       <DependentUpon>Gradebook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MasterGradebookView.xaml.cs">
+      <DependentUpon>MasterGradebookView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
@@ -195,6 +202,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MasterGradebookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MenuView.xaml" />
     <Page Include="Views\QuestionView.xaml">
       <SubType>Designer</SubType>
@@ -238,6 +249,7 @@
     <EmbeddedResource Include="Resources\CommonResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ErrorResources.en-US.resx" />
     <EmbeddedResource Include="Resources\ErrorResources.resx">
