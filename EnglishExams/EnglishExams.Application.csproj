@@ -89,6 +89,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\FileConstants.cs" />
     <Compile Include="AttachedProperties\ButtonAttachedProperty.cs" />
+    <Compile Include="Components\MasterGradebookDataGrid.cs" />
     <Compile Include="Infrastructure\ChangePage.cs" />
     <Compile Include="AttachedProperties\CheckboxAttachedProperty.cs" />
     <Compile Include="Infrastructure\CurrentUser.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Infrastructure\IFileWrapper.cs" />
     <Compile Include="Infrastructure\Roles.cs" />
     <Compile Include="Infrastructure\ValidationExtensions.cs" />
+    <Compile Include="Models\MasterGradebookTestResultModel.cs" />
     <Compile Include="Services\Implementation\TestListService.cs" />
     <Compile Include="Services\ITestListService.cs" />
     <Compile Include="ViewModels\BackButtonViewModel.cs" />

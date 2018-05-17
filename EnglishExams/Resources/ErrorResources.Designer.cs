@@ -124,6 +124,15 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Teacher has already existed.
+        /// </summary>
+        internal static string TeacherAlreadyExist {
+            get {
+                return ResourceManager.GetString("TeacherAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Teacher cannot pass a test.
         /// </summary>
         internal static string TeacherCannotPassATest {

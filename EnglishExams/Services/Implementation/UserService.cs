@@ -59,12 +59,33 @@ namespace EnglishExams.Services.Implementation
             CurrentUser.Instance = user;
         }
 
-        public UserModel FindTeacher()
+        public IEnumerable<UserModel> FindStudents()
         {
             var models =
                 _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA).ToList();
 
-            var teacher = models.FirstOrDefault(c => c.Role == Roles.Master);
+            var students = models.Where(c => c.Role == Roles.Student);
+
+            return students;
+        }
+
+        public bool IsTeacher(string userName, string password)
+        {
+            var models =
+                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
+
+            var teacher = models?.FirstOrDefault(c => c.UserName == userName && 
+                                                      c.Password == password);
+
+            return teacher != null;
+        }
+
+        public UserModel FindTeacher()
+        {
+            var models =
+                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
+
+            var teacher = models?.FirstOrDefault(c => c.Role == Roles.Master);
 
             return teacher;
         }

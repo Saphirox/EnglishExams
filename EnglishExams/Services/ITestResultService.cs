@@ -10,7 +10,8 @@ namespace EnglishExams.Services
 
         IEnumerable<GradebookTestResultModel> GetGradebook();
 
-        // TODO: Refactor me
         IList<TestResultDescriptionModel> GetResults(TestKey key);
+
+        IEnumerable<MasterGradebookTestResultModel> GetMasterGradebook();
     }
 }

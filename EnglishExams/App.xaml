@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:EnglishExams.ViewModels"
              xmlns:views="clr-namespace:EnglishExams.Views"
+             xmlns:components="clr-namespace:EnglishExams.Components"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <Style x:Key="DarkBackgroundTheme">
@@ -22,7 +23,12 @@
             <Setter Property="TextBox.Background" Value="#363636"></Setter>
             <Setter Property="TextBox.Foreground" Value="#FFFFFF"></Setter>
         </Style>
-        
+
+        <Style x:Key="DarkDataGrid">
+            <Setter Property="components:MasterGradebookDataGrid.Background" Value="#363636"></Setter>
+            <Setter Property="components:MasterGradebookDataGrid.AlternatingRowBackground" Value="#9a9a9a"></Setter>
+         </Style>
+
         <Style x:Key="DarkLabel">
             <Setter Property="Label.Foreground" Value="#9a9a9a"></Setter>
         </Style>

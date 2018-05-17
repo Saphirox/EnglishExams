@@ -1,6 +1,6 @@
-﻿using System.Windows.Input;
-using EnglishExams.Infrastructure;
+﻿using EnglishExams.Infrastructure;
 using EnglishExams.Models;
+using EnglishExams.Resources;
 using EnglishExams.Services;
 using EnglishExams.Services.Implementation;
 
@@ -32,7 +32,6 @@ namespace EnglishExams.ViewModels
             {
                 NewUser.UserName = value;
                 OnPropertyChanged(nameof(UserName));
-                //CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -61,6 +60,12 @@ namespace EnglishExams.ViewModels
 
             if (isEmpty)
                 result = false;
+
+            if (_userService.IsTeacher(UserName, Password))
+            {
+                MessageError.Show(ErrorResources.TeacherAlreadyExist);
+                result = false;
+            }
 
             return result;
         }

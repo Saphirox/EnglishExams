@@ -1,4 +1,5 @@
-﻿using EnglishExams.Models;
+﻿using System.Collections.Generic;
+using EnglishExams.Models;
 
 namespace EnglishExams.Services
 {
@@ -8,5 +9,7 @@ namespace EnglishExams.Services
         UserModel FindTeacher();
         void Update(UserModel model);
         void Authenticate(UserModel model);
+        IEnumerable<UserModel> FindStudents();
+        bool IsTeacher(string userName, string password);
     }
 }

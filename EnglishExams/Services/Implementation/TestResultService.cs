@@ -47,58 +47,28 @@ namespace EnglishExams.Services.Implementation
         public IEnumerable<GradebookTestResultModel> GetGradebook()
         {
             var testResults = CurrentUser.Instance.TestResults;
-            var tests = CurrentUser.Instance.UserTestModels;
+            var tests = _userService.FindTeacher().UserTestModels;
 
-            var list = new List<GradebookTestResultModel>();
+            return GetOneGradebook(tests, testResults);
+        }
 
-            foreach (var test in tests)
+        public IEnumerable<MasterGradebookTestResultModel> GetMasterGradebook()
+        {
+            var tests = _userService.FindTeacher().UserTestModels;
+            var pupils = _userService.FindStudents();
+
+            return pupils.Select(p => new MasterGradebookTestResultModel()
             {
-                foreach (var testResult in testResults)
-                {
-                    if (testResult.Key == test.Key)
-                    {
-                    
-                    var tempList = new List<GradebookTestResultModel>();
-
-                    int resultPoint = 0;
-
-                    foreach (var questionResult in testResult.QuestionResultModels)
-                    {
-                        foreach (var question in test.QuestionModels)
-                        {
-                            if (questionResult.Text == question.Text)
-                            {
-                                var correctAnswers = question.Options.Where(c => c.IsCorrect).Select(c => c.Name);
-
-                                var firstNotSecond = correctAnswers.Except(questionResult.OptionsName).ToList();
-                                var secondNotFirst = questionResult.OptionsName.Except(correctAnswers).ToList();
-
-                                var result = !firstNotSecond.Any() && !secondNotFirst.Any();
-
-                                var points = test.NumberOfPoints / test.NumberOfQuestions;
-
-                                resultPoint += result ? points : 0;
-                            }
-                        }
-                    }
-
-                    list.Add(new GradebookTestResultModel
-                    {
-                        Key = test.Key,
-                        Points = resultPoint
-                    });
-                 }   
-              }
-            }
-
-            return list;
-        } 
+                Results = GetOneGradebook(tests, p.TestResults),
+                UserName = p.UserName
+            });
+        }
 
         public IList<TestResultDescriptionModel> GetResults(TestKey key)
         {
             var testResult = CurrentUser.Instance.TestResults.FirstOrDefault(c => c.Key == key);
 
-            var test = CurrentUser.Instance.UserTestModels.FirstOrDefault(c => c.Key == key);
+            var test = _userService.FindTeacher().UserTestModels.FirstOrDefault(c => c.Key == key);
             
             var list = new List<TestResultDescriptionModel>();
             var index = 0;
@@ -138,6 +108,47 @@ namespace EnglishExams.Services.Implementation
             }
 
             return list;
+        }
+
+        private IEnumerable<GradebookTestResultModel> GetOneGradebook(IEnumerable<UserTestModel> tests, 
+            IEnumerable<TestResultModel> testResults)
+        {
+            foreach (var test in tests)
+            {
+                foreach (var testResult in testResults)
+                {
+                    if (testResult.Key == test.Key)
+                    {
+                        int resultPoint = 0;
+
+                        foreach (var questionResult in testResult.QuestionResultModels)
+                        {
+                            foreach (var question in test.QuestionModels)
+                            {
+                                if (questionResult.Text == question.Text)
+                                {
+                                    var correctAnswers = question.Options.Where(c => c.IsCorrect).Select(c => c.Name);
+
+                                    var firstNotSecond = correctAnswers.Except(questionResult.OptionsName).ToList();
+                                    var secondNotFirst = questionResult.OptionsName.Except(correctAnswers).ToList();
+
+                                    var result = !firstNotSecond.Any() && !secondNotFirst.Any();
+
+                                    var points = test.NumberOfPoints / test.NumberOfQuestions;
+
+                                    resultPoint += result ? points : 0;
+                                }
+                            }
+                        }
+
+                        yield return new GradebookTestResultModel
+                        {
+                            Key = test.Key,
+                            Points = resultPoint
+                        };
+                    }
+                }
+            }
         }
     }
 }

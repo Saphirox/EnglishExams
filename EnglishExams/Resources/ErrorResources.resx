@@ -138,6 +138,9 @@
   <data name="QuestionCountLimitedPattern" xml:space="preserve">
     <value>Question count limit to {0}</value>
   </data>
+  <data name="TeacherAlreadyExist" xml:space="preserve">
+    <value>Teacher has already existed</value>
+  </data>
   <data name="TeacherCannotPassATest" xml:space="preserve">
     <value>Teacher cannot pass a test</value>
   </data>

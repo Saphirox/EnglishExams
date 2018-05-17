@@ -8,15 +8,18 @@ using EnglishExams.Services.Implementation;
 
 namespace EnglishExams.ViewModels
 {
-    using KeyValue = KeyValuePair<string, IEnumerable<GradebookTestResultModel>>;
-
-    public class MasterGradebookViewModel
+    public class MasterGradebookViewModel : ViewModelBase
     {
-
-        public IEnumerable<KeyValue> Tests { get; set; }
         private ITestResultService _resultService;
-        private readonly IQuestionService _questionService;
         private IFileWrapper _fileWrapper;
+
+        public IEnumerable<MasterGradebookTestResultModel> StudentsGradebooks { get; }
+
+        public IEnumerable<TestKey> ColumnHeaders => 
+            new ObservableCollection<TestKey>(
+                    StudentsGradebooks.SelectMany(sg => sg.Results)
+                                      .Select(c => c.Key)
+                                      .Distinct());
 
         public MasterGradebookViewModel()
         {
@@ -24,14 +27,9 @@ namespace EnglishExams.ViewModels
 
             _resultService = new TestResultService(_fileWrapper);
 
+            var gradebooks = _resultService.GetMasterGradebook();
 
-            var result = _resultService.GetGradebook();
-
-            var dict = result.GroupBy(c => c.Key.UnitName, (s, models) => new KeyValue(s, models));
-
-            Tests = new ObservableCollection<KeyValue>(dict);
-
-            _questionService = new QuestionService(_fileWrapper);
+            StudentsGradebooks = new ObservableCollection<MasterGradebookTestResultModel>(gradebooks);
         }
     }
 }

@@ -33,14 +33,9 @@ namespace EnglishExams.ViewModels
 
         private void ShowGradebook()
         {
-            if (CurrentUser.Instance.Role == Roles.Student)
-            {
-                RedirectDecorator.ToViewModel(typeof(GradebookViewModel));
-            }
-            else
-            {
-                // TODO: Add logic to master gradebook
-            }
+            RedirectDecorator.ToViewModel(CurrentUser.Instance.Role == Roles.Student
+                ? typeof(GradebookViewModel)
+                : typeof(MasterGradebookViewModel));
         }
 
         private void ShowCreateATest()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
@@ -28,7 +29,12 @@ namespace EnglishExams.Services.Implementation
 
         public UserTestModel GetTestByTaskDescription(TestKey key)
         {
-            var test = CurrentUser.Instance.UserTestModels.FirstOrDefault(c => c.Key == key);
+            var test = _userService.FindTeacher()?.UserTestModels.FirstOrDefault(c => c.Key == key);
+
+            if (test is null)
+            {
+                throw new InvalidOperationException();
+            }
 
             return test;
         }
