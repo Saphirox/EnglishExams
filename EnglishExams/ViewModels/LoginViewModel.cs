@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Windows.Forms;
+using EnglishExams.Common;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using EnglishExams.Services;
@@ -37,10 +40,59 @@ namespace EnglishExams.ViewModels
         public RelayCommand ShowSignUpPage { get; set; }
         public RelayCommand ShowMenuPage { get; set; }
 
+        public RelayCommand Import { get; set; }
+
+        public RelayCommand Export { get; set; }
+
         public LoginViewModel()
         {
             ShowSignUpPage = new RelayCommand(ShowSignUp);
             ShowMenuPage = new RelayCommand(ShowMenu);
+            Import = new RelayCommand(ImportPersonalFile);
+            Export = new RelayCommand(ExportPersonalFile);
+        }
+
+        private void ImportPersonalFile()
+        {
+            var dialog = new OpenFileDialog();
+
+            string pathToFile = null;
+
+            dialog.Title = "Open JSON File";
+            dialog.Filter = "JSON files|*.json";
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                pathToFile = dialog.FileName;
+            }
+
+            if (File.Exists(pathToFile))
+            {
+                if (File.Exists(FileConstants.PERSONAL_DATA_PATH))
+                {
+                    File.Delete(FileConstants.PERSONAL_DATA_PATH);
+                    File.Copy(pathToFile, FileConstants.PERSONAL_DATA_PATH);
+                }
+            }
+        }
+
+        private void ExportPersonalFile()
+        {
+            var dialog = new SaveFileDialog();
+
+            string pathToFile = null;
+
+            dialog.Title = "Open JSON File";
+            dialog.Filter = "JSON files|*.json";
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                pathToFile = dialog.FileName;
+
+                File.Copy(FileConstants.PERSONAL_DATA_PATH, pathToFile);
+            }
         }
 
         private void ShowMenu()

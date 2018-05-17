@@ -21,6 +21,7 @@
         <RowDefinition></RowDefinition>
         <RowDefinition></RowDefinition>
         <RowDefinition Height="3*"></RowDefinition>
+        <RowDefinition />
     </Grid.RowDefinitions>
 
         <TextBlock 
@@ -75,6 +76,27 @@
             Grid.ColumnSpan="2" 
             Style="{StaticResource DarkButton}" 
             Content="{x:Static resx:CommonResources.SignUp}"></Button>
-</Grid>
+
+        
+
+        <Border Grid.Row="4" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="2"
+                Margin="80 20 20 20"
+                Style="{StaticResource DarkButton}">
+            <Button Style="{StaticResource DarkButton}"
+                    Padding="5"
+                    Content="{x:Static resx:CommonResources.Import}"
+                    Command="{Binding Import}"></Button>
+        </Border>
+
+        <Button Command="{Binding Export}" 
+                Grid.Row="4" 
+                Grid.Column="2" 
+                Margin="20"
+                Grid.ColumnSpan="2" 
+                Style="{StaticResource DarkButton}" 
+                Content="{x:Static resx:CommonResources.Export}"></Button>
+    </Grid>
     
 </UserControl>

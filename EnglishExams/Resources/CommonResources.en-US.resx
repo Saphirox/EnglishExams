@@ -144,8 +144,14 @@
   <data name="End" xml:space="preserve">
     <value>End</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="Gradebook" xml:space="preserve">
     <value>Grade book</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
   </data>
   <data name="IsMaster" xml:space="preserve">
     <value>Is master ?</value>
