@@ -63,6 +63,16 @@ namespace EnglishExams.ViewModels
             }
         }
 
+        public bool Permuted
+        {
+            get => _model.Permuted;
+            set
+            {
+                _model.Permuted = value;
+                OnPropertyChanged(nameof(Permuted));
+            }
+        }
+
         public CreateTestViewModel()
         {
             BackPage = new RelayCommand(ShowBack);

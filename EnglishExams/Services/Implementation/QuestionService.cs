@@ -38,5 +38,30 @@ namespace EnglishExams.Services.Implementation
 
             return test;
         }
+
+        public UserTestModel GetTestByTaskDescriptionWithPermution(TestKey key)
+        {
+            var userTestModel = GetTestByTaskDescription(key);
+
+            if (!userTestModel.Permuted)
+                return userTestModel;
+
+            var questions = userTestModel.QuestionModels.ToList();
+
+            var random = new Random();
+
+            for (int i = 0; i < questions.Count; i++)
+            {
+                var pivot = random.Next(0, questions.Count);
+
+                var temp = questions[pivot];
+                questions[pivot] = questions[i];
+                questions[i] = temp;
+            }
+
+            userTestModel.QuestionModels = questions;
+
+            return userTestModel;
+        }
     }
 }

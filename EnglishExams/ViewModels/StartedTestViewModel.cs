@@ -72,7 +72,7 @@ namespace EnglishExams.ViewModels
             _testKey = TinyTempCache.Get<Type, TestKey>(typeof(TestKey));
             _questionService = new QuestionService(_fileWrapper);
             _testResultService = new TestResultService(_fileWrapper);
-            _userTestModel = _questionService.GetTestByTaskDescription(_testKey);
+            _userTestModel = _questionService.GetTestByTaskDescriptionWithPermution(_testKey);
 
             _timer = _userTestModel.Duration;
 

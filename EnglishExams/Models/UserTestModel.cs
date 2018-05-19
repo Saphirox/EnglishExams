@@ -22,6 +22,7 @@ namespace EnglishExams.Models
         public int NumberOfPoints { get; set; }
 
         public ICollection<QuestionModel> QuestionModels { get; set; }
+        public bool Permuted { get; set; }
     }
 
     public static class UserTestModelExtension

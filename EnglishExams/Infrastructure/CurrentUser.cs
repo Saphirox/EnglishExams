@@ -17,6 +17,7 @@ namespace EnglishExams.Infrastructure
             {
                 if (value is null)
                 {
+                    _instance = null;
                     return;
                 }
 

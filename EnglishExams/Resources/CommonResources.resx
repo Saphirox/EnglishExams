@@ -186,6 +186,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Permuted" xml:space="preserve">
+    <value>Permute questions?</value>
+  </data>
   <data name="Question" xml:space="preserve">
     <value>QUESTION</value>
   </data>

@@ -8,5 +8,7 @@ namespace EnglishExams.Services
         void AddToTest(UserTestModel userTestModel, ICollection<QuestionModel> questionModel);
 
         UserTestModel GetTestByTaskDescription(TestKey key);
+
+        UserTestModel GetTestByTaskDescriptionWithPermution(TestKey key);
     }
 }

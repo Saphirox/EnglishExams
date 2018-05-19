@@ -39,6 +39,7 @@
 
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
             <Label
@@ -130,7 +131,7 @@
                 </TextBox>
             </Border>
             
-            <Grid Grid.Row="5" 
+            <Grid Grid.Row="6" 
                   Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -152,6 +153,18 @@
                     </Button>
                 </Border>
             </Grid>
+
+            <CheckBox Grid.Row="5"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Style="{StaticResource DarkCheckbox}"
+                      FontSize="16"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Foreground="#FFFFFF"
+                      IsChecked="{Binding Permuted, UpdateSourceTrigger=PropertyChanged}">
+                <TextBlock Text="{x:Static resx:CommonResources.Permuted}" Margin="0,-3,0,0"></TextBlock>
+            </CheckBox>
         </Grid>
     </Grid>
 </UserControl>

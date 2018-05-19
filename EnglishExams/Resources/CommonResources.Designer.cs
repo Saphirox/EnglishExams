@@ -268,6 +268,15 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Permute questions?.
+        /// </summary>
+        public static string Permuted {
+            get {
+                return ResourceManager.GetString("Permuted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to QUESTION.
         /// </summary>
         public static string Question {
