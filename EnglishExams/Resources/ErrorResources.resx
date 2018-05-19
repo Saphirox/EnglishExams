@@ -120,6 +120,9 @@
   <data name="AllFieldsIsRequired" xml:space="preserve">
     <value>All fields is required</value>
   </data>
+  <data name="AtLeastOneCheckboxMustBeChecked" xml:space="preserve">
+    <value>At Least one checkbox must be checked</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>

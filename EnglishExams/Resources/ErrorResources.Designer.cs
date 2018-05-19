@@ -70,6 +70,15 @@ namespace EnglishExams.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to At Least one checkbox must be checked.
+        /// </summary>
+        internal static string AtLeastOneCheckboxMustBeChecked {
+            get {
+                return ResourceManager.GetString("AtLeastOneCheckboxMustBeChecked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string Error {

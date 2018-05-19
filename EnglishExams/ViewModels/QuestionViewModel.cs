@@ -251,8 +251,22 @@ namespace EnglishExams.ViewModels
                 state = false;
                 MessageError.AllFieldsIsRequired.Show();
             }
+            else if (!IsOneCheckboxChecked())
+            {
+                state = false;
+                MessageError.Show(ErrorResources.AtLeastOneCheckboxMustBeChecked);
+            } 
 
             return state;
+        }
+
+        private bool IsOneCheckboxChecked()
+        {
+            return Option1Checked
+                   || Option2Checked
+                   || Option3Checked
+                   || Option4Checked
+                   || Option5Checked;
         }
 
         private void ShowMenu()
