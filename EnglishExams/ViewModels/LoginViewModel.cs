@@ -81,15 +81,13 @@ namespace EnglishExams.ViewModels
         {
             var dialog = new SaveFileDialog();
 
-            string pathToFile = null;
-
             dialog.Title = "Open JSON File";
             dialog.Filter = "JSON files|*.json";
             dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                pathToFile = dialog.FileName;
+                var pathToFile = dialog.FileName;
 
                 File.Copy(FileConstants.PERSONAL_DATA_PATH, pathToFile);
             }

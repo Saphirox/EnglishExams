@@ -129,8 +129,11 @@ namespace EnglishExams.ViewModels
             get => option1.IsCorrect;
             set
             {
-                option1.IsCorrect = value;
-                OnPropertyChanged(nameof(Option1Checked));
+                if (!string.IsNullOrWhiteSpace(option1.Name))
+                {
+                    option1.IsCorrect = value;
+                    OnPropertyChanged(nameof(Option1Checked));
+                }
             }
         }
 
@@ -139,8 +142,11 @@ namespace EnglishExams.ViewModels
             get => option2.IsCorrect;
             set
             {
-                option2.IsCorrect = value;
-                OnPropertyChanged(nameof(Option2Checked));
+                if (!string.IsNullOrWhiteSpace(option2.Name))
+                {
+                    option2.IsCorrect = value;
+                    OnPropertyChanged(nameof(Option2Checked));
+                }
             }
         }
 
@@ -149,8 +155,11 @@ namespace EnglishExams.ViewModels
             get => option3.IsCorrect;
             set
             {
-                option3.IsCorrect = value;
-                OnPropertyChanged(nameof(Option3Checked));
+                if (!string.IsNullOrWhiteSpace(option3.Name))
+                {
+                    option3.IsCorrect = value;
+                    OnPropertyChanged(nameof(Option3Checked));
+                }
             }
         }
 
@@ -159,8 +168,11 @@ namespace EnglishExams.ViewModels
             get => option4.IsCorrect;
             set
             {
-                option4.IsCorrect = value;
-                OnPropertyChanged(nameof(Option4Checked));
+                if (!string.IsNullOrWhiteSpace(option4.Name))
+                {
+                    option4.IsCorrect = value;
+                    OnPropertyChanged(nameof(Option4Checked));
+                }
             }
         }
 
@@ -169,8 +181,11 @@ namespace EnglishExams.ViewModels
             get => option5.IsCorrect;
             set
             {
-                option5.IsCorrect = value;
-                OnPropertyChanged(nameof(Option5Checked));
+                if (!string.IsNullOrWhiteSpace(option5.Name))
+                {
+                    option5.IsCorrect = value;
+                    OnPropertyChanged(nameof(Option5Checked));
+                }
             }
         }
 
