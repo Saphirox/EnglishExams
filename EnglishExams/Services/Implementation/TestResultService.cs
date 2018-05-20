@@ -46,10 +46,17 @@ namespace EnglishExams.Services.Implementation
 
         public IEnumerable<GradebookTestResultModel> GetGradebook()
         {
-            var testResults = CurrentUser.Instance.TestResults;
-            var tests = _userService.FindTeacher().UserTestModels;
+            var user = CurrentUser.Instance;
+            user.TestResults = user.TestResults.Reverse().Distinct().ToArray();
+            var teacherTests = _userService.FindTeacher()
+                .UserTestModels
+                .ToList();
 
-            return GetOneGradebook(tests, testResults);
+            teacherTests.Reverse();
+
+            var tests = teacherTests.Distinct().ToArray();
+
+            return GetOneGradebook(tests, user.TestResults);
         }
 
         public IEnumerable<MasterGradebookTestResultModel> GetMasterGradebook()
