@@ -10,6 +10,10 @@
              d:DesignHeight="768" d:DesignWidth="1024"
              d:DataContext="{d:DesignInstance viewModels:MasterGradebookViewModel, IsDesignTimeCreatable=True}">
     <Grid Width="600" HorizontalAlignment="Center"  VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition  Height="50"/>
+        </Grid.RowDefinitions>
         <components:MasterGradebookDataGrid 
                                           RowHeaderWidth="0" 
                                            BorderThickness="0"
@@ -37,5 +41,8 @@
                 <SolidColorBrush Color="Transparent"/>
             </DataGrid.RowBackground>
         </components:MasterGradebookDataGrid>
+        <ContentControl Grid.Row="1">
+            <local:BackButton  />
+        </ContentControl>
     </Grid>
 </UserControl>

@@ -293,11 +293,11 @@ namespace EnglishExams.ViewModels
             Option4 = null;
             Option5 = null;
 
-            Option1Checked = false;
-            Option2Checked = false;
-            Option3Checked = false;
-            Option4Checked = false;
-            Option5Checked = false;
+            OnPropertyChanged(nameof(Option1Checked));
+            OnPropertyChanged(nameof(Option2Checked));
+            OnPropertyChanged(nameof(Option3Checked));
+            OnPropertyChanged(nameof(Option4Checked));
+            OnPropertyChanged(nameof(Option5Checked));
         }
     }
 }

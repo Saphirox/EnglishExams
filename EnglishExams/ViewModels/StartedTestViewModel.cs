@@ -100,8 +100,9 @@ namespace EnglishExams.ViewModels
             RestoreCheckedCheckboxes();
             OnPropertyChanged(nameof(QuestionName));
             OnPropertyChanged(nameof(CurrentOptions));
+            OnPropertyChanged(nameof(QuestionNumber));
         }
-       
+
         public void AddAnswer()
         {
             var correctAnswers = CurrentOptions.Where(c => c.IsCorrect);
@@ -138,6 +139,7 @@ namespace EnglishExams.ViewModels
 
             OnPropertyChanged(nameof(QuestionName));
             OnPropertyChanged(nameof(CurrentOptions));
+            OnPropertyChanged(nameof(QuestionNumber));
         }
 
         private void ShowTestResult()

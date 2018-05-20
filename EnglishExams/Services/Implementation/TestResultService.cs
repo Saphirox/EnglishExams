@@ -66,9 +66,9 @@ namespace EnglishExams.Services.Implementation
 
         public IList<TestResultDescriptionModel> GetResults(TestKey key)
         {
-            var testResult = CurrentUser.Instance.TestResults.FirstOrDefault(c => c.Key == key);
+            var testResult = CurrentUser.Instance.TestResults.LastOrDefault(c => c.Key == key);
 
-            var test = _userService.FindTeacher().UserTestModels.FirstOrDefault(c => c.Key == key);
+            var test = _userService.FindTeacher().UserTestModels.LastOrDefault(c => c.Key == key);
             
             var list = new List<TestResultDescriptionModel>();
             var index = 0;
@@ -79,7 +79,10 @@ namespace EnglishExams.Services.Implementation
                 {
                     if (testResultQuestion.Text == testQuestion.Text)
                     {
-                        var correctAnswers = testQuestion.Options.Where(c => c.IsCorrect).Select(c => c.Name);
+                        var correctAnswers = testQuestion.Options
+                            .Where(c => c.IsCorrect)
+                            .Select(c => c.Name)
+                            .ToArray();
 
                         var firstNotSecond = correctAnswers.Except(testResultQuestion.OptionsName).ToList();
                         var secondNotFirst = testResultQuestion.OptionsName.Except(correctAnswers).ToList();

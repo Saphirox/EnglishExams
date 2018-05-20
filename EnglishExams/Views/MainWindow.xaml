@@ -9,7 +9,7 @@
         Icon="../Images/kursach1-12.png"
         Title="{x:Static resx:CommonResources.ApplicationName}" Height="768" Width="1024">
 
-    <Window.DataContext>
+    <Window.DataContext>    
         <vm:MainWindowViewModel />
     </Window.DataContext>
     
