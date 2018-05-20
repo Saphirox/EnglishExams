@@ -6,14 +6,12 @@ namespace EnglishExams.Models
     /// <summary>
     /// Custom created test by current user
     /// </summary>
-    public class UserTestModel
+    public class UserTestModel : ModelBase
     {
         public UserTestModel()
         {
             Key = new TestKey();
         }
-
-        public TestKey Key { get; set; }
 
         public int Duration { get; set; }
         

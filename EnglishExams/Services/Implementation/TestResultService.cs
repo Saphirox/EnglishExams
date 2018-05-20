@@ -54,8 +54,20 @@ namespace EnglishExams.Services.Implementation
 
         public IEnumerable<MasterGradebookTestResultModel> GetMasterGradebook()
         {
-            var tests = _userService.FindTeacher().UserTestModels;
-            var pupils = _userService.FindStudents();
+            var teacherTests = _userService.FindTeacher()
+                .UserTestModels
+                .ToList();
+
+            teacherTests.Reverse();
+
+            var tests = teacherTests.Distinct().ToArray();
+
+            var pupils = _userService.FindStudents().ToArray();
+
+            foreach (var pupil in pupils)
+            {
+                pupil.TestResults = pupil.TestResults.Reverse().Distinct().ToArray();
+            }
 
             return pupils.Select(p => new MasterGradebookTestResultModel()
             {

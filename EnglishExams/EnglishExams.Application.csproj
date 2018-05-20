@@ -98,6 +98,7 @@
     <Compile Include="Infrastructure\Roles.cs" />
     <Compile Include="Infrastructure\ValidationExtensions.cs" />
     <Compile Include="Models\MasterGradebookTestResultModel.cs" />
+    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Services\Implementation\TestListService.cs" />
     <Compile Include="Services\ITestListService.cs" />
     <Compile Include="ViewModels\BackButtonViewModel.cs" />
