@@ -6,24 +6,15 @@
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
-
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            var entity = (ModelBase)obj;
-
-            return entity.Key == Key;
+            return obj is ModelBase entity ?
+                entity.Key == Key : false;
         }
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            int hash = 271;
+            hash = (hash * 7) + Key.GetHashCode();
+            return hash;
         }
     }
 }

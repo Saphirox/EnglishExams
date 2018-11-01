@@ -10,12 +10,12 @@ namespace EnglishExams.Infrastructure
     {
         public override void Load()
         {
-            this.Bind<IFileWrapper, FileWrapper>();
-            this.Bind<IQuestionService, QuestionService>();
-            this.Bind<ITestListService, TestListService>();
-            this.Bind<ITestResultService, TestResultService>();
-            this.Bind<IUserService, UserService>();
-            this.Bind<GradebookViewModel>();
+            this.Bind<IFileWrapper>().To<FileWrapper>();
+            this.Bind<IQuestionService>().To<QuestionService>();
+            this.Bind<ITestListService>().To<TestListService>();
+            this.Bind<ITestResultService>().To<TestResultService>();
+            this.Bind<IUserService>().To<UserService>();
+            this.Bind<GradebookViewModel>().ToSelf();
         }
     }
 

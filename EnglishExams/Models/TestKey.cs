@@ -15,6 +15,14 @@
             return UnitName == val.UnitName && LessonName == val.LessonName;
         }
 
+        public override int GetHashCode()
+        {
+            int hash = 271;
+            hash = (hash * 7) ^ LessonName.GetHashCode();
+            hash = (hash * 7) ^ UnitName.GetHashCode();
+            return hash;
+        }
+
         public static bool operator==(TestKey key1, TestKey key2)
         {
             return key1.Equals(key2);
