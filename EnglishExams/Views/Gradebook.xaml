@@ -56,7 +56,7 @@
                                                   {RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, 
                                                     Path=DataContext.Key}" 
                                                   infrastructure:ButtonAttachedProperty.LessonName="{Binding Key.LessonName}" 
-                                                  Click="ListBoxHander">
+                                                  Command="{Binding ListBoxHander}">
                                                         <TextBlock>
                                                             <TextBlock.Text>
                                                                 <MultiBinding StringFormat="{}{0} - {1}">

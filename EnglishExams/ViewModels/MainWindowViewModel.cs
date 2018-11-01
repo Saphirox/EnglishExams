@@ -34,7 +34,10 @@ namespace EnglishExams.ViewModels
 
         private void ChangePage(ChangePage page)
         {
-            var vm = Activator.CreateInstance(page.CurrentViewModel) as ViewModelBase;
+            var vm = NinjectFactory.GetInstance().GetService(page.CurrentViewModel) as ViewModelBase;
+
+            if (vm is null)
+                throw new InvalidOperationException("Current view model does not exist");
 
             OnPropertyChanged(nameof(LogoutVisibility));
 

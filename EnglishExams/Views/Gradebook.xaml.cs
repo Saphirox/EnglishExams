@@ -20,8 +20,6 @@ namespace EnglishExams.Views
         {
             var button = sender as Button;
 
-            var st = ButtonAttachedProperty.GetUnitName(button);
-
             var dc = DataContext as GradebookViewModel;
 
             dc.ShowConcreteLesson(new TestKey

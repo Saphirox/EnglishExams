@@ -14,35 +14,30 @@ namespace EnglishExams.ViewModels
     using KeyValue = KeyValuePair<string, IEnumerable<GradebookTestResultModel>>;
     public class GradebookViewModel : ViewModelBase
     {
-
-        public IEnumerable<KeyValue> Tests { get; set; }
-        private ITestResultService _resultService;
         private readonly IQuestionService _questionService;
-        private IFileWrapper _fileWrapper;
+        private readonly ITestResultService _resultService;
+
+        public IEnumerable<KeyValue> Tests => GetTestGradebookTestResults();
+
         public RelayCommand ConcreteLesson { get; set; }
 
-        public GradebookViewModel()
+        public GradebookViewModel(ITestResultService resultService, IQuestionService questionService)
         {
-            _fileWrapper = new FileWrapper();
-
-            _resultService =  new TestResultService(_fileWrapper);
-
-
-            var result = _resultService.GetGradebook();
-
-            var dict = result.GroupBy(c => c.Key.UnitName, (s, models) => new KeyValue(s, models));
-
-            Tests = new ObservableCollection<KeyValue>(dict);
-
-            _questionService = new QuestionService(_fileWrapper);
+            _questionService = questionService;
+            _resultService = resultService;
         }
 
         public void ShowConcreteLesson(TestKey key)
         {
             var test = _questionService.GetTestByTaskDescription(key);
+            RedirectDecorator.ToViewModel(
+                ChangePage.CreateAndPassDataWithTypeKey(typeof(TestResultViewModel), test));
+        }
 
-            TinyTempCache.Set(typeof(UserTestModel), test);
-            RedirectDecorator.ToViewModel(typeof(TestResultViewModel));
-        } 
+        private IEnumerable<KeyValue> GetTestGradebookTestResults()
+        {
+            return new ObservableCollection<KeyValue>(_resultService.GetGradebook()
+                .GroupBy(c => c.Key.UnitName, (s, models) => new KeyValue(s, models)));
+        }
     }
 }
