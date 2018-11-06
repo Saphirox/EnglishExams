@@ -3,6 +3,7 @@ using EnglishExams.Services.Implementation;
 using EnglishExams.ViewModels;
 using Ninject;
 using Ninject.Modules;
+using Ninject.Extensions.Conventions;
 
 namespace EnglishExams.Infrastructure
 {
@@ -15,7 +16,13 @@ namespace EnglishExams.Infrastructure
             this.Bind<ITestListService>().To<TestListService>();
             this.Bind<ITestResultService>().To<TestResultService>();
             this.Bind<IUserService>().To<UserService>();
-            this.Bind<GradebookViewModel>().ToSelf();
+
+            this.Bind(x => x
+                .FromThisAssembly()
+                .SelectAllClasses()
+                .InheritedFrom<ViewModelBase>()
+                .BindBase()
+                .Configure(c => c.InTransientScope()));
         }
     }
 

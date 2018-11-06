@@ -14,17 +14,18 @@ namespace EnglishExams.Services.Implementation
         private readonly IFileWrapper _fileWrapper;
         private readonly IUserService _userService;
 
-        public TestResultService(IFileWrapper fileWrapper)
+        public TestResultService(IFileWrapper fileWrapper, IUserService userService)
         {
             _fileWrapper = fileWrapper;
-            _userService = new UserService(_fileWrapper);
+            _userService = userService;
         }
 
         public void AddResultToUser(TestKey key, Dictionary<string, ICollection<string>> answers)
         {
             var testResult = new TestResultModel
             {
-                Key = key,
+                LessonName = key.LessonName,
+                UnitName = key.UnitName,
                 QuestionResultModels = answers.Select(c => new QuestionResultModel
                 {
                     Text = c.Key,

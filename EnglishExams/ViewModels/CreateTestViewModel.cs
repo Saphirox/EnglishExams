@@ -12,20 +12,20 @@ namespace EnglishExams.ViewModels
 
         public string UnitName
         {
-            get => _model.Key.UnitName;
+            get => _model.UnitName;
             set
             {
-                _model.Key.UnitName = value;
+                _model.UnitName = value;
                 OnPropertyChanged(nameof(UnitName));
             }
         }
 
         public string LessonName
         {
-            get => _model.Key.LessonName;
+            get => _model.LessonName;
             set
             {
-                _model.Key.LessonName = value;
+                _model.LessonName = value;
                 OnPropertyChanged(nameof(LessonName));
             }
         }

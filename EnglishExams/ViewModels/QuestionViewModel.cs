@@ -200,7 +200,8 @@ namespace EnglishExams.ViewModels
 
         private void AddTestToUser()
         {
-            _questionService.AddToTest(_userTestModel, _questionModels);
+            _userTestModel.QuestionModels = _questionModels;
+            _questionService.AddToTest(_userTestModel);
 
             RedirectDecorator.ToViewModel(typeof(MenuViewModel));
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EnglishExams.Infrastructure;
 using Newtonsoft.Json;
 
@@ -7,7 +8,7 @@ namespace EnglishExams.Models
     /// <summary>
     /// User identity
     /// </summary>
-    public class UserModel
+    public class UserModel : IntId
     {
         [JsonProperty("userName")]
         public string UserName { get; set; }
@@ -43,6 +44,14 @@ namespace EnglishExams.Models
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        internal void UpdateFrom(UserModel model)
+        {
+            Id = model.Id;
+            Password = model.Password;
+            Role = model.Role;
+            UserName = model.UserName;
         }
     }
 }

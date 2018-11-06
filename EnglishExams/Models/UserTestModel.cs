@@ -6,11 +6,11 @@ namespace EnglishExams.Models
     /// <summary>
     /// Custom created test by current user
     /// </summary>
-    public class UserTestModel : ModelBase
+    public class UserTestModel : TestKey
     {
         public UserTestModel()
         {
-            Key = new TestKey();
+            QuestionModels = new List<QuestionModel>();
         }
 
         public int Duration { get; set; }
@@ -20,19 +20,14 @@ namespace EnglishExams.Models
         public int NumberOfPoints { get; set; }
 
         public ICollection<QuestionModel> QuestionModels { get; set; }
-        public bool Permuted { get; set; }
-    }
 
-    public static class UserTestModelExtension
-    {
-        public static IEnumerable<TestListModel> ToTaskList(this IEnumerable<UserTestModel> model)
+        public UserModel UserModel { get; set; }
+
+        public bool Permuted { get; set; }
+
+        public static IEnumerable<TestListModel> ToTaskList(IEnumerable<UserTestModel> model)
         {
-            var taskListModels = model?.GroupBy(c => c.Key.UnitName).Select(c => 
-                new TestListModel
-                {
-                    LessonsName = c.Select(l => l.Key.LessonName).ToList(),
-                    UnitName = c.Key
-                });
+            var taskListModels = model?.GroupBy(c => c.UnitName).Select(TestListModel.From);
 
             return taskListModels;
         }

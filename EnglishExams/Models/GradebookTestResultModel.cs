@@ -5,9 +5,8 @@ namespace EnglishExams.Models
     /// <summary>
     /// Dto for GradebookViewModel
     /// </summary>
-    public class GradebookTestResultModel
+    public class GradebookTestResultModel : TestKey
     {
-        public TestKey Key { get; set; }
         public double Points { get; set; }
     }
 }

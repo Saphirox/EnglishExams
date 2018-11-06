@@ -6,7 +6,7 @@ namespace EnglishExams.Models
     /// <summary>
     /// Result of passed tests 
     /// </summary>
-    public class TestResultModel : ModelBase
+    public class TestResultModel : TestKey
     {
         [JsonProperty("questionResult")]
         public ICollection<QuestionResultModel> QuestionResultModels { get; set; }

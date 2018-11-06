@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EnglishExams.Application.Infrastructure;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 
@@ -12,17 +13,21 @@ namespace EnglishExams.Services.Implementation
     public class QuestionService : IQuestionService
     {
         private readonly IUserService _userService;
+        private readonly IUnitOfWork _uow;
 
-        public QuestionService(IFileWrapper fileWrapper)
+        public QuestionService(IUnitOfWork uow)
         {
-            _userService = new UserService(fileWrapper);
+            _uow = uow;
         }
 
-        public void AddToTest(UserTestModel userTestModel, ICollection<QuestionModel> questionModel)
+        public void AddToTest(UserTestModel userTestModel)
         {
-            userTestModel.QuestionModels = questionModel;
+            if (userTestModel is null)
+                throw new ArgumentNullException(nameof(userTestModel));
 
             CurrentUser.Instance.UserTestModels.Add(userTestModel);
+
+            _englishExamsDb.UserTestModels.FirstOrDefault(u => u.UserModel.Id == CurrentUser.Instance.Id);
 
             _userService.Update(CurrentUser.Instance);
         }

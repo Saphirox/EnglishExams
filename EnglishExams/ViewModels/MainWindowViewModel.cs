@@ -7,6 +7,11 @@ namespace EnglishExams.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private ViewModelBase _currentViewModel;
+        private IServiceProvider _serviceProvider;
+
+        private ViewModelBase DefaultModelBase
+            => (ViewModelBase)_serviceProvider.GetService(typeof(LoginViewModel));
+
         public RelayCommand Logout { get; set; }
 
         public ViewModelBase CurrentViewModel
@@ -19,9 +24,12 @@ namespace EnglishExams.ViewModels
 
         public MainWindowViewModel()
         {
+            _serviceProvider = NinjectFactory.GetInstance();
+
             RedirectDecorator.Register(this, ChangePage);
             OnPropertyChanged(nameof(LogoutVisibility));
-            CurrentViewModel = new LoginViewModel();
+
+            _currentViewModel = DefaultModelBase;
             Logout = new RelayCommand(ShowSignIn);
         }
 
@@ -34,7 +42,7 @@ namespace EnglishExams.ViewModels
 
         private void ChangePage(ChangePage page)
         {
-            var vm = NinjectFactory.GetInstance().GetService(page.CurrentViewModel) as ViewModelBase;
+            var vm = _serviceProvider.GetService(page.CurrentViewModel) as ViewModelBase;
 
             if (vm is null)
                 throw new InvalidOperationException("Current view model does not exist");

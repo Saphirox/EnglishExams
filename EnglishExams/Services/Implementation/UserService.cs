@@ -12,48 +12,41 @@ namespace EnglishExams.Services.Implementation
     /// </summary>
     public class UserService : IUserService
     {
-        private readonly IFileWrapper _fileWrapper;
+        private readonly EnglishExamsDbContext _englishExamsDbContext;
 
-        public UserService(IFileWrapper fileWrapper)
+        public UserService(EnglishExamsDbContext englishExamsDbContext)
         {
-            _fileWrapper = fileWrapper;
+            _englishExamsDbContext = englishExamsDbContext;
         }
 
         public void Add(UserModel model)
         {
-            var models = 
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)
-                    ?.ToList() ?? new List<UserModel>();
+            if (model is null)
+                throw new ArgumentNullException(nameof(model));
 
-            models.Add(model);
-
-            _fileWrapper.WriteTo(FileConstants.PERSONAL_DATA, models);
+            _englishExamsDbContext.UserModels.Add(model);
+            _englishExamsDbContext.SaveChanges();
         }
 
         public void Update(UserModel model)
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
-
-            if (models == null)
-            {
-                throw new InvalidOperationException();
-            }
-
-            var index = models.FindIndex(m => m.Password == model.Password &&
+            if (model is null)
+                throw new ArgumentNullException(nameof(model));
+            
+            var entity = _englishExamsDbContext.UserModels.FirstOrDefault(m => m.Password == model.Password &&
                                                   m.UserName == model.UserName);
-            models[index] = model;
 
-            _fileWrapper.WriteTo(FileConstants.PERSONAL_DATA, models);
+            entity.UpdateFrom(model);
+            _englishExamsDbContext.SaveChanges();
         }
 
         public void Authenticate(UserModel model)
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
+            if (model is null)
+                throw new ArgumentNullException(nameof(model));
 
-
-            var user = models?.FirstOrDefault(m => m.Password == model.Password && 
+            var user = _englishExamsDbContext.UserModels.AsNoTracking().FirstOrDefault(
+                                                  m => m.Password == model.Password && 
                                                   m.UserName == model.UserName);
 
             CurrentUser.Instance = user;
@@ -61,31 +54,21 @@ namespace EnglishExams.Services.Implementation
 
         public IEnumerable<UserModel> FindStudents()
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA).ToList();
-
-            var students = models.Where(c => c.Role == Roles.Student);
+            var students = _englishExamsDbContext.UserModels.Where(c => c.Role == Roles.Student);
 
             return students;
         }
 
         public bool IsTeacher(string userName, string password)
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
-
-            var teacher = models?.FirstOrDefault(c => c.UserName == userName && 
-                                                      c.Password == password);
-
-            return teacher != null;
+            return _englishExamsDbContext.UserModels.Any(c => c.UserName == userName &&
+                                                      c.Password == password &&
+                                                      c.Role == Roles.Master);
         }
 
         public UserModel FindTeacher()
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
-
-            var teacher = models?.FirstOrDefault(c => c.Role == Roles.Master);
+            var teacher = _englishExamsDbContext.UserModels.FirstOrDefault(c => c.Role == Roles.Master);
 
             return teacher;
         }

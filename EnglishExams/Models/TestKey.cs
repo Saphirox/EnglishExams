@@ -3,7 +3,7 @@
     /// <summary>
     /// Test Key
     /// </summary>
-    public class TestKey
+    public class TestKey : IntId
     {
         public string UnitName { get; set; }
         public string LessonName { get; set; }
