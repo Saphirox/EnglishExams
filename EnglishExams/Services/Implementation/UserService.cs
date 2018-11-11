@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EnglishExams.Common;
+using EnglishExams.Application.Infrastructure;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 
@@ -12,48 +12,43 @@ namespace EnglishExams.Services.Implementation
     /// </summary>
     public class UserService : IUserService
     {
-        private readonly IFileWrapper _fileWrapper;
+        private readonly IUnitOfWork _uow;
 
-        public UserService(IFileWrapper fileWrapper)
+        public UserService(IUnitOfWork uow)
         {
-            _fileWrapper = fileWrapper;
+            _uow = uow;
         }
 
         public void Add(UserModel model)
         {
-            var models = 
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)
-                    ?.ToList() ?? new List<UserModel>();
+            if (model is null)
+                throw new ArgumentNullException(nameof(model));
 
-            models.Add(model);
-
-            _fileWrapper.WriteTo(FileConstants.PERSONAL_DATA, models);
+            _uow.Repository<UserModel>().Add(model);
+            _uow.SaveChanges();
         }
 
         public void Update(UserModel model)
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
-
-            if (models == null)
-            {
-                throw new InvalidOperationException();
-            }
-
-            var index = models.FindIndex(m => m.Password == model.Password &&
+            if (model is null)
+                throw new ArgumentNullException(nameof(model));
+            
+            var entity = _uow.Repository<UserModel>()
+                .GetQueryable()
+                .FirstOrDefault(m => m.Password == model.Password &&
                                                   m.UserName == model.UserName);
-            models[index] = model;
 
-            _fileWrapper.WriteTo(FileConstants.PERSONAL_DATA, models);
+            entity.UpdateFrom(model);
+            _uow.SaveChanges();
         }
 
         public void Authenticate(UserModel model)
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
+            if (model is null)
+                throw new ArgumentNullException(nameof(model));
 
-
-            var user = models?.FirstOrDefault(m => m.Password == model.Password && 
+            var user = _uow.Repository<UserModel>().GetQueryable().FirstOrDefault(
+                                                  m => m.Password == model.Password && 
                                                   m.UserName == model.UserName);
 
             CurrentUser.Instance = user;
@@ -61,31 +56,23 @@ namespace EnglishExams.Services.Implementation
 
         public IEnumerable<UserModel> FindStudents()
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA).ToList();
-
-            var students = models.Where(c => c.Role == Roles.Student);
+            var students = _uow.Repository<UserModel>().GetQueryable().Where(c => c.Role == Roles.Student);
 
             return students;
         }
 
+
+        // TODO: Move to model
         public bool IsTeacher(string userName, string password)
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
-
-            var teacher = models?.FirstOrDefault(c => c.UserName == userName && 
-                                                      c.Password == password);
-
-            return teacher != null;
+            return _uow.Repository<UserModel>().GetQueryable().Any(c => c.UserName == userName &&
+                                                      c.Password == password &&
+                                                      c.Role == Roles.Master);
         }
 
         public UserModel FindTeacher()
         {
-            var models =
-                _fileWrapper.ReadFrom<IEnumerable<UserModel>>(FileConstants.PERSONAL_DATA)?.ToList();
-
-            var teacher = models?.FirstOrDefault(c => c.Role == Roles.Master);
+            var teacher = _uow.Repository<UserModel>().GetQueryable().FirstOrDefault(c => c.Role == Roles.Master);
 
             return teacher;
         }

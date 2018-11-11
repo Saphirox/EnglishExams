@@ -12,8 +12,7 @@ namespace EnglishExams.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private readonly IUserService _userService = 
-            new UserService(new FileWrapper());
+        private readonly IUserService _userService;
 
         private UserModel _userModel = new UserModel();
 
@@ -44,8 +43,9 @@ namespace EnglishExams.ViewModels
 
         public RelayCommand Export { get; set; }
 
-        public LoginViewModel()
+        public LoginViewModel(IUserService userService)
         {
+            _userService = userService;
             ShowSignUpPage = new RelayCommand(ShowSignUp);
             ShowMenuPage = new RelayCommand(ShowMenu);
             Import = new RelayCommand(ImportPersonalFile);

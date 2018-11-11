@@ -20,6 +20,11 @@ namespace EnglishExams.Infrastructure
             Messenger.Default.Send(new ChangePage(type));
         }
 
+        public static void ToViewModel(ChangePage type)
+        {
+            Messenger.Default.Send(type);
+        }
+
         /// <summary>
         /// Register to catch 
         /// </summary>

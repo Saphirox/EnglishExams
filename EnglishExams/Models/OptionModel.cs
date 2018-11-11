@@ -5,7 +5,7 @@ namespace EnglishExams.Models
     /// <summary>
     /// Question option for test
     /// </summary>
-    public class OptionModel
+    public class OptionModel : IntId
     {
         [JsonProperty("name")]
         public string Name { get; set; }

@@ -15,7 +15,6 @@ namespace EnglishExams.ViewModels
     {
         private TestKey _testKey;
         private IQuestionService _questionService;
-        private IFileWrapper _fileWrapper;
         private DispatcherTimer _dispatcherTimer;
         private readonly ITestResultService _testResultService;
         private readonly Dictionary<string, ICollection<string>> _answers;
@@ -44,7 +43,7 @@ namespace EnglishExams.ViewModels
         }
 
         public string Header => 
-            string.Concat(_userTestModel.Key.UnitName, " - ", _userTestModel.Key.LessonName);
+            string.Concat(_userTestModel.UnitName, " - ", _userTestModel.LessonName);
 
         public string TestDuration
             => string.Concat(CommonResources.Duration, " ", new TimeSpan(0, 0, Timer).ToString("g"));
@@ -63,15 +62,13 @@ namespace EnglishExams.ViewModels
             set => _currentOptions = value;
         }
 
-        public StartedTestViewModel()
+        public StartedTestViewModel(IQuestionService questionService, ITestResultService testResultService)
         {
-           _fileWrapper = new FileWrapper();
-
             _answers = new Dictionary<string, ICollection<string>>();
 
             _testKey = TinyTempCache.Get<Type, TestKey>(typeof(TestKey));
-            _questionService = new QuestionService(_fileWrapper);
-            _testResultService = new TestResultService(_fileWrapper);
+            _questionService = questionService;
+            _testResultService = testResultService;
             _userTestModel = _questionService.GetTestByTaskDescriptionWithPermution(_testKey);
 
             _timer = _userTestModel.Duration;
@@ -156,8 +153,8 @@ namespace EnglishExams.ViewModels
 
             _testResultService.AddResultToUser(new TestKey()
             {
-                UnitName = _userTestModel.Key.UnitName,
-                LessonName = _userTestModel.Key.LessonName
+                UnitName = _userTestModel.UnitName,
+                LessonName = _userTestModel.LessonName
             }, _answers);
 
             TinyTempCache.Set(typeof(UserTestModel), _userTestModel);

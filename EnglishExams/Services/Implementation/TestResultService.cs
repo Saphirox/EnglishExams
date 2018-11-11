@@ -11,20 +11,19 @@ namespace EnglishExams.Services.Implementation
     /// </summary>
     public class TestResultService : ITestResultService
     {
-        private readonly IFileWrapper _fileWrapper;
         private readonly IUserService _userService;
-
-        public TestResultService(IFileWrapper fileWrapper)
+        
+        public TestResultService(IUserService userService)
         {
-            _fileWrapper = fileWrapper;
-            _userService = new UserService(_fileWrapper);
+            _userService = userService;
         }
 
         public void AddResultToUser(TestKey key, Dictionary<string, ICollection<string>> answers)
         {
             var testResult = new TestResultModel
             {
-                Key = key,
+                LessonName = key.LessonName,
+                UnitName = key.UnitName,
                 QuestionResultModels = answers.Select(c => new QuestionResultModel
                 {
                     Text = c.Key,
@@ -32,7 +31,7 @@ namespace EnglishExams.Services.Implementation
                 }).ToList()
             };
 
-            var existed = CurrentUser.Instance.TestResults.FirstOrDefault(c => c.Key == key);
+            var existed = CurrentUser.Instance.TestResults.FirstOrDefault(c => c == key);
 
             if (existed != null)
             {
@@ -85,9 +84,9 @@ namespace EnglishExams.Services.Implementation
 
         public IList<TestResultDescriptionModel> GetResults(TestKey key)
         {
-            var testResult = CurrentUser.Instance.TestResults.LastOrDefault(c => c.Key == key);
+            var testResult = CurrentUser.Instance.TestResults.LastOrDefault(c => c == key);
 
-            var test = _userService.FindTeacher().UserTestModels.LastOrDefault(c => c.Key == key);
+            var test = _userService.FindTeacher().UserTestModels.LastOrDefault(c => c == key);
             
             var list = new List<TestResultDescriptionModel>();
             var index = 0;
@@ -132,6 +131,8 @@ namespace EnglishExams.Services.Implementation
             return list;
         }
 
+
+        // TODO: Refactor me -> method cannot accept arrays
         private IEnumerable<GradebookTestResultModel> GetOneGradebook(IEnumerable<UserTestModel> tests, 
             IEnumerable<TestResultModel> testResults)
         {
@@ -139,7 +140,7 @@ namespace EnglishExams.Services.Implementation
             {
                 foreach (var testResult in testResults)
                 {
-                    if (testResult.Key == test.Key)
+                    if ((TestKey)testResult == (TestKey)test)
                     {
                         int resultPoint = 0;
 
@@ -150,24 +151,17 @@ namespace EnglishExams.Services.Implementation
                                 if (questionResult.Text == question.Text)
                                 {
                                     var correctAnswers = question.Options.Where(c => c.IsCorrect).Select(c => c.Name);
-
-                                    var firstNotSecond = correctAnswers.Except(questionResult.OptionsName).ToList();
-                                    var secondNotFirst = questionResult.OptionsName.Except(correctAnswers).ToList();
-
-                                    var result = !firstNotSecond.Any() && !secondNotFirst.Any();
-
+                                    var questionPassed = questionResult.OptionsName.Except(correctAnswers).Any();
                                     var points = test.NumberOfPoints / test.NumberOfQuestions;
 
-                                    resultPoint += result ? points : 0;
+                                    resultPoint += questionPassed ? points : 0;
                                 }
                             }
                         }
 
-                        yield return new GradebookTestResultModel
-                        {
-                            Key = test.Key,
-                            Points = resultPoint
-                        };
+                        yield return GradebookTestResultModel.Factory.CreateNew(
+                            TestKey.From(test.UnitName, test.LessonName),
+                            resultPoint);
                     }
                 }
             }

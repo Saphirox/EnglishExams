@@ -6,8 +6,13 @@ namespace EnglishExams.Models
     /// <summary>
     /// Test question
     /// </summary>
-    public class QuestionModel
+    public class QuestionModel : IntId
     {
+        public QuestionModel()
+        {
+            Options = new List<OptionModel>();
+        }
+
         [JsonProperty("text")]
         public string Text { get; set; }
 

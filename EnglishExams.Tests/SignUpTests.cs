@@ -11,27 +11,27 @@ namespace EnglishExams.Tests
         private string TestDirectory = TestContext.CurrentContext.TestDirectory.Replace("bin\\Debug", string.Empty);
 
         // SUT -> Service under test
-        private IUserService _sut;
+        //private IUserService _sut;
 
-        [SetUp]
-        public void SetUp()
-        {
-            var fileService = new FileFacade();
-            fileService.CurrentDirectory = TestDirectory;
+        //[SetUp]
+        //public void SetUp()
+        //{
+        //    var fileService = new FileFacade();
+        //    fileService.CurrentDirectory = TestDirectory;
             
-            _sut = new UserService(fileService);
-        }
+        //    _sut = new UserService(fileService);
+        //}
 
-        [Test]
-        public void AddUserModel()
-        {
-            var model = new UserModel
-            {
-                Password = "Password",
-                UserName = "Name"
-            };
+        //[Test]
+        //public void AddUserModel()
+        //{
+        //    var model = new UserModel
+        //    {
+        //        Password = "Password",
+        //        UserName = "Name"
+        //    };
 
-            _sut.Add(model);
-        }
+        //    _sut.Add(model);
+        //}
     }
 }

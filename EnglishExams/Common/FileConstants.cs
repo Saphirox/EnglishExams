@@ -8,6 +8,9 @@ namespace EnglishExams.Common
     public class FileConstants
     {
         public static readonly string PERSONAL_DATA = Path.Combine("Files", "persona-data.json");
-        public static readonly string PERSONAL_DATA_PATH = Path.Combine(Directory.GetCurrentDirectory().Replace("bin\\Debug", string.Empty), "Files", "persona-data.json");
+        public static readonly string PERSONAL_DATA_PATH = 
+            Path.Combine(
+                Directory.GetCurrentDirectory().Replace("bin\\Debug", string.Empty)
+                .Replace("bin\\Release", string.Empty), "Files", "persona-data.json");
     }
 }

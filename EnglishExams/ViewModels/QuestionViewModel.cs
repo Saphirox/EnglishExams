@@ -189,9 +189,9 @@ namespace EnglishExams.ViewModels
             }
         }
 
-        public QuestionViewModel()
+        public QuestionViewModel(IQuestionService questionService)
         {
-            _questionService = new QuestionService(new FileWrapper());
+            _questionService = questionService;
             _userTestModel = TinyTempCache.Get<Type, UserTestModel>(typeof(UserTestModel));
 
             NextQuestion = new RelayCommand(AddClearModel);
@@ -200,7 +200,8 @@ namespace EnglishExams.ViewModels
 
         private void AddTestToUser()
         {
-            _questionService.AddToTest(_userTestModel, _questionModels);
+            _userTestModel.QuestionModels = _questionModels;
+            _questionService.AddToTest(_userTestModel);
 
             RedirectDecorator.ToViewModel(typeof(MenuViewModel));
         }
