@@ -10,5 +10,6 @@ namespace EnglishExams.Infrastructure
         IEnumerable<TEntity> Add(IReadOnlyCollection<TEntity> entities);
         IQueryable<TEntity> GetQueryable();
         void Delete(TEntity entity);
+        void Delete(IReadOnlyCollection<TEntity> entity);
     }
 }

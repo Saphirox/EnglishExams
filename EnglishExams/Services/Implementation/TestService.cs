@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using EnglishExams.Application.Infrastructure;
 using EnglishExams.Infrastructure;
@@ -10,27 +11,41 @@ namespace EnglishExams.Services.Implementation
     /// <summary>
     /// Perform action on QuestionModels
     /// </summary>
-    public class QuestionService : IQuestionService
+    public class TestService : ITestService
     {
         private readonly IUserService _userService;
         private readonly IUnitOfWork _uow;
 
-        public QuestionService(IUnitOfWork uow, IUserService userService)
+        public TestService(IUnitOfWork uow, IUserService userService)
         {
             _uow = uow;
             _userService = userService;
         }
 
-        public void AddToTest(UserTestModel userTestModel)
+        public UserTestModel Add(UserTestModel userTestModel)
         {
-            if (userTestModel is null)
-                throw new ArgumentNullException(nameof(userTestModel));
+            UserTestModel model;
 
-            CurrentUser.Instance.UserTestModels.Add(userTestModel);
+            try
+            {
+                if (userTestModel is null)
+                    throw new ArgumentNullException(nameof(userTestModel));
 
-            _uow.Repository<UserTestModel>().GetQueryable().FirstOrDefault(u => u.UserModel.Id == CurrentUser.Instance.Id);
+                var teacher = _uow.Repository<UserModel>()
+                    .GetQueryable()
+                    .FirstOrDefault(u => u.Id == CurrentUser.Instance.Id);
 
-            _userService.Update(CurrentUser.Instance);
+                userTestModel.UserModel = teacher;
+                model = _uow.Repository<UserTestModel>().Add(userTestModel);
+                _uow.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                throw;
+            }
+
+            return model;
         }
 
         public UserTestModel GetTestByTaskDescription(TestKey key)

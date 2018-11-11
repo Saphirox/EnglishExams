@@ -42,5 +42,18 @@ namespace EnglishExams.Infrastructure
 
             DbContext.Set<TEntity>().Remove(entity);
         }
+
+        public void Delete(IReadOnlyCollection<TEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                if (DbContext.Entry(entity).State == EntityState.Detached)
+                {
+                    DbContext.Set<TEntity>().Attach(entity);
+                }
+            }
+
+            DbContext.Set<TEntity>().RemoveRange(entities);
+        }
     }
 }

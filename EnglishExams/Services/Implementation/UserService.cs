@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using EnglishExams.Application.Infrastructure;
+using EnglishExams.Common;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 
@@ -72,7 +74,9 @@ namespace EnglishExams.Services.Implementation
 
         public UserModel FindTeacher()
         {
-            var teacher = _uow.Repository<UserModel>().GetQueryable().FirstOrDefault(c => c.Role == Roles.Master);
+            var teacher = _uow.Repository<UserModel>().GetQueryable()
+                .Include(c => c.UserTestModels)
+                .FirstOrDefault(c => c.Role == Roles.Master);
 
             return teacher;
         }

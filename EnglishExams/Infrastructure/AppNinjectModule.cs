@@ -7,6 +7,7 @@ using Ninject.Modules;
 using Ninject.Extensions.Conventions;
 using LittleSocialNetwork.DataAccess.EF.Implementation;
 using System.Data.Entity;
+using EnglishExams.Common;
 
 namespace EnglishExams.Infrastructure
 {
@@ -18,9 +19,9 @@ namespace EnglishExams.Infrastructure
             this.Bind<IUnitOfWork>().To<UnitOfWork>();
             this.Bind<EnglishExamsDbContext>().ToSelf()
                 .WithConstructorArgument("connectionString",
-                    "Server=(localdb)\\MSSQLLocalDB;Database=EnglishExams;Trusted_Connection=True;MultipleActiveResultSets=true"
+                    DbSettings.CONNECTION_STRING
                     );
-            this.Bind<IQuestionService>().To<QuestionService>();
+            this.Bind<ITestService>().To<TestService>();
             this.Bind<ITestListService>().To<TestListService>();
             this.Bind<ITestResultService>().To<TestResultService>();
             this.Bind<IUserService>().To<UserService>();

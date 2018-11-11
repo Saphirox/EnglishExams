@@ -14,22 +14,22 @@ namespace EnglishExams.ViewModels
     using KeyValue = KeyValuePair<string, IEnumerable<GradebookTestResultModel>>;
     public class GradebookViewModel : ViewModelBase
     {
-        private readonly IQuestionService _questionService;
+        private readonly ITestService _testService;
         private readonly ITestResultService _resultService;
 
         public IEnumerable<KeyValue> Tests => GetTestGradebookTestResults();
 
         public RelayCommand ConcreteLesson { get; set; }
 
-        public GradebookViewModel(ITestResultService resultService, IQuestionService questionService)
+        public GradebookViewModel(ITestResultService resultService, ITestService testService)
         {
-            _questionService = questionService;
+            _testService = testService;
             _resultService = resultService;
         }
 
         public void ShowConcreteLesson(TestKey key)
         {
-            var test = _questionService.GetTestByTaskDescription(key);
+            var test = _testService.GetTestByTaskDescription(key);
             RedirectDecorator.ToViewModel(
                 ChangePage.CreateAndPassDataWithTypeKey(typeof(TestResultViewModel), test));
         }
