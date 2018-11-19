@@ -8,10 +8,17 @@ namespace EnglishExams.ViewModels
 {
     public class SignUpViewModel : ViewModelBase
     {
-        private IUserService _userService => new UserService(new FileWrapper());
+        private IUserService _userService;
         public RelayCommand ShowSignInPage { get; set; }
 
         public UserModel NewUser { get; set; } = new UserModel();
+
+        public SignUpViewModel(IUserService userService)
+        {
+            _userService = userService;
+            ShowSignInPage = new RelayCommand(ShowSignIn);
+        }
+
 
         public string Password
         {
@@ -43,11 +50,6 @@ namespace EnglishExams.ViewModels
                 NewUser.Role = value ? Roles.Master : Roles.Student;
                 OnPropertyChanged(nameof(IsMaster));
             }
-        }
-
-        public SignUpViewModel()
-        {
-            ShowSignInPage = new RelayCommand(ShowSignIn);
         }
 
         public bool Validate()

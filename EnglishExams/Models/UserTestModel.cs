@@ -19,9 +19,9 @@ namespace EnglishExams.Models
         
         public int NumberOfPoints { get; set; }
 
-        public ICollection<QuestionModel> QuestionModels { get; set; }
+        public virtual ICollection<QuestionModel> QuestionModels { get; set; }
 
-        public UserModel UserModel { get; set; }
+        public virtual UserModel UserModel { get; set; }
 
         public bool Permuted { get; set; }
 

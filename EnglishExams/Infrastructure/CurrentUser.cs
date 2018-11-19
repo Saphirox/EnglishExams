@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EnglishExams.Models;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace EnglishExams.Infrastructure
 {
@@ -10,9 +12,17 @@ namespace EnglishExams.Infrastructure
     {
         private static UserModel _instance;
 
+        private static bool isDirtyData;
+
+        static CurrentUser()
+        {
+            Messenger.Default.Unregister<UserModel>(_instance, Interceptor);
+            Messenger.Default.Register<UserModel>(_instance, Interceptor);
+        }
+
         public static UserModel Instance
         {
-            get => _instance;
+            get { return _instance; }
             set
             {
                 if (value is null)
@@ -31,6 +41,11 @@ namespace EnglishExams.Infrastructure
             }
         }
 
+        private static void Interceptor(UserModel userModel)
+        {
+            Instance = userModel;
+        }
+
         /// <summary>
         /// Return true if user instance exist
         /// </summary>
@@ -38,6 +53,11 @@ namespace EnglishExams.Infrastructure
         public static bool IsAuthenticated()
         {
             return Instance != null;
+        }
+
+        internal static bool FindUser(UserModel arg)
+        {
+            return _instance.Id == arg.Id;
         }
     }
 }

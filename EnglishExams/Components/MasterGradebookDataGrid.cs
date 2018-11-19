@@ -72,7 +72,7 @@ namespace EnglishExams.Components
                 {
                     var concreteParam = parameter as TestKey;
 
-                    var gradebook = concreteUserGradebook.FirstOrDefault(g => g.Key == concreteParam);
+                    var gradebook = concreteUserGradebook.FirstOrDefault(g => g == concreteParam);
 
                     if (gradebook != null)
                     {

@@ -37,7 +37,7 @@ namespace EnglishExams.ViewModels
         {
             CurrentUser.Instance = null;
             OnPropertyChanged(nameof(LogoutVisibility));
-            CurrentViewModel = new LoginViewModel();
+            CurrentViewModel =  (LoginViewModel) NinjectFactory.GetInstance().GetService(typeof(LoginViewModel));
         }
 
         private void ChangePage(ChangePage page)

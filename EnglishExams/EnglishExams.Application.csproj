@@ -8,11 +8,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>EnglishExams</RootNamespace>
     <AssemblyName>EnglishExams</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -100,6 +101,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\DbSettings.cs" />
     <Compile Include="Common\FileConstants.cs" />
     <Compile Include="AttachedProperties\ButtonAttachedProperty.cs" />
     <Compile Include="Components\MasterGradebookDataGrid.cs" />
@@ -107,24 +109,41 @@
     <Compile Include="Infrastructure\ChangePage.cs" />
     <Compile Include="AttachedProperties\CheckboxAttachedProperty.cs" />
     <Compile Include="Infrastructure\CurrentUser.cs" />
+    <Compile Include="Infrastructure\DbContextFactory.cs" />
     <Compile Include="Infrastructure\EnglishExamsDbContext.cs" />
     <Compile Include="Infrastructure\FileWrapper.cs" />
     <Compile Include="Infrastructure\IFileWrapper.cs" />
     <Compile Include="Infrastructure\AppNinjectModule.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\Repository.cs" />
     <Compile Include="Infrastructure\Roles.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Infrastructure\ValidationExtensions.cs" />
+    <Compile Include="Migrations\201811110922263_InitialCreate.cs" />
+    <Compile Include="Migrations\201811110922263_InitialCreate.Designer.cs">
+      <DependentUpon>201811110922263_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811111528452_Added_OptionName_Tabel.cs" />
+    <Compile Include="Migrations\201811111528452_Added_OptionName_Tabel.Designer.cs">
+      <DependentUpon>201811111528452_Added_OptionName_Tabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811111540450_Added_TestResult_QuestionResult_Relationship.cs" />
+    <Compile Include="Migrations\201811111540450_Added_TestResult_QuestionResult_Relationship.Designer.cs">
+      <DependentUpon>201811111540450_Added_TestResult_QuestionResult_Relationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IntId.cs" />
     <Compile Include="Models\MasterGradebookTestResultModel.cs" />
+    <Compile Include="Models\OptionName.cs" />
     <Compile Include="Services\Implementation\TestListService.cs" />
     <Compile Include="Services\ITestListService.cs" />
     <Compile Include="ViewModels\BackButtonViewModel.cs" />
-    <Compile Include="Services\IQuestionService.cs" />
+    <Compile Include="Services\ITestService.cs" />
     <Compile Include="Services\ITestResultService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Infrastructure\MessageError.cs" />
-    <Compile Include="Services\Implementation\QuestionService.cs" />
+    <Compile Include="Services\Implementation\TestService.cs" />
     <Compile Include="Infrastructure\RedirectDecorator.cs" />
     <Compile Include="Infrastructure\RelayCommand.cs" />
     <Compile Include="Services\Implementation\TestResultService.cs" />
@@ -262,6 +281,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201811110922263_InitialCreate.resx">
+      <DependentUpon>201811110922263_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811111528452_Added_OptionName_Tabel.resx">
+      <DependentUpon>201811111528452_Added_OptionName_Tabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811111540450_Added_TestResult_QuestionResult_Relationship.resx">
+      <DependentUpon>201811111540450_Added_TestResult_QuestionResult_Relationship.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

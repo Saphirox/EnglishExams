@@ -32,5 +32,14 @@
         {
             return !(key1 == key2);
         }
+
+        internal static TestKey From(string unitName, string lessonName)
+        {
+            return  new TestKey()
+            {
+                UnitName = unitName,
+                LessonName = lessonName
+            };
+        }
     }
 }

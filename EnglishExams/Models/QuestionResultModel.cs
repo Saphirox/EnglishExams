@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace EnglishExams.Models
@@ -10,13 +11,25 @@ namespace EnglishExams.Models
     {
         public QuestionResultModel()
         {
-            OptionsName = new List<string>();
+            OptionsName = new List<OptionName>();
         }
 
         [JsonProperty("questionText")]
         public string Text { get; set; }
 
         [JsonProperty("questionOptions")]
-        public ICollection<string> OptionsName { get; set; }
+        public virtual ICollection<OptionName> OptionsName { get; set; }
+
+        public TestResultModel TestResult { get; set; }
+        public int TestResultId { get; set; }
+
+        public static QuestionResultModel CreateNew(string text, IEnumerable<string> options)
+        {
+            return new QuestionResultModel
+            {
+                Text = text,
+                OptionsName = options.Select(OptionName.CreateNew).ToList()
+            };
+        }
     }
 }

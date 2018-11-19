@@ -1,17 +1,17 @@
 ﻿
-using EnglishExams.Infrastructure;
-using EnglishExams.Models;
-using NUnit.Framework;
+//using EnglishExams.Infrastructure;
+//using EnglishExams.Models;
+//using NUnit.Framework;
 
-namespace EnglishExams.Tests
-{
-    [TestFixture]
-    public class TestResultServiceTests
-    {
-        private ITestResultService _testResultService;
+//namespace EnglishExams.Tests
+//{
+//    [TestFixture]
+//    public class TestResultServiceTests
+//    {
+//        private ITestResultService _testResultService;
 
-        public void GetResultTest()
-        {
-        }
-    }
-}
+//        public void GetResultTest()
+//        {
+//        }
+//    }
+//}

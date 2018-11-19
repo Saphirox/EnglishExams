@@ -10,6 +10,13 @@ namespace EnglishExams.Models
     /// </summary>
     public class UserModel : IntId
     {
+        public UserModel()
+        {
+            UserTestModels = new List<UserTestModel>();
+            TestResults = new List<TestResultModel>();
+
+        }
+        
         [JsonProperty("userName")]
         public string UserName { get; set; }
 

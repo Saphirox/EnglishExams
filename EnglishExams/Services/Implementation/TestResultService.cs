@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
+using EnglishExams.Application.Infrastructure;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using EnglishExams.Resources;
@@ -11,71 +15,61 @@ namespace EnglishExams.Services.Implementation
     /// </summary>
     public class TestResultService : ITestResultService
     {
-        private readonly IFileWrapper _fileWrapper;
         private readonly IUserService _userService;
-
-        public TestResultService(IFileWrapper fileWrapper, IUserService userService)
+        private readonly IUnitOfWork _uow;
+        
+        public TestResultService(IUserService userService, IUnitOfWork uow)
         {
-            _fileWrapper = fileWrapper;
             _userService = userService;
+            _uow = uow;
         }
 
+        // TODO: Refactor me
         public void AddResultToUser(TestKey key, Dictionary<string, ICollection<string>> answers)
         {
-            var testResult = new TestResultModel
+            var newEntity = TestResultModel.CreateNew(key, answers.Select(c =>
+                QuestionResultModel.CreateNew(c.Key, c.Value)).ToList());
+
+            try
             {
-                LessonName = key.LessonName,
-                UnitName = key.UnitName,
-                QuestionResultModels = answers.Select(c => new QuestionResultModel
+                var existed = _uow.Repository<TestResultModel>().GetQueryable()
+                        .Where(c => c.UserModel.Id == CurrentUser.Instance.Id && c.UnitName == key.UnitName &&
+                                    c.LessonName == key.LessonName);
+
+                if (existed.Any())
                 {
-                    Text = c.Key,
-                    OptionsName = c.Value
-                }).ToList()
-            };
+                    _uow.Repository<TestResultModel>().Delete(existed.ToList());
+                }
 
-            var existed = CurrentUser.Instance.TestResults.FirstOrDefault(c => c.Key == key);
-
-            if (existed != null)
-            {
-                CurrentUser.Instance.TestResults.Remove(existed);
+                newEntity.UserModel = _uow.Repository<UserModel>().GetQueryable().FirstOrDefault(CurrentUser.FindUser);
+                _uow.Repository<TestResultModel>().Add(newEntity);
+                _uow.SaveChanges();
             }
-
-            CurrentUser.Instance.TestResults.Add(testResult);
-
-            _userService.Update(CurrentUser.Instance);
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public IEnumerable<GradebookTestResultModel> GetGradebook()
         {
-            var user = CurrentUser.Instance;
-            user.TestResults = user.TestResults.Reverse().Distinct().ToArray();
-            var teacherTests = _userService.FindTeacher()
-                .UserTestModels
-                .ToList();
+            var tests = _uow.Repository<UserTestModel>().GetQueryable();
 
-            teacherTests.Reverse();
+            var testResult = _uow.Repository<TestResultModel>().GetQueryable()
+                .Include(c => c.UserModel)
+                .Where(c => c.UserModel.Id == CurrentUser.Instance.Id);
 
-            var tests = teacherTests.Distinct().ToArray();
-
-            return GetOneGradebook(tests, user.TestResults);
+            return GetOneGradebook(tests, testResult);
         }
 
         public IEnumerable<MasterGradebookTestResultModel> GetMasterGradebook()
         {
-            var teacherTests = _userService.FindTeacher()
-                .UserTestModels
-                .ToList();
-
-            teacherTests.Reverse();
-
-            var tests = teacherTests.Distinct().ToArray();
-
+            var tests = _uow.Repository<UserTestModel>().GetQueryable().AsEnumerable();
             var pupils = _userService.FindStudents().ToArray();
 
             foreach (var pupil in pupils)
-            {
-                pupil.TestResults = pupil.TestResults.Reverse().Distinct().ToArray();
-            }
+                pupil.TestResults = pupil.TestResults.ToArray();
 
             return pupils.Select(p => new MasterGradebookTestResultModel()
             {
@@ -86,9 +80,15 @@ namespace EnglishExams.Services.Implementation
 
         public IList<TestResultDescriptionModel> GetResults(TestKey key)
         {
-            var testResult = CurrentUser.Instance.TestResults.LastOrDefault(c => c.Key == key);
+            var testResult = _uow.Repository<UserModel>()
+                .GetQueryable()
+                .Include(c => c.TestResults)
+                .FirstOrDefault(CurrentUser.FindUser)
+                .TestResults
+                .LastOrDefault(c => c == key);
 
-            var test = _userService.FindTeacher().UserTestModels.LastOrDefault(c => c.Key == key);
+            // TODO: Refactor me
+            var test = _userService.FindTeacher().UserTestModels.LastOrDefault(c => c == key);
             
             var list = new List<TestResultDescriptionModel>();
             var index = 0;
@@ -104,10 +104,9 @@ namespace EnglishExams.Services.Implementation
                             .Select(c => c.Name)
                             .ToArray();
 
-                        var firstNotSecond = correctAnswers.Except(testResultQuestion.OptionsName).ToList();
-                        var secondNotFirst = testResultQuestion.OptionsName.Except(correctAnswers).ToList();
+                        var firstNotSecond = correctAnswers.Except(testResultQuestion.OptionsName.Select(c => c.Name)).ToList();
                         
-                        var result = !firstNotSecond.Any() && !secondNotFirst.Any();
+                        var result = !firstNotSecond.Any();
 
                         ++index;
 
@@ -124,7 +123,7 @@ namespace EnglishExams.Services.Implementation
                             CorrectResult = string.Concat(CommonResources.CorrectAnswer, ": ", string.Join(", ", correctAnswers)),
                             QuestionPoints = string.Format(CommonResources.YouGotPattern, pointResult, 
                                 test.NumberOfPoints / test.NumberOfQuestions),
-                            UserResult = string.Concat(CommonResources.YourAnswer, ": ", string.Join(", ", testResultQuestion.OptionsName))
+                            UserResult = string.Concat(CommonResources.YourAnswer, ": ", string.Join(", ", testResultQuestion.OptionsName.Select(c => c.Name)))
                         });
                     }
                 }
@@ -133,6 +132,8 @@ namespace EnglishExams.Services.Implementation
             return list;
         }
 
+
+        // TODO: Refactor me -> method cannot accept arrays
         private IEnumerable<GradebookTestResultModel> GetOneGradebook(IEnumerable<UserTestModel> tests, 
             IEnumerable<TestResultModel> testResults)
         {
@@ -140,7 +141,7 @@ namespace EnglishExams.Services.Implementation
             {
                 foreach (var testResult in testResults)
                 {
-                    if (testResult.Key == test.Key)
+                    if ((TestKey)testResult == (TestKey)test)
                     {
                         int resultPoint = 0;
 
@@ -151,24 +152,17 @@ namespace EnglishExams.Services.Implementation
                                 if (questionResult.Text == question.Text)
                                 {
                                     var correctAnswers = question.Options.Where(c => c.IsCorrect).Select(c => c.Name);
-
-                                    var firstNotSecond = correctAnswers.Except(questionResult.OptionsName).ToList();
-                                    var secondNotFirst = questionResult.OptionsName.Except(correctAnswers).ToList();
-
-                                    var result = !firstNotSecond.Any() && !secondNotFirst.Any();
-
+                                    var questionPassed = questionResult.OptionsName.Select(c => c.Name).Except(correctAnswers).Any();
                                     var points = test.NumberOfPoints / test.NumberOfQuestions;
 
-                                    resultPoint += result ? points : 0;
+                                    resultPoint += questionPassed ? points : 0;
                                 }
                             }
                         }
 
-                        yield return new GradebookTestResultModel
-                        {
-                            Key = test.Key,
-                            Points = resultPoint
-                        };
+                        yield return GradebookTestResultModel.Factory.CreateNew(
+                            TestKey.From(test.UnitName, test.LessonName),
+                            resultPoint);
                     }
                 }
             }

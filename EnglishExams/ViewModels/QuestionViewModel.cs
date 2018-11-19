@@ -13,7 +13,7 @@ namespace EnglishExams.ViewModels
     {
         private int _countOfQuestion = 1;
 
-        private readonly IQuestionService _questionService;
+        private readonly ITestService _testService;
 
         private QuestionModel _model = new QuestionModel {
             Options = new List<OptionModel>()
@@ -189,9 +189,9 @@ namespace EnglishExams.ViewModels
             }
         }
 
-        public QuestionViewModel()
+        public QuestionViewModel(ITestService testService)
         {
-            _questionService = new QuestionService(new FileWrapper());
+            _testService = testService;
             _userTestModel = TinyTempCache.Get<Type, UserTestModel>(typeof(UserTestModel));
 
             NextQuestion = new RelayCommand(AddClearModel);
@@ -201,7 +201,7 @@ namespace EnglishExams.ViewModels
         private void AddTestToUser()
         {
             _userTestModel.QuestionModels = _questionModels;
-            _questionService.AddToTest(_userTestModel);
+            _testService.Add(_userTestModel);
 
             RedirectDecorator.ToViewModel(typeof(MenuViewModel));
         }

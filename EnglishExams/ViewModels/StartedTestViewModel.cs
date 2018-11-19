@@ -7,21 +7,38 @@ using EnglishExams.Models;
 using System.Windows.Threading;
 using EnglishExams.Resources;
 using EnglishExams.Services;
-using EnglishExams.Services.Implementation;
 
 namespace EnglishExams.ViewModels
 {
     public class StartedTestViewModel : ViewModelBase
     {
         private TestKey _testKey;
-        private IQuestionService _questionService;
-        private IFileWrapper _fileWrapper;
+        private ITestService _testService;
         private DispatcherTimer _dispatcherTimer;
         private readonly ITestResultService _testResultService;
         private readonly Dictionary<string, ICollection<string>> _answers;
         private readonly UserTestModel _userTestModel;
         private int _pointer = 0;
         private int _timer = 0;
+
+        public StartedTestViewModel(ITestService testService, ITestResultService testResultService)
+        {
+            _answers = new Dictionary<string, ICollection<string>>();
+
+            _testKey = TinyTempCache.Get<Type, TestKey>(typeof(TestKey));
+            _testService = testService;
+            _testResultService = testResultService;
+            _userTestModel = _testService.GetTestByTaskDescriptionWithPermution(_testKey);
+
+            _timer = _userTestModel.Duration;
+
+            NextQuestion = new RelayCommand(ShowNextQuestion);
+            TestResult = new RelayCommand(ShowTestResult);
+            Back = new RelayCommand(ShowBack);
+
+            Reset();
+            StartTimer();
+        }
 
         public RelayCommand NextQuestion { get; set; }
         public RelayCommand TestResult { get; set; }
@@ -44,7 +61,7 @@ namespace EnglishExams.ViewModels
         }
 
         public string Header => 
-            string.Concat(_userTestModel.Key.UnitName, " - ", _userTestModel.Key.LessonName);
+            string.Concat(_userTestModel.UnitName, " - ", _userTestModel.LessonName);
 
         public string TestDuration
             => string.Concat(CommonResources.Duration, " ", new TimeSpan(0, 0, Timer).ToString("g"));
@@ -55,34 +72,7 @@ namespace EnglishExams.ViewModels
 
         public string QuestionName => GetQuestionByIndex().Text;
 
-        private IList<OptionModel> _currentOptions;
-
-        public IList<OptionModel> CurrentOptions
-        {
-            get => _currentOptions;
-            set => _currentOptions = value;
-        }
-
-        public StartedTestViewModel()
-        {
-           _fileWrapper = new FileWrapper();
-
-            _answers = new Dictionary<string, ICollection<string>>();
-
-            _testKey = TinyTempCache.Get<Type, TestKey>(typeof(TestKey));
-            _questionService = new QuestionService(_fileWrapper);
-            _testResultService = new TestResultService(_fileWrapper);
-            _userTestModel = _questionService.GetTestByTaskDescriptionWithPermution(_testKey);
-
-            _timer = _userTestModel.Duration;
-
-            NextQuestion = new RelayCommand(ShowNextQuestion);
-            TestResult = new RelayCommand(ShowTestResult);
-            Back = new RelayCommand(ShowBack);
-
-            Reset();
-            StartTimer();
-        }
+        public IList<OptionModel> CurrentOptions { get; set; }
 
         public void ShowBack()
         {
@@ -156,8 +146,8 @@ namespace EnglishExams.ViewModels
 
             _testResultService.AddResultToUser(new TestKey()
             {
-                UnitName = _userTestModel.Key.UnitName,
-                LessonName = _userTestModel.Key.LessonName
+                UnitName = _userTestModel.UnitName,
+                LessonName = _userTestModel.LessonName
             }, _answers);
 
             TinyTempCache.Set(typeof(UserTestModel), _userTestModel);
@@ -192,7 +182,7 @@ namespace EnglishExams.ViewModels
 
         private void Set()
         {
-            foreach (var option in _currentOptions)
+            foreach (var option in CurrentOptions)
             {
                 foreach (var answer in _answers)
                 {
@@ -207,7 +197,7 @@ namespace EnglishExams.ViewModels
 
         private void Reset()
         {
-            _currentOptions = new ObservableCollection<OptionModel>(GetQuestionByIndex().Options.Select(c =>
+            CurrentOptions = new ObservableCollection<OptionModel>(GetQuestionByIndex().Options.Select(c =>
                 new OptionModel
                 {
                     Name = c.Name,
