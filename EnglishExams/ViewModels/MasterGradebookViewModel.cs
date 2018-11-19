@@ -24,7 +24,7 @@ namespace EnglishExams.ViewModels
         {
             _resultService = testResultService;
 
-            var gradebooks = _resultService.GetMasterGradebook();
+            var gradebooks = _resultService.GetMasterGradebook().ToList();
 
             StudentsGradebooks = new ObservableCollection<MasterGradebookTestResultModel>(gradebooks);
         }

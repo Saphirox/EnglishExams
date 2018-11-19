@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
 using EnglishExams.Services;
@@ -17,7 +18,8 @@ namespace EnglishExams.ViewModels
         private readonly ITestService _testService;
         private readonly ITestResultService _resultService;
 
-        public IEnumerable<KeyValue> Tests => GetTestGradebookTestResults();
+        public IEnumerable<KeyValue> Tests =>
+            GetTestGradebookTestResults().Result;
 
         public RelayCommand ConcreteLesson { get; set; }
 
@@ -30,14 +32,18 @@ namespace EnglishExams.ViewModels
         public void ShowConcreteLesson(TestKey key)
         {
             var test = _testService.GetTestByTaskDescription(key);
-            RedirectDecorator.ToViewModel(
-                ChangePage.CreateAndPassDataWithTypeKey(typeof(TestResultViewModel), test));
+            RedirectDecorator.ToViewModel(ChangePage.CreateAndPassData(typeof(TestResultViewModel), typeof(UserTestModel), test)
+        );
         }
 
-        private IEnumerable<KeyValue> GetTestGradebookTestResults()
+
+        private async Task<IEnumerable<KeyValue>> GetTestGradebookTestResults()
         {
-            return new ObservableCollection<KeyValue>(_resultService.GetGradebook()
-                .GroupBy(c => c.UnitName, (s, models) => new KeyValue(s, models)));
+            var result = (await _resultService.GetGradebook())
+                .GroupBy(c => c.UnitName, (s, models) => new KeyValue(s, models))
+                .ToList();
+
+            return new ObservableCollection<KeyValue>(result);
         }
     }
 }

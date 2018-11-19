@@ -24,10 +24,10 @@ namespace EnglishExams.Models
         public string Password { get; set; }
 
         [JsonProperty("tests")]
-        public ICollection<UserTestModel> UserTestModels { get; set; }
+        public virtual ICollection<UserTestModel> UserTestModels { get; set; }
 
         [JsonProperty("results")]
-        public ICollection<TestResultModel> TestResults { get; set; }
+        public virtual ICollection<TestResultModel> TestResults { get; set; }
 
         public Roles Role { get; set; }
 

@@ -76,6 +76,7 @@ namespace EnglishExams.Services.Implementation
         {
             var teacher = _uow.Repository<UserModel>().GetQueryable()
                 .Include(c => c.UserTestModels)
+                .AsNoTracking()
                 .FirstOrDefault(c => c.Role == Roles.Master);
 
             return teacher;

@@ -10,7 +10,8 @@
 
         public override bool Equals(object obj)
         {
-            var val = (TestKey)obj;
+            if (!(obj is TestKey val))
+                return false;
 
             return UnitName == val.UnitName && LessonName == val.LessonName;
         }

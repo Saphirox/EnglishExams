@@ -15,7 +15,7 @@ namespace EnglishExams.Infrastructure
             where TK: class
             where TV: class
         {
-            cache.Add(key, value);
+            cache[key] = value;
         }
 
         public static TV Get<TK, TV>(TK key) 

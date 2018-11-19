@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using EnglishExams.Application.Infrastructure;
 using EnglishExams.Infrastructure;
 using EnglishExams.Models;
@@ -51,20 +52,29 @@ namespace EnglishExams.Services.Implementation
             }
         }
 
-        public IEnumerable<GradebookTestResultModel> GetGradebook()
+        public async Task<IEnumerable<GradebookTestResultModel>> GetGradebook()
         {
-            var tests = _uow.Repository<UserTestModel>().GetQueryable();
+            var tests = _uow.Repository<UserTestModel>().GetQueryable()
+                .Include(c => c.UserModel)
+                .Include(c => c.QuestionModels.Select(l => l.Options))
+                .ToList();
 
             var testResult = _uow.Repository<TestResultModel>().GetQueryable()
                 .Include(c => c.UserModel)
-                .Where(c => c.UserModel.Id == CurrentUser.Instance.Id);
+                .Include(c => c.QuestionResultModels.Select(l => l.OptionsName))
+                .Where(c => c.UserModel.Id == CurrentUser.Instance.Id)
+                .ToList();
 
-            return GetOneGradebook(tests, testResult);
+            return await Task.FromResult(GetOneGradebook(tests, testResult));
         }
 
         public IEnumerable<MasterGradebookTestResultModel> GetMasterGradebook()
         {
-            var tests = _uow.Repository<UserTestModel>().GetQueryable().AsEnumerable();
+            var tests = _uow.Repository<UserTestModel>().GetQueryable()
+                .Include(c => c.UserModel)
+                .Include(c => c.QuestionModels.Select(l => l.Options))
+                .ToList();
+
             var pupils = _userService.FindStudents().ToArray();
 
             foreach (var pupil in pupils)
@@ -109,9 +119,9 @@ namespace EnglishExams.Services.Implementation
 
                         ++index;
 
-                        var points = test.NumberOfPoints / test.NumberOfQuestions;
+                        double points = test.NumberOfPoints / test.NumberOfQuestions;
 
-                        var pointResult = (result ? points : default).ToString();
+                        string pointResult = (result ? points : default).ToString();
 
                         list.Add(new TestResultDescriptionModel
                         {

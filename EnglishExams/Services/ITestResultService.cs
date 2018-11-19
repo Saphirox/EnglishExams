@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using EnglishExams.Models;
 
 namespace EnglishExams.Services
@@ -8,7 +9,7 @@ namespace EnglishExams.Services
         // TODO: Refactor me
         void AddResultToUser(TestKey key, Dictionary<string, ICollection<string>> answers);
 
-        IEnumerable<GradebookTestResultModel> GetGradebook();
+        Task<IEnumerable<GradebookTestResultModel>> GetGradebook();
 
         IList<TestResultDescriptionModel> GetResults(TestKey key);
 

@@ -25,7 +25,7 @@
             Style="{StaticResource DarkHeader}"
             FontSize="24"
             FontWeight="Bold"
-            Text="{x:Static resx:CommonResources.WhatTestYouWantToPass}"></TextBlock>
+            Text="{x:Static resx:CommonResources.ReviewGradebook}"></TextBlock>
 
         <WrapPanel Grid.Row="1" Orientation="Horizontal">
             <ListBox ItemsSource="{Binding Tests}" Style="{StaticResource DarkListbox}">
@@ -52,15 +52,13 @@
                                                   BorderBrush="Transparent"
                                                   Foreground="#FFFFFF" 
                                                   FontSize="16"
-                                                  infrastructure:ButtonAttachedProperty.UnitName="{Binding RelativeSource=
-                                                  {RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}, 
-                                                    Path=DataContext.Key}" 
-                                                  infrastructure:ButtonAttachedProperty.LessonName="{Binding Key.LessonName}" 
-                                                  Command="{Binding ListBoxHander}">
+                                                  infrastructure:ButtonAttachedProperty.UnitName="{Binding UnitName}"
+                                                  infrastructure:ButtonAttachedProperty.LessonName="{Binding LessonName}" 
+                                                  Click="ListBoxHander">
                                                         <TextBlock>
                                                             <TextBlock.Text>
                                                                 <MultiBinding StringFormat="{}{0} - {1}">
-                                                                <Binding Path="Key.LessonName"></Binding>
+                                                                <Binding Path="LessonName"></Binding>
                                                                 <Binding Path="Points"></Binding>
                                                             </MultiBinding>
                                                         </TextBlock.Text>
