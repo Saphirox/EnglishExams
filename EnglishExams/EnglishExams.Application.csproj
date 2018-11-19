@@ -117,7 +117,7 @@
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\Repository.cs" />
-    <Compile Include="Infrastructure\Roles.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Infrastructure\ValidationExtensions.cs" />
     <Compile Include="Migrations\201811110922263_InitialCreate.cs" />
@@ -305,7 +305,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Files\persona-data.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

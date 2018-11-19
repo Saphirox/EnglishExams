@@ -144,7 +144,7 @@ namespace EnglishExams.ViewModels
                  _answers.Add(emptyQuestion.Text, emptyQuestion.Options.Select(c => c.Name).ToList());
             }
 
-            _testResultService.AddResultToUser(new TestKey()
+            _testResultService.AddResultToUser(new TestKey
             {
                 UnitName = _userTestModel.UnitName,
                 LessonName = _userTestModel.LessonName

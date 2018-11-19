@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using EnglishExams.Application.Infrastructure;
@@ -132,31 +131,30 @@ namespace EnglishExams.Services.Implementation
             return list;
         }
 
-
         // TODO: Refactor me -> method cannot accept arrays
         private IEnumerable<GradebookTestResultModel> GetOneGradebook(IEnumerable<UserTestModel> tests, 
             IEnumerable<TestResultModel> testResults)
         {
-            foreach (var test in tests)
+            foreach (UserTestModel test in tests)
             {
-                foreach (var testResult in testResults)
+                foreach (TestResultModel testResult in testResults)
                 {
-                    if ((TestKey)testResult == (TestKey)test)
+                    if (testResult == test)
                     {
                         int resultPoint = 0;
 
-                        foreach (var questionResult in testResult.QuestionResultModels)
+                        foreach (QuestionResultModel questionResult in testResult.QuestionResultModels)
                         {
-                            foreach (var question in test.QuestionModels)
+                            foreach (QuestionModel question in test.QuestionModels)
                             {
-                                if (questionResult.Text == question.Text)
-                                {
-                                    var correctAnswers = question.Options.Where(c => c.IsCorrect).Select(c => c.Name);
-                                    var questionPassed = questionResult.OptionsName.Select(c => c.Name).Except(correctAnswers).Any();
-                                    var points = test.NumberOfPoints / test.NumberOfQuestions;
+                                if (questionResult.Text != question.Text)
+                                    continue;
 
-                                    resultPoint += questionPassed ? points : 0;
-                                }
+                                var correctAnswers = question.Options.Where(c => c.IsCorrect).Select(c => c.Name);
+                                var questionPassed = questionResult.OptionsName.Select(c => c.Name).Except(correctAnswers).Any();
+                                var points = test.NumberOfPoints / test.NumberOfQuestions;
+
+                                resultPoint += questionPassed ? points : 0;
                             }
                         }
 
